@@ -1,7 +1,7 @@
 {
   "name": "nw-demo",
   "version": "0.0.1",
-  "description": "A Hello Node webkit app",
+  "description": "Graficador de Gravimetria",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,8 +9,8 @@
   "author": "",
   "license": "MIT",
   "window": {
-  	"toolbar": false,
-  	"width": 800,
-  	"height": 500
+  	"toolbar": true,
+  	"width": 1000,
+  	"height": 700
   }
 }
