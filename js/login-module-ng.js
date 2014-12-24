@@ -10,4 +10,9 @@ login.controller("loginButtonCtrl", function loginButton($scope) {
 		$scope.showForm = !$scope.showForm;
 	};
 
+	$scope.login = function(){
+		console.log($scope.name);
+		console.log($scope.pass);
+	}
+
 });
