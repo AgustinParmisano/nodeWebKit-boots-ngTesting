@@ -13,7 +13,15 @@ login.controller("loginButtonCtrl", function loginButton($scope) {
 	$scope.login = function(){
 		//console.log($scope.name); Testing
 		//console.log($scope.pass); Testing
-		if (($scope.name == "docente") && ($scope.pass == "docente")){
+		this.nameErrorMsg = "";
+		this.passErrorMsg = "";
+		this.loginError = "";
+
+		if (($scope.name == " ") || ($scope.name == null)){
+			this.nameErrorMsg = "Debe ingresar nombre."
+		}else if (($scope.pass == " ") || ($scope.pass == null)) {
+			this.passErrorMsg = "Debe ingresar clave."
+		}else if (($scope.name == "docente") && ($scope.pass == "docente")){
 			console.log("ENTRA EL DOCENTE");
 			//BUSCAR LA MEJOR MANERA DE HACER ROUTING
 			$currentPath = window.location;
@@ -23,6 +31,8 @@ login.controller("loginButtonCtrl", function loginButton($scope) {
 			$destinationPath = $localPath + "docenteProblema.html";
 			console.log("DESTINATION: " + $destinationPath);
 			window.location.href=$destinationPath;
+		}else{
+			this.loginError = "No existe ese usuario."
 		};
 	}
 

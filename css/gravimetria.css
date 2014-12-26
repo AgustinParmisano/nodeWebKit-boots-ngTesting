@@ -33,3 +33,41 @@
 	margin-bottom: 5%;
 	width: 100%;
 }
+
+#heading{
+	padding: 1% 1%;
+	width: 400px;
+	text-align: center;"
+}
+
+#varButtonGrey{
+	padding: 1% 1%;
+	background: #999999;
+	width: 250px;
+	border-radius: 10px;
+	color: white;
+	text-align: center;
+	margin-top: 5%;
+	padding: 3%;
+}
+
+#varButtonGreen{
+	padding: 1% 1%;
+	background: #58B957;
+	width: 250px;
+	border-radius: 10px;
+	color: white;
+	text-align: center;
+	margin-top: 5%;
+	padding: 3%;
+}
+
+#graficoDocente{
+	border: 3px solid #58B957;
+	margin-top: 5%;
+	margin-left: 22%;
+}
+
+#errorMsg{
+	color:maroon;
+}

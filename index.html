@@ -64,10 +64,13 @@
 					<div id="loginButtons">
 						<form novalidate>
 							<h4>Usuario</h4>
-							<input type="text" ng-model="name" class="form-control"><br>
+							<input type="text" ng-model="name" class="form-control" required><br>
+							<b><p id="errorMsg" ng-model="nameErrorMsg">{{nameErrorMsg}}</p></b>
 						    <h4>Clave</h4>
-						    <input type="text" ng-model="pass" class="form-control"><br>
+						    <input type="text" ng-model="pass" class="form-control" required><br>
+						    <b><p id="errorMsg" ng-model="passErrorMsg">{{passErrorMsg}}</p></b>
 					        <button ng-click="login()" type="button" class="btn btn-success">Ingresar</button>
+					        <b><p id="errorMsg" ng-model="loginError">{{loginError}}</p></b>
 					    </form>
 					</div>
 				</div>
