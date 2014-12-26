@@ -13,6 +13,10 @@ login.controller("loginButtonCtrl", function loginButton($scope) {
 	$scope.login = function(){
 		console.log($scope.name);
 		console.log($scope.pass);
+		if (($scope.name == "docente") && ($scope.pass == "docente")){
+			console.log("ENTRA EL DOCENTE");
+			window.location.href="/docenteProblema.html";
+		};
 	}
 
 });
