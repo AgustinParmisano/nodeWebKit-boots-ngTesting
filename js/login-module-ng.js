@@ -28,12 +28,24 @@ login.controller("loginButtonCtrl", function loginButton($scope) {
 			$currentString = String($currentPath);
 			console.log("CURRENT STRING: " + $currentString);
 			$localPath = $currentString;//.slice(0,-10); //PARA NODE WEB KIT
-			$destinationPath = $localPath + "docenteProblema.html";
+			$destinationPath = $localPath + "docenteProblema";
 			console.log("DESTINATION: " + $destinationPath);
 			window.location.href=$destinationPath;
 		}else{
 			this.loginError = "No existe ese usuario."
 		};
+	}
+	
+	$scope.alumno= function(){
+		console.log("ENTRA EL ALUMNO");
+		//BUSCAR LA MEJOR MANERA DE HACER ROUTING
+		$currentPath = window.location;
+		$currentString = String($currentPath);
+		console.log("CURRENT STRING: " + $currentString);
+		$localPath = $currentString;//.slice(0,-10); //PARA NODE WEB KIT
+		$destinationPath = $localPath + "alumnoProblema";
+		console.log("DESTINATION: " + $destinationPath);
+		window.location.href=$destinationPath;
 	}
 
 });
