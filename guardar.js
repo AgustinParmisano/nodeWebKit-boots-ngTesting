@@ -7,6 +7,7 @@ $scope.showButton = true;
 
 	$scope.guardar= function createFile() {
 		console.log("Guardar Archivo");
+		//esto es con node pero nose porque no esta andando
 		var fs = require('fs');
 		fs.writeFile('./file2.txt', 'Hola Mundo', function(err) {
 			if( err ){
@@ -16,7 +17,8 @@ $scope.showButton = true;
 				console.log('Se ha escrito correctamente');
 			}
 		});
-		/*var fso = new ActiveXObject("Scripting.FileSystemObject");
+		/*Esto lo bloquean los navegadores por seguridad!! pero habria que probar si con node!!
+		var fso = new ActiveXObject("Scripting.FileSystemObject");
 		var s = fso.CreateTextFile("C:\test.txt", True);
 		s.writeline("HI");
 		s.writeline("Bye");
