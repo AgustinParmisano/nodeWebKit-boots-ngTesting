@@ -9,8 +9,11 @@
   "author": "",
   "license": "MIT",
   "window": {
-  	"toolbar": false,
-  	"width": 1000,
-  	"height": 700
+    "toolbar": false,
+    "width": 1000,
+    "height": 700
+  },
+  "dependencies": {
+    "fs-extra": "^0.13.0"
   }
 }
