@@ -3,6 +3,12 @@ var problem = angular.module("problemModule", []);
 //Paint default canvas configuration
 var c = document.getElementById("graficoDocente");
 var ctx = c.getContext("2d");
+
+//ESferA
+ctx.arc(200,150,70,30,(Math.PI/180)*360,true);
+ctx.fillStyle="#f99";
+ctx.fill();
+
 ctx.moveTo(40,50);
 ctx.lineTo(460,50);
 ctx.moveTo(40,40);
@@ -11,7 +17,7 @@ ctx.font = "20px Arial";
 ctx.fillText("0",35,80);
 ctx.moveTo(460,40);
 ctx.lineTo(460,60);
-ctx.stroke()
+ctx.stroke();
 
 problem.controller('problemCtrl', ['$scope', function($scope) {
 	$isWritten = false;
