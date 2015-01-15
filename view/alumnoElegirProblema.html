@@ -7,11 +7,11 @@
     <title>Graficador de Gravimetría</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" >
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" >
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" >
     <!-- Estilos -->
-    <link rel="stylesheet" type="text/css" href="css/sb-admin-2.css" >
-    <link rel="stylesheet" type="text/css" href="css/gravimetria.css"  >
+    <link rel="stylesheet" type="text/css" href="/css/sb-admin-2.css" >
+    <link rel="stylesheet" type="text/css" href="/css/gravimetria.css"  >
 	<!-- <link href="css/geocharts.css" rel="stylesheet"> -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,12 +21,12 @@
     <![endif]-->
 		<!- Scripts ->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="/js/jquery-1.11.2.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <!-- Scripts De Aplicación--> 
-    <script src= "js/angular.min.js"></script>
-    <script src= "js/login-module-ng.js"></script> 
+    <script src= "/js/angular.min.js"></script>
+    <script src= "/controller/loadProblem-module-ng.js"></script> 
   </head>
   <body>
 
@@ -35,29 +35,32 @@
 	      <!- Header  ->
 	        <!--<div class="col-sm-12 col-md-12 col-lg-12" style="background-color:#E0F0D6;">-->
 	        <div class="panel-heading">
-				<img src="images/logo.png" class="img-responsive" alt="logo secretaria de extension fcalg" width="350" height="270" style="position:relative; float:right">
+				<img src="/images/logo.png" class="img-responsive" alt="logo secretaria de extension fcalg" width="350" height="270" style="position:relative; float:right">
 	        	<h1 style="color:#59B958;"><b>Bienvenido</b></b></h1>
 	        </div>
-
-	      <!- Logo  ->
-	      <div class="row">
-	        <div class="col-sm-4 col-md-4 col-lg-4"></div>
-	        <div class="col-sm-4 col-md-4 col-lg-4">	    	
-				<img src="images/logo.png" class="img-responsive" alt="logo secretaria de extension fcalg" width="350" height="270" style="margin-top:10%; margin-bottom:10%"> 
-	        </div>
-	        <div class="col-sm-4 col-md-4 col-lg-4"></div>
-	      </div>
-
-		  <!- Titulo  ->
-	      <div class="row">
+		<div ng-app="loadProblemModule" ng-controller="loadProblemCtrl" class="row">
+			<div class="row">
 	        <div class="col-sm-4 col-md-4 col-lg-4"></div>
 	        <div class="col-sm-4 col-md-4 col-lg-4">
-	        	<div id="title">
-	        		<h2><b>Graficador de Gravimetría</b></h2>
+	        	<div id="heading">
+	        		<h2 style="color:#59B958;"><b>Elegir Problema</b></h2>
 	        	</div>
 	        </div>
 	        <div class="col-sm-4 col-md-4 col-lg-4"></div>
 	      </div>
+		  <br>
+		  <div class="row">
+		  <div class="col-sm-2 col-md-2 col-lg-2"></div>
+	        <div class="col-sm-6 col-md-6 col-lg-6">
+					<button type="button" ng-click="cargarArchivo()" class="btn btn-success btn-lg">Cargar Problema</button>
+			</div>
+	        <div class="col-sm-4 col-md-4 col-lg-4">
+				<button type="button" ng-click="cargarDefault()" class="btn btn-success btn-lg">Usar Problema Por Defecto</button>
+			</div>
+		</div>	
+			
+		  </div>
+
 		</div>
     </div>  
   </body>
