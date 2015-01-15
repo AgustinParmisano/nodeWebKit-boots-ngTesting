@@ -127,15 +127,21 @@
 		        	    <canvas id="graficoDocente" width="500" height="300">
 		        	    	Your browser does not support the HTML5 canvas tag.
 		        	    </canvas>
-			        </div>
+					</div>
+			        
 			        <div class="col-sm-2 col-md-2 col-lg-2"></div>
 		        </div>
+				
 				<div class="row">
-					<div class="col-sm-4 col-md-4 col-lg-4">      	
-						<button ng-click="" ng-show="showButton" type="button" class="btn btn-success" id="btn-login"><h3><b>Guardar</b></h3></button>
+					<div class="col-sm-1 col-md-1 col-lg-4"></div>
+			        <div class="col-sm-1 col-md-1 col-lg-4">
+					<form ng-submit="enviar()">
+						<button ng-click="guardar()" ng-show="showButton" type="button" class="btn btn-success" id="btn-login"><h3><b>Guardar</b></h3></button>
+						<input type="submit" value="Guardar con form">
+					</form>
 					</div>
-				</div>
-
+			        <div class="col-sm-1 col-md-1 col-lg-4"></div>
+		        </div>
 		</div>
     </div>  
 
@@ -148,7 +154,6 @@
     <script src="/js/bootstrap.min.js"></script>
     <!-- Scripts De Aplicación--> 
     <script src= "/js/angular.min.js"></script>
-    <script src= "/controller/login-module-ng.js"></script> 
     <script src= "/controller/problem-module-ng.js"></script> 
   </body>
 </html>

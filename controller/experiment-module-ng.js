@@ -1,4 +1,7 @@
 //Experiment Module
+/*
+* Este modulo maneja la pantalla alumnoProblema 
+*/
 var experiment = angular.module("experimentModule", []);
 //Paint default canvas configuration
 var c = document.getElementById("graficoExperimento");

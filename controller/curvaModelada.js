@@ -1,3 +1,7 @@
+/*
+** Este script hace el grafico highcharts en la ventana alumnoModelado.html
+*/
+
 $(function () {
     $('#container').highcharts({
         chart: {

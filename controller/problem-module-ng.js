@@ -1,4 +1,7 @@
 //Problem Module
+/*
+* Este controlador maneja la pantanlla docenteProblema.html la cual permite el ingreso de los datos de un problema y su posterior guardado
+*/
 var problem = angular.module("problemModule", []);
 //Paint default canvas configuration
 var c = document.getElementById("graficoDocente");
@@ -23,6 +26,7 @@ problem.controller('problemCtrl', ['$scope', function($scope) {
 	$isWritten = false;
 	$isLong = false;
 	$tooLong = false;
+	$scope.showButton = true;
 
 	$scope.change = function() {
 		console.log(this.dmax);		
@@ -67,4 +71,11 @@ problem.controller('problemCtrl', ['$scope', function($scope) {
 			}
 		};
 	};
+	guardar= function(){
+		console.log("Comienza el intento de guardado");
+		$scope.get("../controller/guardarArchivo.js").success(function(){});
+	};
+	
 }]);
+
+
