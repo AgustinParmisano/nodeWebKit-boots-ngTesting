@@ -110,4 +110,20 @@ experiment.controller('experimentCtrl', ['$scope', function($scope) {
 			this.xiniErrorMsg = ""
 		};
 	};
+	
+	/* Despues de establecer el experimento hay que pasar a la vista del problema, 
+	habiendo validado previamente los datos correspondientes*/
+	$scope.continuar= function(){
+		/*Validar y enviar datos*/
+		
+		console.log("Pasar a experimento alumno");
+		$currentPath = window.location;
+		$currentString = String($currentPath);
+		console.log("CURRENT STRING: " + $currentString);
+		$localPath = $currentString;//.slice(0,-10); //PARA NODE WEB KIT
+		//esto hay que arreglarlo
+		$destinationPath = "http://localhost:8080/view/alumnoModelado";
+		console.log("DESTINATION: " + $destinationPath);
+		window.location.href=$destinationPath;
+	};
 }]);

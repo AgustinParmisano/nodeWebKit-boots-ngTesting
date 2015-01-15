@@ -95,10 +95,7 @@
 				<div class="col-sm-4 col-md-4 col-lg-4">
 					<div class="row">
 						<h3>Grafico </h3>
-						
-						<canvas id="myCanvas" width="500" height="150"
-						style="border:1px solid #000000;">
-						</canvas>
+						<div id="container" style="min-width: 500px; height: 200px; margin: 0 auto; border:1px solid #000000;"></div>
 						<span class="label label-danger">Error Promedio</span>
 						<canvas id="myCanvas" width="500" height="150"
 						style="border:1px solid #000000;">
@@ -110,5 +107,15 @@
 					 </div>
 				</div>
 	</div>
+	<!- Scripts ->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="/js/jquery-1.11.2.min.js"></script>
+	<script src="/highcharts/js/highcharts.js"></script>
+	<script src="/highcharts/js/modules/exporting.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Scripts De Aplicación--> 
+    <script src= "/js/angular.min.js"></script>
+    <script src= "/controller/modeling-module-ng.js"></script> 
   </body>
 </html>
