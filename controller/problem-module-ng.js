@@ -71,7 +71,7 @@ problem.controller('problemCtrl', ['$scope', function($scope) {
 			}
 		};
 	};
-	guardar= function(){
+	guardar= function($scope){
 		console.log("Comienza el intento de guardado");
 		$scope.get("../controller/guardarArchivo.js").success(function(){});
 	};
