@@ -27,9 +27,9 @@ login.controller("loginButtonCtrl", function loginButton($scope) {
 			$currentPath = window.location;
 			$currentString = String($currentPath);
 			console.log("CURRENT STRING: " + $currentString);
-			$localPath = $currentString; //.slice(0,-10); //PARA NODE WEB KIT
+			$localPath = $currentString;//.slice(0,-10); //PARA NODE WEB KIT
 			//console.log($localpath);
-			$destinationPath = $localPath + "view/docenteProblema";
+			$destinationPath = $localPath + "/view/docenteProblema.html";
 			console.log("DESTINATION: " + $destinationPath);
 			window.location.href=$destinationPath;
 		}else{
@@ -46,7 +46,7 @@ login.controller("loginButtonCtrl", function loginButton($scope) {
 		$localPath = $currentString;//.slice(0,-10); //PARA NODE WEB KIT
 		//Esta va a ser la vista donde tiene que ir pero por ahora lo mando a las variables
 		//$destinationPath = $localPath + "alumnoElegirProblema";
-		$destinationPath = $localPath + "view/alumnoElegirProblema";
+		$destinationPath = $localPath + "/view/alumnoElegirProblema.html";
 		console.log("DESTINATION: " + $destinationPath);
 		window.location.href=$destinationPath;
 	}
