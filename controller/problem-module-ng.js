@@ -3,6 +3,8 @@
 * Este controlador maneja la pantanlla docenteProblema.html la cual permite el ingreso de los datos de un problema y su posterior guardado
 */
 var problem = angular.module("problemModule", []);
+//Modulo de FileDialog para guardar/cargar archivos con angular y node web-kit https://github.com/DWand/nw-fileDialog
+var app = angular.module('app', ['DWand.nw-fileDialog']); 
 //Paint default canvas configuration
 var c = document.getElementById("graficoDocente");
 var ctx = c.getContext("2d");
