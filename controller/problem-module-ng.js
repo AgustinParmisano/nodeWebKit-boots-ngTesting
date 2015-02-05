@@ -2,7 +2,7 @@
 /*
 * Este controlador maneja la pantanlla docenteProblema.html la cual permite el ingreso de los datos de un problema y su posterior guardado
 */
-var problem = angular.module("problemModule", []);
+var problem = angular.module("problemModule", ['DWand.nw-fileDialog']);
 //Modulo de FileDialog para guardar/cargar archivos con angular y node web-kit https://github.com/DWand/nw-fileDialog
 var app = angular.module('app', ['DWand.nw-fileDialog']); 
 //Paint default canvas configuration
@@ -24,7 +24,7 @@ ctx.moveTo(460,40);
 ctx.lineTo(460,60);
 ctx.stroke();
 
-problem.controller('problemCtrl', ['$scope', function($scope) {
+problem.controller('problemCtrl', ['$scope', 'fileDialog', function($scope, fileDialog) {
 	$isWritten = false;
 	$isLong = false;
 	$tooLong = false;
@@ -73,9 +73,15 @@ problem.controller('problemCtrl', ['$scope', function($scope) {
 			}
 		};
 	};
-	guardar= function($scope){
+
+	$scope.guardar= function(){
 		console.log("Comienza el intento de guardado");
-		$scope.get("../controller/guardarArchivo.js").success(function(){});
+		//$scope.get("../controller/guardarArchivo.js").success(function(){});
+        fileDialog.saveAs(function(filename) {
+        	console.log("FileDialog, filename: " + filename);
+      	});
+
+
 	};
 	
 }]);
