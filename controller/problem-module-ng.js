@@ -79,10 +79,7 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 			dmax: this.dmax
 		};
 
-		console.log("Comienza el intento de guardado");
-		console.log("ENUNCIADO: " + this.enun)
-
-		downloadFile(filename, JSON.stringify(problema, null, 2));
+		downloadFile("problema", JSON.stringify(problema, null, 2));
 
 	};
 	
@@ -90,10 +87,8 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 
 //FileManager y FileSaver que mando Tom
 downloadFile = function(name, data) {
-	console.log("ANDA downloadFile");
     name = name.replace(' ', '_');
     var blob = new Blob([data], {type: "text/javascript;charset=utf-8"});
-    //saveAs(blob, name + '.user.js');
     saveAs(blob, name + '.txt');
 };
 
