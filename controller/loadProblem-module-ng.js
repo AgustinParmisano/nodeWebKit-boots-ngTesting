@@ -10,6 +10,9 @@ loadProblem.controller('loadProblemCtrl', ['$scope', function($scope) {
 	//Cargar el archivo previsto por el docente
 	$scope.cargarArchivo = function() {
 		console.log("Aca hay que hacer que elija el archivo del problema a resolver");
+
+		
+		
 	};
 	
 	//Cargar el problema por default
