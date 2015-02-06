@@ -11,8 +11,13 @@ loadProblem.controller('loadProblemCtrl', ['$scope', function($scope) {
 	$scope.cargarArchivo = function() {
 		console.log("Aca hay que hacer que elija el archivo del problema a resolver");
 
-		
-		
+		// Check for the various File API support.
+		if (window.File && window.FileReader && window.FileList && window.Blob) {
+		  alert('The APIs fully respond');
+		} else {
+		  alert('The File APIs are not fully supported in this browser.');
+		}
+
 	};
 	
 	//Cargar el problema por default
@@ -28,4 +33,33 @@ loadProblem.controller('loadProblemCtrl', ['$scope', function($scope) {
 		console.log("DESTINATION: " + $destinationPath);
 		window.location.href=$destinationPath;
 	};
+
+    $scope.saveContent = function($fileContent){
+        //$scope.content = $fileContent;
+        $problema = $fileContent;
+        console.log("JSON: " + $problema);
+    };
+
 }]);
+
+loadProblem.directive('onReadFile', function ($parse) {
+	return {
+		restrict: 'A',
+		scope: false,
+		link: function(scope, element, attrs) {
+            var fn = $parse(attrs.onReadFile);
+            
+			element.on('change', function(onChangeEvent) {
+				var reader = new FileReader();
+                
+				reader.onload = function(onLoadEvent) {
+					scope.$apply(function() {
+						fn(scope, {$fileContent:onLoadEvent.target.result});
+					});
+				};
+
+				reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+			});
+		}
+	};
+});

@@ -23,7 +23,7 @@ experiment.controller('experimentCtrl', ['$scope', function($scope) {
 
 	$scope.change = function() {
 	
-		console.log(this.xfin);		
+		console.log(this.xfin);	
 
 		this.xfinErrorMsg = "";
 
@@ -118,7 +118,7 @@ experiment.controller('experimentCtrl', ['$scope', function($scope) {
 	habiendo validado previamente los datos correspondientes*/
 	$scope.continuar= function(){
 		/*Validar y enviar datos*/
-		
+	
 		console.log("Pasar a experimento alumno");
 		$currentPath = window.location;
 		$currentString = String($currentPath);
