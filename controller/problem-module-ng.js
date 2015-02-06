@@ -74,9 +74,11 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 	};
 
 	$scope.guardar= function(){
+		//Esto el json que se va a guardar
 		var problema = {
 			enunciado: this.enun,
-			dmax: this.dmax
+			dmax: this.dmax,
+			otroVariable: "otraVariable"
 		};
 
 		downloadFile("problema", JSON.stringify(problema, null, 2));
