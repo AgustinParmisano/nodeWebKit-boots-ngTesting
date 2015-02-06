@@ -57,91 +57,69 @@
 			        <div class="col-sm-2 col-md-2 col-lg-2"></div>
 		        </div>
 
-	  	        <!-Variables-Titulo->
-		      	<div class="row">
-					<div class="col-sm-4 col-md-4 col-lg-4"></div>
-			        <div class="col-sm-4 col-md-4 col-lg-4">
-			        	<div id="heading">
-		        			<h2><b>Variables</b></h2>
-		        		</div>
-			        </div>
-			        <div class="col-sm-4 col-md-4 col-lg-4"></div>
-		        </div>
+	  	       
 
 	  	        <!-Variables-Inputs->
 		      	<div class="row">
-		      		<form role="form">
-						<div class="col-sm-2 col-md-2 col-lg-2"></div>
-				        <div class="col-sm-8 col-md-8 col-lg-8">
-							<div class="col-sm-4 col-md-4 col-lg-4">
-								<div id="varButtonGrey">
-									<p><b>X0</b></p><input class="form-control">
+		      		<form role="form"  ng-submit="enviar()">
+						
+							<div class="col-sm-3 col-md-3 col-lg-3">
+								
+								<div id="varButtonGrey" class="center-block">
+									<p><b>X0</b></p><input class="form-control" ng-model="x" ng-change="change()">
 									<b><p id="errorMsg" ng-model="x0ErrorMsg">{{x0ErrorMsg}}</p></b>
 								</div>
-								<div id="varButtonGrey">
-									<p><b>Ae</b></p><input class="form-control">
+								<div id="varButtonGrey" class="center-block">
+									<p><b>Ae</b></p><input class="form-control" ng-model="ae" ng-change="change()">
 									<b><p id="errorMsg" ng-model="aeErrorMsg">{{aeErrorMsg}}</p></b>
 								</div>
-								<div id="varButtonGrey">
+								<div id="varButtonGrey" class="center-block">
 									<!-- Aca hay que elegir si queremos maxlength o que no pinte letras en el canvas, o arreglar con javascript--> 
 									<p><b>Dmax</b></p><input class="form-control" maxlength="7" type="number" min="0" step="100" ng-model="dmax" ng-change="change()">
 									<b><p id="errorMsg" ng-model="dmaxErrorMsg">{{dmaxErrorMsg}}</p></b>
 								</div>
-							</div>
-				       		<div class="col-sm-4 col-md-4 col-lg-4">
-								<div id="varButtonGrey">
-									<p><b>R0</b></p><input class="form-control">
+								<div id="varButtonGrey" class="center-block">
+									<p><b>R0</b></p><input class="form-control" ng-model="r" ng-change="change()">
 									<b><p id="errorMsg" ng-model="r0ErrorMsg">{{r0ErrorMsg}}</p></b>
 								</div>
-								<div id="varButtonGrey">
-									<p><b>Amed</b></p><input class="form-control">
+								<div id="varButtonGrey" class="center-block">
+									<p><b>Amed</b></p><input class="form-control" ng-model="amed">
 									<b><p id="errorMsg" ng-model="amedErrorMsg">{{amedErrorMsg}}</p></b>
 								</div>
-								<div id="varButtonGrey">
-									<p><b>Costo Medicion</b></p><input class="form-control">
+							</div>
+				       		<div class="col-sm-6 col-md-6 col-lg-6">
+							 <!-Variables-Titulo->
+								<div class="row" >
+
+									<h2><b>Ingrese los datos del Problema</b></h2>
+
+								</div>
+								<canvas id="graficoDocente" class="center-block" width="500" height="300">
+									Grafico
+								</canvas>
+								<button ng-click="guardar()" ng-show="showButton" type="button" class="btn btn-success" id="btn-login"><h3><b>Guardar</b></h3></button>
+				       		</div>
+				       		<div class="col-sm-3 col-md-3 col-lg-3">
+								<div id="varButtonGrey" class="center-block">
+									<p><b>Z0</b></p><input class="form-control" ng-model="z">
+									<b><p id="errorMsg" ng-model="z0ErrorMsg">{{z0ErrorMsg}}</p></b>
+								</div>
+								<div id="varButtonGreen" class="center-block">
+									<p><b>Delta</b></p><input class="form-control" ng-model="delta">
+									<b><p id="errorMsg" ng-model="deltaErrorMsg">{{deltaErrorMsg}}</p></b>
+								</div>
+								<div id="varButtonGrey" class="center-block">
+									<p><b>Costo Maximo</b></p><input class="form-control" ng-model="costoMax" >
+									<b><p id="errorMsg" ng-model="costMaxErrorMsg">{{costMaxErrorMsg}}</p></b>
+								</div>
+								<div id="varButtonGrey" class="center-block">
+									<p><b>Costo Medicion</b></p><input class="form-control" ng-model="costoMed">
 									<b><p id="errorMsg" ng-model="costMedErrorMsg">{{costMedErrorMsg}}</p></b>
 								</div>
 				       		</div>
-				       		<div class="col-sm-4 col-md-4 col-lg-4">
-								<div id="varButtonGrey">
-									<p><b>Z0</b></p><input class="form-control">
-									<b><p id="errorMsg" ng-model="z0ErrorMsg">{{z0ErrorMsg}}</p></b>
-								</div>
-								<div id="varButtonGreen">
-									<p><b>Delta</b></p><input class="form-control">
-									<b><p id="errorMsg" ng-model="deltaErrorMsg">{{deltaErrorMsg}}</p></b>
-								</div>
-								<div id="varButtonGrey">
-									<p><b>Costo Maximo</b></p><input class="form-control">
-									<b><p id="errorMsg" ng-model="costMaxErrorMsg">{{costMaxErrorMsg}}</p></b>
-								</div>
-				       		</div>
-				        </div>
-				        <div class="col-sm-2 col-md-2 col-lg-2"></div>
-				    </form>
-		        </div>
-
-	  	        <!-Variables-Grafico->
-		      	<div class="row">
-					<div class="col-sm-2 col-md-2 col-lg-2"></div>
-			        <div class="col-sm-8 col-md-8 col-lg-8">
-		        	    <canvas id="graficoDocente" width="500" height="300">
-		        	    	Your browser does not support the HTML5 canvas tag.
-		        	    </canvas>
-					</div>
-			        
-			        <div class="col-sm-2 col-md-2 col-lg-2"></div>
-		        </div>
-				
-				<div class="row">
-					<div class="col-sm-1 col-md-1 col-lg-4"></div>
-			        <div class="col-sm-1 col-md-1 col-lg-4">
-					<form ng-submit="enviar()">
-						<button ng-click="guardar()" ng-show="showButton" type="button" class="btn btn-success" id="btn-login"><h3><b>Guardar</b></h3></button>
-					</form>
-					</div>
-			        <div class="col-sm-1 col-md-1 col-lg-4"></div>
-		        </div>
+				        
+				    </form>  
+		        </div>	
 		</div>
     </div>  
 

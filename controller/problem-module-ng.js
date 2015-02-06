@@ -78,7 +78,15 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 		var problema = {
 			enunciado: this.enun,
 			dmax: this.dmax,
-			otroVariable: "otraVariable"
+			xo: this.x,
+			ro: this.r,
+			zo: this.z,
+			ae: this.ae,
+			amed: this.amed,
+			delta: this.delta,
+			costoMedicion: this.costoMed,
+			costoMax: this.costoMax
+			
 		};
 
 		downloadFile("problema", JSON.stringify(problema, null, 2));

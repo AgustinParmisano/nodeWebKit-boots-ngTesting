@@ -29,7 +29,7 @@ login.controller("loginButtonCtrl", function loginButton($scope) {
 			console.log("CURRENT STRING: " + $currentString);
 			$localPath = $currentString;//.slice(0,-10); //PARA NODE WEB KIT
 			//console.log($localpath);
-			$destinationPath = $localPath + "/view/docenteProblema.html";
+			$destinationPath = $localPath + "/view/docenteProblema"; 
 			console.log("DESTINATION: " + $destinationPath);
 			window.location.href=$destinationPath;
 		}else{
