@@ -34,6 +34,13 @@
 	width: 100%;
 }
 
+#choiceProblemButtons {
+	margin-top: 15%;
+	margin-left: 15%;
+	margin-bottom: 10%;
+	width: 400px;
+}
+
 #heading{
 	padding: 1% 1%;
 	width: 400px;
