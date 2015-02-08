@@ -8,11 +8,7 @@ var problem = angular.module("problemModule", []);
 var c = document.getElementById("graficoDocente");
 var ctx = c.getContext("2d");
 
-//ESferA
-ctx.arc(200,150,70,30,(Math.PI/180)*360,true);
-ctx.fillStyle="#f99";
-ctx.fill();
-
+/*Esto grafica la recta*/
 ctx.moveTo(40,50);
 ctx.lineTo(460,50);
 ctx.moveTo(40,40);
@@ -99,6 +95,44 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 		
 		if(this.de != null && this.di != null){
 			this.dd= this.di - this.de;
+		}
+	}
+	
+	/*
+	*  funcion para verificar que costo sea numero
+	*/
+	$scope.validarCosto= function(){
+		this.costoMaxErrorMsg = "";
+		this.costoMedErrorMsg = "";
+	
+		if (isNaN(this.costoMed)) {
+			this.costoMedErrorMsg = "Ingrese Numeros";
+		}
+		if (isNaN(this.costoMax)) {
+			this.costoMaxErrorMsg = "Ingrese Numeros";
+		}
+		
+	}
+	
+	/*
+	*  Change esfera
+	*/
+	$scope.graficar= function(){
+		if (isNaN(this.z)) {
+			this.zErrorMsg = "Ingrese Numeros";
+		}
+		if (isNaN(this.r)) {
+			this.rErrorMsg = "Ingrese Numeros";
+		}
+		if (isNaN(this.x)) {
+			this.xErrorMsg = "Ingrese Numeros";
+		}
+		if( this.z != null && this.r != null && this.x != null){
+			console.log("Change z");
+			ctx.arc(this.x,this.z,this.r,30,(Math.PI/180)*360,true);
+			ctx.fillStyle="#000000";
+			ctx.fill();
+			
 		}
 	}
 

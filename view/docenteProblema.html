@@ -71,16 +71,16 @@
 									<b><p id="errorMsg" ng-model="dmaxErrorMsg">{{dmaxErrorMsg}}</p></b>
 								</div>
 								<div id="varButtonGrey" class="center-block">
-									<p><b>X0</b></p><input class="form-control" ng-model="x" ng-change="change()"><P>metros</p>
-									<b><p id="errorMsg" ng-model="x0ErrorMsg">{{x0ErrorMsg}}</p></b>
+									<p><b>X0</b></p><input class="form-control" ng-model="x" ng-change="graficar()"><P>metros</p>
+									<b><p id="errorMsg" ng-model="xErrorMsg">{{x0ErrorMsg}}</p></b>
 								</div>
 								<div id="varButtonGrey" class="center-block">
-									<p><b>Z0</b></p><input class="form-control" ng-model="z"><P>metros</p>
-									<b><p id="errorMsg" ng-model="z0ErrorMsg">{{z0ErrorMsg}}</p></b>
+									<p><b>Z0</b></p><input class="form-control" ng-model="z"  ng-change="graficar()"><P>metros</p>
+									<b><p id="errorMsg" ng-model="zErrorMsg">{{z0ErrorMsg}}</p></b>
 								</div>
 								<div id="varButtonGrey" class="center-block">
-									<p><b>R0</b></p><input class="form-control" ng-model="r" ng-change="change()"><P>metros</p>
-									<b><p id="errorMsg" ng-model="r0ErrorMsg">{{r0ErrorMsg}}</p></b>
+									<p><b>R0</b></p><input class="form-control" ng-model="r" ng-change="graficar()"><P>metros</p>
+									<b><p id="errorMsg" ng-model="rErrorMsg">{{r0ErrorMsg}}</p></b>
 								</div>
 								
 							</div>
@@ -106,17 +106,17 @@
 									<b><p id="errorMsg" ng-model="diErrorMsg">{{amedErrorMsg}}</p></b>
 								</div>
 								<div id="varButtonGreen" class="center-block">
-									<p><b>Dd0</b></p><input class="form-control" ng-model="dd" >
+									<p><b>Dd0</b></p><input class="form-control" ng-model="dd" disabled>
 									<b><p id="errorMsg" ng-model="ddErrorMsg">{{deltaErrorMsg}}</p></b><P>g/Cm3</p>
 								</div>
 								
 								<div id="varButtonGrey" class="center-block">
-									<p><b>Costo Unitario Medicion</b></p><input class="form-control" ng-model="costoMed"><p>$</p>
-									<b><p id="errorMsg" ng-model="costMedErrorMsg">{{costMedErrorMsg}}</p></b>
+									<p><b>Costo Unitario Medicion</b></p><input class="form-control" ng-model="costoMed" ng-change="validarCosto()"><p>$</p>
+									<b><p id="errorMsg" ng-model="costoMedErrorMsg">{{costoMedErrorMsg}}</p></b>
 								</div>
 								<div id="varButtonGrey" class="center-block">
-									<p><b>Costo Maximo</b></p><input class="form-control" ng-model="costoMax" ><p>$</p>
-									<b><p id="errorMsg" ng-model="costMaxErrorMsg">{{costMaxErrorMsg}}</p></b>
+									<p><b>Costo Maximo</b></p><input class="form-control" ng-model="costoMax" ng-change="validarCosto()"><p>$</p>
+									<b><p id="errorMsg" ng-model="costoMaxErrorMsg">{{costoMaxErrorMsg}}</p></b>
 								</div>
 				       		</div>
 				        
