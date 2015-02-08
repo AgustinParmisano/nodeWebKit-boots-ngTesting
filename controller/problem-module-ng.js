@@ -72,6 +72,35 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 			}
 		};
 	};
+	
+	/*
+	* Esta funcion calcula automaticamente dd
+	* Dd0: contraste de densidad. esta variable no se define sino que se calcula automáticamente como: Dd0=di0- de0
+	*/
+	$scope.changeD = function() {
+		this.deErrorMsg = "";
+		this.diErrorMsg = "";
+		
+		if (isNaN(this.di)) {
+			this.diErrorMsg = "Ingrese Numeros";
+		}else if(this.di > 999999){
+			$bigNum = this.di;
+			this.diErrorMsg = $bigNum + " muy grande"
+			this.di = $bigNum;
+		}
+		if (isNaN(this.de)) {
+			this.deErrorMsg = "Ingrese Numeros";
+		}else if(this.de > 999999){
+			$bigNum = this.de;
+			this.deErrorMsg = $bigNum + " muy grande"
+			this.de = $bigNum;
+		}
+		
+		
+		if(this.de != null && this.di != null){
+			this.dd= this.di - this.de;
+		}
+	}
 
 	$scope.guardar= function(){
 		//Esto el json que se va a guardar
@@ -81,9 +110,9 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 			xo: this.x,
 			ro: this.r,
 			zo: this.z,
-			ae: this.ae,
-			amed: this.amed,
-			delta: this.delta,
+			de: this.de,
+			di: this.di,
+			dd: this.dd,
 			costoMedicion: this.costoMed,
 			costoMax: this.costoMax
 			
