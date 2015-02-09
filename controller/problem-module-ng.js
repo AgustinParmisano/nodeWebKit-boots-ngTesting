@@ -23,8 +23,10 @@ $(document).ready(function() {
 var problem = angular.module("problemModule", []);
 //Modulo de FileDialog para guardar/cargar archivos con angular y node web-kit https://github.com/DWand/nw-fileDialog
 //Paint default canvas configuration
-var canvas = document.getElementById("graficoDocente");
-var ctx = canvas.getContext("2d");
+var c = document.getElementById("graficoDocente");
+var ctx = c.getContext("2d");
+var auxr = 9999999;
+
 
 /*Esto grafica la recta*/
 ctx.moveTo(50,50);
@@ -139,25 +141,39 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 	*  Change esfera
 	*/
 	$scope.graficar= function(){
+        ctx.clearRect(0, 80, c.width, c.height);
+
 		if (isNaN(this.z)) {
-			this.zErrorMsg = "Ingrese Numeros";
+			this.z0ErrorMsg = "Ingrese Numeros";
 		}
 		if (isNaN(this.r)) {
-			this.rErrorMsg = "Ingrese Numeros";
+			this.r0ErrorMsg = "Ingrese Numeros";
 		}
 		if (isNaN(this.x)) {
-			this.xErrorMsg = "Ingrese Numeros";
+			this.x0ErrorMsg = "Ingrese Numeros";
 		}
-		if( this.z != null && this.r != null && this.x != null){
-			var circulo = canvas.getContext("2d");
-			circulo.beginPath();
-			circulo.arc(this.x,this.z,this.r,30,(Math.PI/180)*360,true);
-			circulo.stroke();
-			circulo.fillStyle="#000000";
-			circulo.fill();
-			
+
+        if (this.x > this.dmax) {
+            this.x0ErrorMsg = "X mas grande que dmax";
+        }
+        if (this.z < 101) {
+            this.z0ErrorMsg = "Z debe ser mas grande que 100";
+        }
+		if( this.z != null && this.r != null && this.x != null && this.x < this.dmax && this.z > 100){
+            ctx.moveTo(this.x,this.z);
+			ctx.arc(this.x,this.z,this.r,30,(Math.PI/180)*360,true);
+			ctx.fillStyle="#000000";
+			ctx.fill();
+
 		}
-	}
+	};
+
+    $scope.borrar= function(){
+        ctx.clearRect(0, 80, c.width, c.height);
+        this.r = "";
+        this.z = "";
+        this.x = "";
+    };
 
 	$scope.guardar= function(){
 		//Esto el json que se va a guardar

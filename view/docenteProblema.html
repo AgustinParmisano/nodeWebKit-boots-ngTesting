@@ -71,15 +71,15 @@
 									<b><p id="errorMsg" ng-model="dmaxErrorMsg">{{dmaxErrorMsg}}</p></b>
 								</div>
 								<div id="varButtonGrey" class="center-block">
-									<p><b>X0</b></p><input class="form-control" ng-model="x" ng-change="graficar()"><P>metros</p>
+									<p><b>X0</b></p><input class="form-control" ng-model="x"><P>metros</p>
 									<b><p id="errorMsg" ng-model="xErrorMsg">{{x0ErrorMsg}}</p></b>
 								</div>
 								<div id="varButtonGrey" class="center-block">
-									<p><b>Z0</b></p><input class="form-control" ng-model="z"  ng-change="graficar()"><P>metros</p>
+									<p><b>Z0</b></p><input class="form-control" ng-model="z" ><P>metros</p>
 									<b><p id="errorMsg" ng-model="zErrorMsg">{{z0ErrorMsg}}</p></b>
 								</div>
 								<div id="varButtonGrey" class="center-block">
-									<p><b>R0</b></p><input class="form-control" ng-model="r" ng-change="graficar()"><P>metros</p>
+									<p><b>R0</b></p><input class="form-control" ng-model="r"><P>metros</p>
 									<b><p id="errorMsg" ng-model="rErrorMsg">{{r0ErrorMsg}}</p></b>
 								</div>
 								
@@ -94,7 +94,11 @@
 								<canvas id="graficoDocente" class="center-block" width="600" height="300">
 									Grafico
 								</canvas>
-								<button ng-click="guardar()" ng-show="showButton" type="button" class="btn btn-success" id="btn-login"><h3><b>Guardar</b></h3></button>
+								<div class="col-sm-12 col-md-12 col-lg-12">
+									<button ng-click="guardar()" ng-show="showButton" type="button" class="btn btn-success" id="btn-small"><h3><b>Guardar</b></h3></button>
+									<button ng-click="graficar()" ng-show="showButton" type="button" class="btn btn-success" id="btn-small"><h3><b>Graficar</b></h3></button>
+									<button ng-click="borrar()" ng-show="showButton" type="button" class="btn btn-success" id="btn-small"><h3><b>Borrar</b></h3></button>
+								</div>
 				       		</div>
 				       		<div class="col-sm-3 col-md-3 col-lg-3">
 								<div id="varButtonGrey" class="center-block">
