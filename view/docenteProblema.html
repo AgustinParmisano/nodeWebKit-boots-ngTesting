@@ -66,20 +66,20 @@
 							<div class="col-sm-3 col-md-3 col-lg-3">
 								<div id="varButtonGrey" class="center-block">
 									<!-- Aca hay que elegir si queremos maxlength o que no pinte letras en el canvas, o arreglar con javascript--> 
-									<p><b>L</b></p><input id="dmax" class="form-control" maxlength="7" type="number" min="0" step="100" ng-model="dmax" ng-change="change()">
+									<p><b>L</b></p><input onKeyPress="return onlyNumber(event);" class="form-control" maxlength="7" type="number" min="0" step="100" ng-model="dmax" ng-change="change()">
 									<P>metros</p>
 									<b><p id="errorMsg" ng-model="dmaxErrorMsg">{{dmaxErrorMsg}}</p></b>
 								</div>
 								<div id="varButtonGrey" class="center-block">
-									<p><b>X0</b></p><input class="form-control" ng-model="x"><P>metros</p>
+									<p><b>X0</b></p><input onKeyPress="return onlyNumber(event);" class="form-control" ng-model="x"><P>metros</p>
 									<b><p id="errorMsg" ng-model="xErrorMsg">{{x0ErrorMsg}}</p></b>
 								</div>
 								<div id="varButtonGrey" class="center-block">
-									<p><b>Z0</b></p><input class="form-control" ng-model="z" ><P>metros</p>
+									<p><b>Z0</b></p><input onKeyPress="return onlyNumber(event);" class="form-control" ng-model="z" ><P>metros</p>
 									<b><p id="errorMsg" ng-model="zErrorMsg">{{z0ErrorMsg}}</p></b>
 								</div>
 								<div id="varButtonGrey" class="center-block">
-									<p><b>R0</b></p><input class="form-control" ng-model="r"><P>metros</p>
+									<p><b>R0</b></p><input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="r"><P>metros</p>
 									<b><p id="errorMsg" ng-model="rErrorMsg">{{r0ErrorMsg}}</p></b>
 								</div>
 								
@@ -102,11 +102,11 @@
 				       		</div>
 				       		<div class="col-sm-3 col-md-3 col-lg-3">
 								<div id="varButtonGrey" class="center-block">
-									<p><b>De0</b></p><input class="form-control" ng-model="de" ng-change="changeD()"><P>g/Cm3</p>
+									<p><b>De0</b></p><input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="de" ng-change="changeD()"><P>g/Cm3</p>
 									<b><p id="errorMsg" ng-model="deErrorMsg">{{aeErrorMsg}}</p></b>
 								</div>
 								<div id="varButtonGrey" class="center-block">
-									<p><b>Di0</b></p><input class="form-control" ng-model="di" ng-change="changeD()"><P>g/Cm3</p>
+									<p><b>Di0</b></p><input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="di" ng-change="changeD()"><P>g/Cm3</p>
 									<b><p id="errorMsg" ng-model="diErrorMsg">{{amedErrorMsg}}</p></b>
 								</div>
 								<div id="varButtonGreen" class="center-block">
