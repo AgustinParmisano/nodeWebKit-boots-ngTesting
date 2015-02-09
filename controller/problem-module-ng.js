@@ -1,3 +1,21 @@
+$(document).ready(function() {
+    $("#dmax").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+             // Allow: Ctrl+A
+            (e.keyCode == 65 && e.ctrlKey === true) || 
+             // Allow: home, end, left, right, down, up
+            (e.keyCode >= 35 && e.keyCode <= 40)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+});
+
 //Problem Module
 /*
 * Este controlador maneja la pantanlla docenteProblema.html la cual permite el ingreso de los datos de un problema y su posterior guardado
@@ -5,19 +23,22 @@
 var problem = angular.module("problemModule", []);
 //Modulo de FileDialog para guardar/cargar archivos con angular y node web-kit https://github.com/DWand/nw-fileDialog
 //Paint default canvas configuration
-var c = document.getElementById("graficoDocente");
-var ctx = c.getContext("2d");
+var canvas = document.getElementById("graficoDocente");
+var ctx = canvas.getContext("2d");
 
 /*Esto grafica la recta*/
-ctx.moveTo(40,50);
-ctx.lineTo(460,50);
-ctx.moveTo(40,40);
-ctx.lineTo(40,60);
+ctx.moveTo(50,50);
+ctx.lineTo(550,50);
+ctx.moveTo(50,40);
+ctx.lineTo(50,60);
 ctx.font = "20px Arial";
 ctx.fillText("0",35,80);
-ctx.moveTo(460,40);
-ctx.lineTo(460,60);
+ctx.moveTo(550,40);
+ctx.lineTo(550,60);
 ctx.stroke();
+ctx.fill();
+
+
 
 problem.controller('problemCtrl', ['$scope',  function($scope) {
 	$isWritten = false;
@@ -50,21 +71,21 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 		}
 
 		if($isLong){
-			ctx.fillText(this.dmax,420,80);
+			ctx.fillText(this.dmax,520,80);
 		}else{
-			ctx.fillText(this.dmax,440,80);
+			ctx.fillText(this.dmax,550,80);
 		}
 
 		if ($isWritten) {
 			if($isLong){
-				ctx.clearRect(400, 60, 420, 80);
+				ctx.clearRect(520, 60, 520, 80);
 				$isLong = false;
 				$isWritten = false;
-				ctx.fillText(this.dmax,420,80);
+				ctx.fillText(this.dmax,520,80);
 			}else{
-				ctx.clearRect(420, 60, 440, 80);
+				ctx.clearRect(520, 60, 520, 80);
 				$isWritten = false;
-				ctx.fillText(this.dmax,440,80);
+				ctx.fillText(this.dmax,520,80);
 			}
 		};
 	};
@@ -128,10 +149,12 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 			this.xErrorMsg = "Ingrese Numeros";
 		}
 		if( this.z != null && this.r != null && this.x != null){
-			console.log("Change z");
-			ctx.arc(this.x,this.z,this.r,30,(Math.PI/180)*360,true);
-			ctx.fillStyle="#000000";
-			ctx.fill();
+			var circulo = canvas.getContext("2d");
+			circulo.beginPath();
+			circulo.arc(this.x,this.z,this.r,30,(Math.PI/180)*360,true);
+			circulo.stroke();
+			circulo.fillStyle="#000000";
+			circulo.fill();
 			
 		}
 	}
