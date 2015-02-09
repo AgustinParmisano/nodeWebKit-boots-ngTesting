@@ -167,23 +167,25 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
     };
 
 	$scope.guardar= function(){
-		//Esto el json que se va a guardar
-		var problema = {
-			enunciado: this.enun,
-			dmax: this.dmax,
-			xo: this.x,
-			ro: this.r,
-			zo: this.z,
-			de: this.de,
-			di: this.di,
-			dd: this.dd,
-			costoMedicion: this.costoMed,
-			costoMax: this.costoMax
-			
-		};
-
-		downloadFile("problema", JSON.stringify(problema, null, 2));
-
+		if( this.z != null && this.r != null && this.x != null &&  this.enum != null & this.di != null && this.de != null && this.dmax && this.costoMed != null && this.costoMax != null){
+			//Esto el json que se va a guardar
+			var problema = {
+				enunciado: this.enun,
+				dmax: this.dmax,
+				xo: this.x,
+				ro: this.r,
+				zo: this.z,
+				de: this.de,
+				di: this.di,
+				dd: this.dd,
+				costoMedicion: this.costoMed,
+				costoMax: this.costoMax
+				
+			};
+			downloadFile("problema", JSON.stringify(problema, null, 2));
+		}else{
+			alert("Debe completar todos los campos");
+		}
 	};
 	
 }]);
