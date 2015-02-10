@@ -14,30 +14,64 @@ function onlyNumber(event)
 var problem = angular.module("problemModule", []);
 //Modulo de FileDialog para guardar/cargar archivos con angular y node web-kit https://github.com/DWand/nw-fileDialog
 //Paint default canvas configuration
-var c = document.getElementById("graficoDocente");
-var ctx = c.getContext("2d");
-var auxr = 9999999;
+var c;
+var ctx;
+
+setupCanvas();
 
 
-/*Esto grafica la recta*/
-ctx.moveTo(50,50);
-ctx.lineTo(550,50);
-ctx.moveTo(50,40);
-ctx.lineTo(50,60);
-ctx.font = "20px Arial";
-ctx.fillText("0",35,80);
-ctx.moveTo(550,40);
-ctx.lineTo(550,60);
-ctx.stroke();
-ctx.fill();
+function setupCanvas(){
 
+    var oldcanv = document.getElementById('graficoDocente');
+    var canvDiv = document.getElementById('canvasDiv');
+    canvDiv.removeChild(oldcanv);
 
+    var canv = document.createElement('canvas');
+    canv.id = 'graficoDocente';
+    canv.width= "600";
+    canv.height="300";
+    canv.class = "center-block";
+
+    canvDiv.appendChild(canv);
+
+    c = document.getElementById("graficoDocente");
+    ctx = c.getContext("2d");
+    crearLinea();
+
+}
+
+function crearLinea(){
+    /*Esto grafica la recta*/
+    ctx.moveTo(50,50);
+    ctx.lineTo(550,50);
+    ctx.moveTo(50,40);
+    ctx.lineTo(50,60);
+    ctx.font = "20px Arial";
+    ctx.fillText("0",35,80);
+    ctx.moveTo(550,40);
+    ctx.lineTo(550,60);
+    ctx.stroke();
+    ctx.fill();
+    ctx.fillText("",520,80);
+};
 
 problem.controller('problemCtrl', ['$scope',  function($scope) {
 	$isWritten = false;
 	$isLong = false;
 	$tooLong = false;
 	$scope.showButton = true;
+
+    $scope.atras = function() {
+        //BUSCAR LA MEJOR MANERA DE HACER ROUTING
+        //$currentPath = window.location;
+        //$currentString = String($currentPath);
+        //console.log("CURRENT STRING: " + $currentString);
+        //$localPath = $currentString;//.slice(0,-10); //PARA NODE WEB KIT
+        //console.log($localpath);
+        $destinationPath = "/view/docenteElegirProblema"; 
+        console.log("DESTINATION: " + $destinationPath);
+        window.location.href=$destinationPath;
+    };
 
 	$scope.change = function() {
 		//console.log(this.dmax);		
@@ -132,7 +166,8 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 	*  Change esfera
 	*/
 	$scope.graficar= function(){
-        ctx.clearRect(0, 80, c.width, c.height);
+        setupCanvas();
+        ctx.fillText(this.dmax,520,80);
 
 		if (isNaN(this.z)) {
 			this.z0ErrorMsg = "Ingrese Numeros";
@@ -158,6 +193,13 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 
 		}
 	};
+
+    $scope.aleatorio = function(){
+        this.dmax = Math.floor(Math.random() * (1000 - 100 + 1)) + 100;
+        this.x = Math.floor(Math.random() * (this.dmax - 10 + 1)) + 10;
+        this.z = Math.floor(Math.random() * (c.height - 100 + 1)) + 100;
+        this.r = Math.floor(Math.random() * ((this.z - 100) - 2 + 1)) + 2;
+    };
 
     $scope.borrar= function(){
         ctx.clearRect(0, 80, c.width, c.height);
@@ -204,6 +246,58 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 		}
 		alert(texto);
 	};
+
+    $scope.$watch(function(scope){
+            return scope.dmax;
+        },
+
+        function(){
+            if($scope.dmax != null){
+                ctx.clearRect(520, 60, 520, 80);
+                ctx.fillText($scope.dmax,520,80);
+            }
+            /*this.dmaxErrorMsg = "";
+
+            $isWritten = true;
+            ctx.font = "20px Arial";
+
+            if(this.dmax > 9999){
+                $isLong = true;
+            }
+
+            if (this.dmax == null) {
+                this.dmax = "";
+            };
+
+            if (isNaN(this.dmax)) {
+                this.dmaxErrorMsg = "Ingrese Numeros";
+            }else if(this.dmax > 999999){
+                $bigNum = this.dmax;
+                this.dmaxErrorMsg = $bigNum + " muy grande"
+                this.dmax = $bigNum;
+            }
+
+            if($isLong){
+                ctx.fillText(this.dmax,520,80);
+            }else{
+                ctx.fillText(this.dmax,550,80);
+            }
+
+            if ($isWritten) {
+                if($isLong){
+                    ctx.clearRect(520, 60, 520, 80);
+                    $isLong = false;
+                    $isWritten = false;
+                    ctx.fillText(this.dmax,520,80);
+                }else{
+                    //ctx.clearRect(520, 60, 520, 80);
+                    $isWritten = false;
+                    ctx.fillText(this.dmax,520,80);
+                }
+            };*/
+        }
+
+    );
 	
 }]);
 

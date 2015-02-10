@@ -1,9 +1,8 @@
 #title{
 	padding: 1% 1%;
-	background: #58B957;
 	width: 400px;
 	border-radius: 10px;
-	color: white;
+	color: #58B957;
 	text-align: center;"
 }
 
@@ -15,6 +14,11 @@
 
 #btn-small{
 	margin-top: 15%;
+	margin-bottom: 10%;
+	width: 200px;
+}
+
+#btn-small-2{
 	margin-bottom: 10%;
 	width: 200px;
 }
