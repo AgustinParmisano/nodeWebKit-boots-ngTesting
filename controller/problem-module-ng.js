@@ -167,7 +167,24 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
     };
 
 	$scope.guardar= function(){
-		if( this.z != null && this.r != null && this.x != null &&  this.enum != null & this.di != null && this.de != null && this.dmax && this.costoMed != null && this.costoMax != null){
+		var texto= "Falta Completar";
+		if (this.enun == null) {
+			texto+=" Enunciado";
+		}else if(this.r == null){
+			texto+=" R0";
+		}else if(this.x == null){
+			texto+=" X0";
+		}else if( this.z == null){
+			texto+=" Z0";
+		}else if ( this.di == null){
+			texto+=" Di0";
+		}else if(this.de == null){
+			texto+=" De0";
+		}else if(this.dmax == ""){
+			texto+=" L";//no entra
+		}else if(this.costoMed == null || this.costoMax == null){
+			texto+=" Costo";
+		}else{
 			//Esto el json que se va a guardar
 			var problema = {
 				enunciado: this.enun,
@@ -183,9 +200,9 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 				
 			};
 			downloadFile("problema", JSON.stringify(problema, null, 2));
-		}else{
-			alert("Debe completar todos los campos");
+			
 		}
+		alert(texto);
 	};
 	
 }]);
