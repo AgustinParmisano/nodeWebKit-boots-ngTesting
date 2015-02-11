@@ -16,10 +16,17 @@ ctx.moveTo(460,40);
 ctx.lineTo(460,60);
 ctx.stroke()
 
+
+
 experiment.controller('experimentCtrl', ['$scope', function($scope) {
 	$isWritten = false;
 	$isLong = false;
 	$tooLong = false;
+	
+	$scope.enunciado="Esto es el enunciado";
+	$scope.dmax=1000;
+	$scope.costo=0;
+	
 
 	$scope.change = function() {
 	
@@ -113,6 +120,10 @@ experiment.controller('experimentCtrl', ['$scope', function($scope) {
 			this.xiniErrorMsg = ""
 		};
 	};
+	
+	$scope.calcularPasos = function(){
+	
+	}
 	
 	/* Despues de establecer el experimento hay que pasar a la vista del problema, 
 	habiendo validado previamente los datos correspondientes*/
