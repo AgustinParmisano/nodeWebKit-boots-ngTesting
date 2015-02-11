@@ -2,7 +2,8 @@
 /*
 * Este modulo maneja la pantalla alumnoProblema 
 */
-var experiment = angular.module("experimentModule", []);
+var experiment = angular.module("experimentModule", ["loadProblemModule"]);
+
 //Paint default canvas configuration
 var c = document.getElementById("graficoExperimento");
 var ctx = c.getContext("2d");
@@ -14,11 +15,9 @@ ctx.font = "20px Arial";
 ctx.fillText("0",35,80);
 ctx.moveTo(460,40);
 ctx.lineTo(460,60);
-ctx.stroke()
+ctx.stroke();
 
-
-
-experiment.controller('experimentCtrl', ['$scope', function($scope) {
+experiment.controller('experimentCtrl', ['$scope', function($scope, json) {
 	$isWritten = false;
 	$isLong = false;
 	$tooLong = false;
@@ -26,7 +25,7 @@ experiment.controller('experimentCtrl', ['$scope', function($scope) {
 	$scope.enunciado="Esto es el enunciado";
 	$scope.dmax=1000;
 	$scope.costo=0;
-	
+	console.log(json);
 
 	$scope.change = function() {
 	
@@ -122,7 +121,7 @@ experiment.controller('experimentCtrl', ['$scope', function($scope) {
 	};
 	
 	$scope.calcularPasos = function(){
-	
+		console.log("calcularPasos tira error en el html");
 	}
 	
 	/* Despues de establecer el experimento hay que pasar a la vista del problema, 
@@ -141,3 +140,4 @@ experiment.controller('experimentCtrl', ['$scope', function($scope) {
 		window.location.href=$destinationPath;
 	};
 }]);
+

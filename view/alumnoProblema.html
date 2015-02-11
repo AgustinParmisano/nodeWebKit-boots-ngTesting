@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -39,7 +39,7 @@
 	
 	<div class="container-fluid">
 		<div class="panel panel-default">
-			 <div ng-app="experimentModule" ng-controller="experimentCtrl"  class="row">
+			 <div ng-app="loadProblemModule" ng-controller="experimentCtrl"  class="row">
 			 <div class="row">
 	  	 <!-Problema->
 		 <div class="row">
@@ -76,8 +76,8 @@
 						  <div class="form-group">
 							<label for="" class="col-lg-2 control-label">N</label>
 							<div class="col-lg-10">
-							  <input type="email" class="form-control" id="n"
-									 placeholder="cantidad de mediciones"  ng-change="calcularPasos()">
+							  <!--<input type="email" class="form-control" id="n"
+									 placeholder="cantidad de mediciones"  ng-change="calcularPasos()">-->
 							</div>
 						  </div>
 						  
@@ -129,6 +129,7 @@
     <!-- Scripts De Aplicación--> 
     <script src="../js/angular.min.js"></script>
     <script src="../controller/experiment-module-ng.js"></script> 
+    <script src="../controller/loadProblem-module-ng.js"></script> 
 	</div>
   </body>
 </html>

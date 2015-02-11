@@ -1,0 +1,12 @@
+{
+  "enunciado": "este problema fue generado con variables aleatorias",
+  "dmax": 738,
+  "xo": 94,
+  "ro": 56,
+  "zo": 167,
+  "de": "400",
+  "di": "600",
+  "dd": 200,
+  "costoMedicion": "50",
+  "costoMax": "10000"
+}
