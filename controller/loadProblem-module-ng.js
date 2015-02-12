@@ -6,8 +6,23 @@
 var loadProblem = angular.module("loadProblemModule", []);
 var experiment = angular.module("experimentModule", ["loadProblemModule"]);
 
+/*pongo eso porque sino el html alumnoProblema tenia dos controladores y es un quilombo*/
+var c = document.getElementById("graficoExperimento");
+var ctx = c.getContext("2d");
+ctx.moveTo(40,50);
+ctx.lineTo(460,50);
+ctx.moveTo(40,40);
+ctx.lineTo(40,60);
+ctx.font = "20px Arial";
+ctx.fillText("0",35,80);
+ctx.moveTo(460,40);
+ctx.lineTo(460,60);
+ctx.stroke();
+
 
 loadProblem.controller('loadProblemCtrl', ['$scope', function($scope) {
+	/*En esta variable seteo el contenido del json*/
+	$archivo= null;	
 	
 	//Cargar el problema por default
 	$scope.cargarDefault = function() {
@@ -24,13 +39,17 @@ loadProblem.controller('loadProblemCtrl', ['$scope', function($scope) {
 	};
 
 	//Guarda el archivo cargado en una variable
-    $scope.saveContent = function($fileContent){
+    $scope.saveContent = function($fileContent, $scope){
         //$scope.content = $fileContent;
         this.problema = $fileContent;
         console.log("JSON: " + this.problema);
         alert($fileContent);
+		$archivo=JSON.parse(this.problema);
+		$scope.enunciado=$archivo.enunciado;
+		
     };
-
+	
+	
 }]);
 
 //Cargar el archivo previsto por el docente
@@ -58,21 +77,20 @@ loadProblem.directive('onReadFile', function ($parse) {
 
 loadProblem.service('problemaJson', function () {
 	var problema = this.problema;
-
 });
 
 loadProblem.controller('experimentCtrl', ['$scope', 'problemaJson', function($scope, problemaJson) {
 	$isWritten = false;
 	$isLong = false;
 	$tooLong = false;
-	
+		
+	/* Cargo los datos de un problema*/
 	$scope.enunciado="Esto es el enunciado";
 	$scope.dmax=1000;
 	$scope.costo=0;
-	console.log(JSON.stringify(problemaJson));
-
+		
 	$scope.change = function() {
-	
+		
 		console.log(this.xfin);	
 
 		this.xfinErrorMsg = "";
@@ -183,4 +201,9 @@ loadProblem.controller('experimentCtrl', ['$scope', 'problemaJson', function($sc
 		console.log("DESTINATION: " + $destinationPath);
 		window.location.href=$destinationPath;
 	};
+	
+	$scope.graficarCurva = function(){
+		
+	};
+
 }]);

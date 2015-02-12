@@ -139,5 +139,7 @@ experiment.controller('experimentCtrl', ['$scope', function($scope, json) {
 		console.log("DESTINATION: " + $destinationPath);
 		window.location.href=$destinationPath;
 	};
+	
+	
 }]);
 

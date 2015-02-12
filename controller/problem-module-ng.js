@@ -1,3 +1,4 @@
+/* Funcion para que ingrese solo numeros */
 function onlyNumber(event)
 {
     keyPress = event.keyCode ? event.keyCode: event.which ? event.which:event;
