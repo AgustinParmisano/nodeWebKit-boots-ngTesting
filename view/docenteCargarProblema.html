@@ -21,126 +21,74 @@
     <![endif]-->
 		
   </head>
-  <body>
+  <body ng-app="loadProblemModule" >
 
     <div class="container-fluid">
-		<div class="panel panel-success">
+		  <div class="panel panel-success" >
 	      <!- Header  ->
 	        <!--<div class="col-sm-12 col-md-12 col-lg-12" style="background-color:#E0F0D6;">-->
 	        <div class="panel-heading">
 				<img src="../images/logo.png" class="img-responsive" alt="logo secretaria de extension fcalg" width="350" height="270" style="position:relative; float:right">
 	        	<h1 style="color:#59B958;"><b>Inicio</b></b></h1>
 	        </div>
-			<div ng-app="loadProblemModule" ng-controller="loadProblemCtrl" class="row">
-     		<div class="col-sm-12 col-md-12 col-lg-12" id="containerBotones">
-       		<div class="col-sm-6 col-md-6 col-lg-6">
-            <input type="file" on-read-file="saveContent($fileContent)" class="btn btn-success" value="Cargar Problema" id="choiceProblemButtons"/>
-			    </div>
-		   </div>	
-			</div>  
  
-   <!- Titulo  ->
-   <div class="row">
-    <div class="col-sm-4 col-md-4 col-lg-4"></div>
-    <div class="col-sm-4 col-md-4 col-lg-4">
-      <div id="title">
-        <h2><b>Problema a resolver</b></h2>
-      </div>
-      </div>
-    <div class="col-sm-4 col-md-4 col-lg-4"></div>
-  </div>
-  
-  
-  <div class="container-fluid">
-    <div class="panel panel-default">
-       <div ng-app="loadProblemModule" ng-controller="experimentCtrl"  class="row">
+ 
+       <!- Titulo  ->
        <div class="row">
-       <!-Problema->
-     <div class="row">
-      <div class="col-sm-2 col-md-2 col-lg-2"></div>
-          <div class="col-sm-8 col-md-8 col-lg-8">
-              <div class="jumbotron">
-            <P name="enunciado">{{ enunciado }}</P>
+        <div class="col-sm-4 col-md-4 col-lg-4"></div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <div id="title">
+            <h2><b>Problema a resolver</b></h2>
           </div>
-        </div>    
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2"></div>
-  </div>
-        <div class="col-md-6">
-          <h3>Variables </h3>
-          
-          <form class="form-horizontal" role="form">
-              <div class="form-group">
-              <label for="" class="col-lg-2 control-label">X inicial</label>
-              <div class="col-lg-10">
-                <input class="form-control" maxlength="7" type="number" min="0" step="100" ng-model="xini" ng-change="changeIni()">
-                <b><p id="errorMsg" ng-model="xiniErrorMsg">{{xiniErrorMsg}}</p></b>
-              </div>
-              
-              </div>
-              
-              <div class="form-group">
-              <label for="" class="col-lg-2 control-label">X final</label>
-              <div class="col-lg-10">
-                <input class="form-control" maxlength="7" type="number" min="0" step="100" ng-model="xfin" ng-change="change()">
-                <b><p id="errorMsg" ng-model="xfinErrorMsg">{{xfinErrorMsg}}</p></b>
-              </div>
-              </div>
-              
-              <div class="form-group">
-              <label for="" class="col-lg-2 control-label">N</label>
-              <div class="col-lg-10">
-                <!--<input type="email" class="form-control" id="n"
-                   placeholder="cantidad de mediciones"  ng-change="calcularPasos()">-->
-              </div>
-              </div>
-              
-              <div class="form-group">
-              <label for="costo" class="col-lg-2 control-label">Lx</label>
-              <div class="col-lg-10">
-                <input type="number" class="form-control" id="lx" ng-model="lx" placeholder="l" disabled>
-              </div>
-              </div>
-              <div class="form-group">
-              <label for="costo" class="col-lg-2 control-label">Dx</label>
-              <div class="col-lg-10">
-                <input type="number" class="form-control" id="dx" ng-model="dx" placeholder="" disabled>
-              </div>
-              </div>
-              
-              <div class="form-group">
-              <label for="costo" class="col-lg-2 control-label">Costo Total</label>
-              <div class="col-lg-10">
-                <input type="number" class="form-control" id="costoTotal" ng-model="costoTotal" placeholder="Costo en $" disabled>
-              </div>
-              </div>
-              <div class="form-group">
-              <label for="costo" class="col-lg-2 control-label">Costo acumulado</label>
-              <div class="col-lg-10">
-                <input type="number" class="form-control" id="costoMedicion" ng-model="costoMedicion" placeholder="Costo en $" disabled>
-              </div>
-              </div>
-          </form>
-          
-        <button type="button" ng-click="continuar()" class="btn btn-success" id="btn-continuar"><h3>Continuar</h3></button>
         </div>
-        
-        <div class="col-md-6">
-          <!-Grafico->
-          <canvas id="graficoExperimento" width="500" height="300">
-                Your browser does not support the HTML5 canvas tag.
-          </canvas>                           
-        </div>
-        
+        <div class="col-sm-4 col-md-4 col-lg-4"></div>
        </div>
-     </div>
+        
+        <!-Controller de Cargado de Problema (Hasta Enunciado)->
+        <div ng-controller="loadProblemCtrl">
+         <!- Enunciado de problema cargado  ->
+         <div class="row">
+           <div class="col-sm-1 col-md-1 col-lg-1"></div>
+           <div class="col-sm-10 col-md-10 col-lg-10">
+             <div class="panel panel-default">
+               <textarea class="form-control" id="enunciado" ng-model="enunciado" >
+                 {{enunciado}}
+               </textarea>
+             </div>
+           </div>
+           <div class="col-sm-1 col-md-1 col-lg-1"></div>
+          </div>
+
+        <!- Botones para Cargar ->
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-12" id="containerBotonesCargar">
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <input type="file" on-read-file="saveContent($fileContent)" class="btn btn-success" value="Cargar Problema" id="btn-small-3"/>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <button ng-click="problemaA()" type="button" class="btn btn-success" id="btn-small-3"><h3><b>Problema A</b></h3></button>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <button ng-click="problemaB()" type="button" class="btn btn-success" id="btn-small-3"><h3><b>Problema B</b></h3></button>
+            </div>
+         </div> 
+       </div>
+     </div><!-Controller de Cargado de Problema (Hasta Enunciado)->
+
+     <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12" id="containerBotonesCargar">
+          <div class="col-sm-3 col-md-3 col-lg-3"></div>
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <button ng-click="continuar()" type="button" class="btn btn-success" id="btn-small-3"><h3><b>Continuar<b></h3></button>
+          </div>
+         </div> 
+      </div>
+
+    </div>
   </div>
   </body>
 </html>
 
-
-		</div>
-    </div> 
 
 
 	<!- Scripts ->
