@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+   <script src="js/jquery-1.11.2.min.js"></script>
+   <script src="js/angular.min.js"></script>
+   <script src="js/highstock.src.js"></script>
+   <script src="js/highcharts-ng.js"></script>	
+   
+    <script src="app.js"></script>
+</head>
+<body>
+	<h2>Highcharts-ng example</h2>
+
+	<div ng-app="alumnoModelado">
+		<div ng-controller="alumnoModeladoController">
+			<div class="row">
+				<div class="span9">
+					<div class="row">
+						<highchart id="chart1" config="chartConfig" class="span9" ></highchart>
+					</div>
+				</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

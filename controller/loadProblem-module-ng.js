@@ -6,7 +6,9 @@
 var loadProblem = angular.module("loadProblemModule", []);
 
 loadProblem.controller('loadProblemCtrl', ['$scope', function($scope) {
-
+	/*En esta variable seteo el contenido del json*/
+	$archivo= null;	
+	
 	//Cargar el problema por default
 	$scope.cargarDefault = function() {
 		/*Esto lo uso para probar y entrar a la vista del alumno pero se podria cargar un datos por defaut*/
@@ -26,11 +28,11 @@ loadProblem.controller('loadProblemCtrl', ['$scope', function($scope) {
         //$scope.content = $fileContent;
         this.problema = $fileContent;
         console.log("JSON: " + this.problema);
-        parsed = JSON.parse($fileContent);
-        $scope.enunciado = parsed.enunciado;
-        console.log("enun: " + $scope.enunciado);
+		$archivo=JSON.parse(this.problema);
+		$scope.enunciado=$archivo.enunciado;
     };
-
+	
+	
 }]);
 
 //Cargar el archivo previsto por el docente
@@ -58,5 +60,5 @@ loadProblem.directive('onReadFile', function ($parse) {
 
 loadProblem.service('problemaJson', function () {
 	var problema = this.problema;
-
 });
+

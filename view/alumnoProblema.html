@@ -107,29 +107,38 @@
 							</div>
 						  </div>
 				  </form>
-				  
+				 <button type="button" ng-click="swapChartType()" class="btn btn-success" id="btn-continuar"><h3>Graficar Curva</h3></button> 
 				<button type="button" ng-click="continuar()" class="btn btn-success" id="btn-continuar"><h3>Continuar</h3></button>
 				</div>
 				
 				<div class="col-md-6">
+					
+					<highchart id="chart1" config="chartConfig" class="span9" ></highchart>	
 					<!-Grafico->
 					<canvas id="graficoExperimento" width="500" height="300">
 								Your browser does not support the HTML5 canvas tag.
-					</canvas>						    						
+					</canvas>	
+									
 				</div>
 				
 			 </div>
 		 </div>
 
 		 <!- Scripts ->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	 
+	<!-- <script src="/highcharts/js/highcharts.js"></script>
+	<script src="/highcharts/js/modules/exporting.js"></script>
+    jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="../js/jquery-1.11.2.min.js"></script>
+	<script src="../js/angular.min.js"></script>
+	<script src="../js/highstock.src.js"></script>
+	<script src="../js/highcharts-ng.js"></script>	
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
     <!-- Scripts De Aplicación--> 
-    <script src="../js/angular.min.js"></script>
-    <script src="../controller/experiment-module-ng.js"></script> 
-    <script src="../controller/loadProblem-module-ng.js"></script> 
+    
+    <!--<script src="../controller/experiment-module-ng.js"></script>-->
+    <script src="../controller/loadProblem-module-ng.js"></script>
 	</div>
   </body>
 </html>
