@@ -23,28 +23,19 @@
   </head>
   <body>
 
-    <div class="container-fluid">
+	<div class="container-fluid">
+	
 		<div class="panel panel-success">
 	      <!- Header  ->
 	        <!--<div class="col-sm-12 col-md-12 col-lg-12" style="background-color:#E0F0D6;">-->
 	        <div class="panel-heading">
 				<img src="../images/logo.png" class="img-responsive" alt="logo secretaria de extension fcalg" width="350" height="270" style="position:relative; float:right">
-	        	<h1 style="color:#59B958;"><b>Definicion de la Realidad</b></b></h1>
-	        </div>
-
-		  <!- Problema-Titulo ->
-		  <!--
-	      <div class="row">
-	        <div class="col-sm-4 col-md-4 col-lg-4"></div>
-	        <div class="col-sm-4 col-md-4 col-lg-4">
-	        	<div id="heading">
-	        		<h2><b>Problema</b></h2>
-	        	</div>
-	        </div>
-	        <div class="col-sm-4 col-md-4 col-lg-4"></div>
-	      </div>-->
-
-	      <!-Problema/Variables/Grafico->
+	        	<h1 style="color:#59B958;"><b>Problema a Resolver</b></b></h1>
+	        </div>	      
+		</div>
+    </div>  
+	<div class="panel panel-default">
+		      <!-Problema/Variables/Grafico->
 		      <div ng-app="problemModule" ng-controller="problemCtrl" class="row">
 	  	        <!-Problema->
 		      	<div class="row">
@@ -54,6 +45,7 @@
 			        		<p><b>Problema</b></p><textarea class="form-control" ng-model="enun" ng-change="change()" rows="3" cols="40">Se sabe que una caverna tiene forma esférica pero se encuentra enterrada. La densidad del material que se encuentra alrededor consta de 1,5 g/cm3. Los lugareños no conocen bien sus dimensiones pero suponen que debe tener no menos de 60 m de diámetro. Simular el relevamiento gravimétrico y obtener los datos del objeto considerando el error medio sin superar los costos pautados.</textarea>
 							<b><p id="errorMsg" ng-model="enunErrorMsg">{{enunErrorMsg}}
 			        	</div>
+						
 			        </div>
 			        <div class="col-sm-2 col-md-2 col-lg-2"></div>
 		        </div>
@@ -64,33 +56,78 @@
 		      	<div class="row">
 		      		<form role="form"  ng-submit="enviar()">
 						
-							<div class="col-sm-3 col-md-3 col-lg-3">
-								<div id="varButtonGrey" class="center-block">
-									<!-- Aca hay que elegir si queremos maxlength o que no pinte letras en el canvas, o arreglar con javascript--> 
-									<p><b>L</b></p><input onKeyPress="return onlyNumber(event);" class="form-control" maxlength="7" type="number" min="0" step="100" ng-model="dmax" ng-change="change()" id="dmax">
-									<P>metros</p>
-									<b><p id="errorMsg" ng-model="dmaxErrorMsg">{{dmaxErrorMsg}}</p></b>
-								</div>
-								<div id="varButtonGrey" class="center-block">
-									<p><b>X0</b></p><input onKeyPress="return onlyNumber(event);" class="form-control" ng-model="x"><P>metros</p>
+						<div class="col-md-6">
+							<h2><b>Ingrese los datos del Problema</b></h2>
+							<form class="form-horizontal" role="form">
+								<div class="form-group">
+									<label for="" class="col-lg-2 control-label">L</label>
+									<div class="col-lg-10">
+										<input onKeyPress="return onlyNumber(event);" class="form-control" maxlength="7" type="number" min="0" step="100" ng-model="dmax" ng-change="change()" id="dmax">
+										<P>metros</p>
+									<p id="errorMsg" ng-model="dmaxErrorMsg">{{dmaxErrorMsg}}</p>
+									</div>
+								  </div>
+								<div class="form-group">
+									<label for="" class="col-lg-2 control-label">X0</label>
+									<div class="col-lg-10">
+									<input onKeyPress="return onlyNumber(event);" class="form-control" ng-model="x"><P>metros</p>
 									<b><p id="errorMsg" ng-model="xErrorMsg">{{x0ErrorMsg}}</p></b>
+									</div>
 								</div>
-								<div id="varButtonGrey" class="center-block">
-									<p><b>Z0</b></p><input onKeyPress="return onlyNumber(event);" class="form-control" ng-model="z" ><P>metros</p>
+								<div class="form-group">
+									<label for="" class="col-lg-2 control-label">Z0</label>
+									<div class="col-lg-10">
+									</p><input onKeyPress="return onlyNumber(event);" class="form-control" ng-model="z" ><P>metros</p>
 									<b><p id="errorMsg" ng-model="zErrorMsg">{{z0ErrorMsg}}</p></b>
 								</div>
-								<div id="varButtonGrey" class="center-block">
-									<p><b>R0</b></p><input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="r"><P>metros</p>
+								</div>
+								<div class="form-group">
+									<label for="" class="col-lg-2 control-label">R0</label>
+									<div class="col-lg-10">
+									<input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="r"><P>metros</p>
 									<b><p id="errorMsg" ng-model="rErrorMsg">{{r0ErrorMsg}}</p></b>
 								</div>
-								
-							</div>
-				       		<div class="col-sm-6 col-md-6 col-lg-6">
+								</div>
+								<div class="form-group">
+									<label for="" class="col-lg-2 control-label">De0</label>
+									<div class="col-lg-10">
+									<input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="de" ng-change="changeD()"><P>g/Cm3</p>
+									<b><p id="errorMsg" ng-model="deErrorMsg">{{aeErrorMsg}}</p></b>
+								</div>
+								</div>
+								<div class="form-group">
+									<label for="" class="col-lg-2 control-label">Di0</label>
+									<div class="col-lg-10">
+									<input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="di" ng-change="changeD()"><P>g/Cm3</p>
+									<b><p id="errorMsg" ng-model="diErrorMsg">{{amedErrorMsg}}</p></b>
+								</div>
+								</div>
+								<div class="form-group">
+									<label for="" class="col-lg-2 control-label">Dd0</label>
+									<div class="col-lg-10">
+									<input class="form-control" ng-model="dd" disabled>
+									<b><p id="errorMsg" ng-model="ddErrorMsg">{{deltaErrorMsg}}</p></b><P>g/Cm3</p>
+								</div>
+								</div>
+								<div class="form-group">
+									<label for="" class="col-lg-2 control-label">Costo Unitario Medicion</label>
+									<div class="col-lg-10">
+									<input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="costoMed" ng-change="validarCosto()"><p>$</p>
+									<b><p id="errorMsg" ng-model="costoMedErrorMsg">{{costoMedErrorMsg}}</p></b>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="" class="col-lg-2 control-label">Costo Maximo</label>
+									<div class="col-lg-10">
+									<input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="costoMax" ng-change="validarCosto()"><p>$</p>
+									<b><p id="errorMsg" ng-model="costoMaxErrorMsg">{{costoMaxErrorMsg}}</p></b>
+								</div>
+								</div>
+							</form>	
+						</div>
+				       	<div class="col-md-6">
 							 <!-Variables-Titulo->
 								<div class="row" >
-
-									<h2><b>Ingrese los datos del Problema</b></h2>
-
 								</div>
 								<div id="canvasDiv">
 									<canvas id="graficoDocente" class="center-block" width="600" height="300">
@@ -108,35 +145,15 @@
 								</div>
 				       		</div>
 				       		<div class="col-sm-3 col-md-3 col-lg-3">
-								<div id="varButtonGrey" class="center-block">
-									<p><b>De0</b></p><input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="de" ng-change="changeD()"><P>g/Cm3</p>
-									<b><p id="errorMsg" ng-model="deErrorMsg">{{aeErrorMsg}}</p></b>
-								</div>
-								<div id="varButtonGrey" class="center-block">
-									<p><b>Di0</b></p><input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="di" ng-change="changeD()"><P>g/Cm3</p>
-									<b><p id="errorMsg" ng-model="diErrorMsg">{{amedErrorMsg}}</p></b>
-								</div>
-								<div id="varButtonGreen" class="center-block">
-									<p><b>Dd0</b></p><input class="form-control" ng-model="dd" disabled>
-									<b><p id="errorMsg" ng-model="ddErrorMsg">{{deltaErrorMsg}}</p></b><P>g/Cm3</p>
-								</div>
 								
-								<div id="varButtonGrey" class="center-block">
-									<p><b>Costo Unitario Medicion</b></p><input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="costoMed" ng-change="validarCosto()"><p>$</p>
-									<b><p id="errorMsg" ng-model="costoMedErrorMsg">{{costoMedErrorMsg}}</p></b>
-								</div>
-								<div id="varButtonGrey" class="center-block">
-									<p><b>Costo Maximo</b></p><input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="costoMax" ng-change="validarCosto()"><p>$</p>
-									<b><p id="errorMsg" ng-model="costoMaxErrorMsg">{{costoMaxErrorMsg}}</p></b>
-								</div>
 				       		</div>
 				        
 				    </form>  
 		        </div>	
 		</div>
+		</div>
     </div>  
-
-
+	
 	<!- Scripts ->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
