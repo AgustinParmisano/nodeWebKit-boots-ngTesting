@@ -103,3 +103,7 @@
 	height: 8em;
 	resize: none;
 }
+
+#containerInputs{
+	margin-left: 5%;
+}

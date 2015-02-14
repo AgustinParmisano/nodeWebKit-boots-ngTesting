@@ -12,11 +12,12 @@ function onlyNumber(event)
 /*
 * Este controlador maneja la pantanlla docenteProblema.html la cual permite el ingreso de los datos de un problema y su posterior guardado
 */
-var problem = angular.module("problemModule", []);
+var problem = angular.module("problemModule", ["highcharts-ng"]);
 //Modulo de FileDialog para guardar/cargar archivos con angular y node web-kit https://github.com/DWand/nw-fileDialog
 //Paint default canvas configuration
 var c;
 var ctx;
+var list = []; //Arreglo de los posible numeros del campo
 
 setupCanvas();
 
@@ -140,8 +141,7 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 			this.deErrorMsg = $bigNum + " muy grande"
 			this.de = $bigNum;
 		}
-		
-		
+
 		if(this.de != null && this.di != null){
 			this.dd= this.di - this.de;
 		}
@@ -169,6 +169,10 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 	$scope.graficar= function(){
         setupCanvas();
         ctx.fillText(this.dmax,520,80);
+        
+        this.z0ErrorMsg = "";
+        this.r0ErrorMsg = "";
+        this.x0ErrorMsg = "";
 
 		if (isNaN(this.z)) {
 			this.z0ErrorMsg = "Ingrese Numeros";
@@ -183,22 +187,63 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
         if (this.x > this.dmax) {
             this.x0ErrorMsg = "X mas grande que dmax";
         }
-        if (this.z < 101) {
-            this.z0ErrorMsg = "Z debe ser mas grande que 100";
+
+        if(this.z > 300){
+            //NO ANDA EL MENSAJE DE ERROR
+            this.z0ErrorMsg = "Z debe ser menor a 300."
         }
-		if( this.z != null && this.r != null && this.x != null && this.x < this.dmax && this.z > 100){
-            ctx.moveTo(this.x,this.z);
-			ctx.arc(this.x,this.z,this.r,30,(Math.PI/180)*360,true);
+
+
+		if( this.z != null && this.r != null && this.x != null && this.x < this.dmax && this.z < 300){
+            var ejeX = this.x + 60;
+            var ejeZ = this.z;
+
+            //ejeX = ((this.dmax / ejeX)) + 60;
+            ejeZ = ejeZ;
+
+            console.log("X " + ejeX);
+            console.log("Z " + ejeZ);
+
+
+            ctx.moveTo(ejeX,ejeZ);
+			ctx.arc(ejeX,ejeZ,this.r,30,(Math.PI/180)*360,true);
 			ctx.fillStyle="#000000";
 			ctx.fill();
 
 		}
+
+        //Para el gráfico de HC
+
+        for (var i = 0; i <= this.dmax; i++) {
+            list.push(i);
+        }
+
+        $scope.highchartsNG = {
+            options: {
+                chart: {
+                    type: 'line'
+                }
+            },
+            series: [{
+                data: [10]
+            }],
+
+             xAxis: {
+                    categories: list
+                },
+                tickInterval: 10,
+
+            title: {
+                text: 'Hello'
+            },
+            loading: false
+        }
 	};
 
     $scope.aleatorio = function(){
         this.dmax = Math.floor(Math.random() * (1000 - 100 + 1)) + 100;
         this.x = Math.floor(Math.random() * (this.dmax - 10 + 1)) + 10;
-        this.z = Math.floor(Math.random() * (c.height - 100 + 1)) + 100;
+        this.z = Math.floor(Math.random() * (300 - 100 + 1)) + 100;
         this.r = Math.floor(Math.random() * ((this.z - 100) - 2 + 1)) + 2;
     };
 
@@ -257,48 +302,12 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
                 ctx.clearRect(520, 60, 520, 80);
                 ctx.fillText($scope.dmax,520,80);
             }
-            /*this.dmaxErrorMsg = "";
-
-            $isWritten = true;
-            ctx.font = "20px Arial";
-
-            if(this.dmax > 9999){
-                $isLong = true;
-            }
-
-            if (this.dmax == null) {
-                this.dmax = "";
-            };
-
-            if (isNaN(this.dmax)) {
-                this.dmaxErrorMsg = "Ingrese Numeros";
-            }else if(this.dmax > 999999){
-                $bigNum = this.dmax;
-                this.dmaxErrorMsg = $bigNum + " muy grande"
-                this.dmax = $bigNum;
-            }
-
-            if($isLong){
-                ctx.fillText(this.dmax,520,80);
-            }else{
-                ctx.fillText(this.dmax,550,80);
-            }
-
-            if ($isWritten) {
-                if($isLong){
-                    ctx.clearRect(520, 60, 520, 80);
-                    $isLong = false;
-                    $isWritten = false;
-                    ctx.fillText(this.dmax,520,80);
-                }else{
-                    //ctx.clearRect(520, 60, 520, 80);
-                    $isWritten = false;
-                    ctx.fillText(this.dmax,520,80);
-                }
-            };*/
         }
 
     );
+
+
+    
 	
 }]);
 
