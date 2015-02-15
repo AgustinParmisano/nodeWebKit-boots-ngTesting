@@ -88,21 +88,21 @@
 									<div class="form-group">
 										<label for="" class="col-lg-2 control-label">De0</label>
 										<div class="col-lg-10">
-										<input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="de" ng-change="changeD()"><P>g/Cm3</p>
-										<b><p id="errorMsg" ng-model="deErrorMsg">{{aeErrorMsg}}</p></b>
+										<input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="de" ng-change="changeD()" id="de"><P>g/Cm3</p>
+										<b><p id="errorMsg" ng-model="deErrorMsg">{{deErrorMsg}}</p></b>
 									</div>
 									</div>
 									<div class="form-group">
 										<label for="" class="col-lg-2 control-label">Di0</label>
 										<div class="col-lg-10">
-										<input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="di" ng-change="changeD()"><P>g/Cm3</p>
-										<b><p id="errorMsg" ng-model="diErrorMsg">{{amedErrorMsg}}</p></b>
+										<input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="di" ng-change="changeD()" id="di"><P>g/Cm3</p>
+										<b><p id="errorMsg" ng-model="diErrorMsg">{{diErrorMsg}}</p></b>
 									</div>
 									</div>
 									<div class="form-group">
 										<label for="" class="col-lg-2 control-label">Dd0</label>
 										<div class="col-lg-10">
-										<input class="form-control" ng-model="dd" disabled>
+										<input class="form-control" ng-model="dd" disabled id="dd">
 										<b><p id="errorMsg" ng-model="ddErrorMsg">{{deltaErrorMsg}}</p></b><P>g/Cm3</p>
 									</div>
 									</div>

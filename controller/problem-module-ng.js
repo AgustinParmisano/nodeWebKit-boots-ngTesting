@@ -17,7 +17,8 @@ var problem = angular.module("problemModule", ["highcharts-ng"]);
 //Paint default canvas configuration
 var c;
 var ctx;
-var list = []; //Arreglo de los posible numeros del campo
+var listDmax = [0]; //Arreglo de los posible numeros del campo
+var listDatosCurva = [];
 
 setupCanvas();
 
@@ -173,6 +174,8 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
         this.z0ErrorMsg = "";
         this.r0ErrorMsg = "";
         this.x0ErrorMsg = "";
+        this.deErrorMsg = "";
+        this.diErrorMsg = "";
 
 		if (isNaN(this.z)) {
 			this.z0ErrorMsg = "Ingrese Numeros";
@@ -184,6 +187,13 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 			this.x0ErrorMsg = "Ingrese Numeros";
 		}
 
+        if (isNaN(this.di)) {
+            this.diErrorMsg = "Ingrese Numeros";
+        }
+        if (isNaN(this.de)) {
+            this.deErrorMsg = "Ingrese Numeros";
+        }
+
         if (this.x > this.dmax) {
             this.x0ErrorMsg = "X mas grande que dmax";
         }
@@ -194,15 +204,39 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
         }
 
 
-		if( this.z != null && this.r != null && this.x != null && this.x < this.dmax && this.z < 300){
+		if( this.z != null && this.r != null && this.x != null  && this.di != null  && this.de != null && this.x < this.dmax && this.z < 300){
             var ejeX = this.x + 60;
             var ejeZ = this.z;
+            var valorFormula1 = 0;
+            var valorFormula2 = 0;
+            var valorFormula3 = 0;
 
             //ejeX = ((this.dmax / ejeX)) + 60;
             ejeZ = ejeZ;
 
+            for (var i = 0 + 1; i <= this.dmax; i+=50) {
+                listDmax.push(i);
+                console.log(i);
+            };
+
+            //Formula para graficar la curva
+            //alert("DD: " + this.dd + " R " + this.r);
+            for (var i = 0; i <= this.dmax; i++) {
+                valorFormula1 = Math.pow(((Math.sqrt(i - this.x)) + (Math.sqrt(this.z))), 3/2);
+                valorFormula2 = this.z / valorFormula1;
+                valorFormula3 = 0.027939 * this.dd * Math.pow(this.r,3) * valorFormula2;
+
+                console.log("valor3 " + valorFormula3);
+                if (isNaN(valorFormula3)){
+                    valorFormula3 = 0;
+                };
+                listDatosCurva.push(valorFormula3);
+
+            };
+
             console.log("X " + ejeX);
             console.log("Z " + ejeZ);
+            console.log("Datos Curva " + listDatosCurva);
 
 
             ctx.moveTo(ejeX,ejeZ);
@@ -214,10 +248,6 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 
         //Para el gráfico de HC
 
-        for (var i = 0; i <= this.dmax; i++) {
-            list.push(i);
-        }
-
         $scope.highchartsNG = {
             options: {
                 chart: {
@@ -225,13 +255,8 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
                 }
             },
             series: [{
-                data: [10]
+                data: []
             }],
-
-             xAxis: {
-                    categories: list
-                },
-                tickInterval: 10,
 
             title: {
                 text: 'Hello'
@@ -245,6 +270,8 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
         this.x = Math.floor(Math.random() * (this.dmax - 10 + 1)) + 10;
         this.z = Math.floor(Math.random() * (300 - 100 + 1)) + 100;
         this.r = Math.floor(Math.random() * ((this.z - 100) - 2 + 1)) + 2;
+        this.de = Math.floor(Math.random() * ((15 - 1) - 2 + 1)) + 2;
+        this.di = Math.floor(Math.random() * ((15 - 1) - 2 + 1)) + 2;
     };
 
     $scope.borrar= function(){
@@ -306,6 +333,18 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 
     );
 
+    /*$scope.$watch(function(scope){
+            return scope.di;
+        },
+
+        function(scope){
+            if($scope.de != null && $scope.di !=null){
+                document.getElementById("dd").value = document.getElementById("di").value  - document.getElementById("de").value ;
+                console.log(document.getElementById("dd").value);
+            }
+        }
+
+    );*/
 
     
 	
