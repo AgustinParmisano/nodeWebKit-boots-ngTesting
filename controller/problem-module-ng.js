@@ -203,16 +203,22 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
             this.z0ErrorMsg = "Z debe ser menor a 300."
         }
 
+        if(this.dmax < 50){
+            //NO ANDA EL MENSAJE DE ERROR
+            this.dmaxErrorMsg = "L debe ser mayor a 50."
+        }
 
-		if( this.z != null && this.r != null && this.x != null  && this.di != null  && this.de != null && this.x < this.dmax && this.z < 300){
+
+		if( this.z != null && this.r != null && this.x != null  && this.di != null  && this.de != null && this.x < this.dmax && this.z < 300 && this.dmax > 50){
             var ejeX = this.x + 60;
             var ejeZ = this.z;
+            listDatosCurva = [];
             var valorFormula1 = 0;
             var valorFormula2 = 0;
             var valorFormula3 = 0;
 
-            //ejeX = ((this.dmax / ejeX)) + 60;
-            ejeZ = ejeZ;
+            ejeX = ((this.x / this.dmax) * 600) + 60;
+            //alert(ejeX);
 
             for (var i = 0 + 1; i <= this.dmax; i+=50) {
                 listDmax.push(i);
@@ -220,12 +226,14 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
             };
 
             //Formula para graficar la curva
-            //alert("DD: " + this.dd + " R " + this.r);
-            for (var i = 0; i <= this.dmax; i++) {
+            //alert("DD: " + this.dd + " R " + this.r + " Z " + this.z + " L " + this.dmax);
+            for (var i = 60; i <= this.dmax; i++) {
                 valorFormula1 = Math.pow(((Math.sqrt(i - this.x)) + (Math.sqrt(this.z))), 3/2);
+                console.log("i " + i + " (Math.sqrt(i - ejeX) " + (Math.sqrt(i - this.x)));
                 valorFormula2 = this.z / valorFormula1;
                 valorFormula3 = 0.027939 * this.dd * Math.pow(this.r,3) * valorFormula2;
-
+                console.log("valor1 " + valorFormula1);
+                console.log("valor2 " + valorFormula2);
                 console.log("valor3 " + valorFormula3);
                 if (isNaN(valorFormula3)){
                     valorFormula3 = 0;
@@ -255,7 +263,7 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
                 }
             },
             series: [{
-                data: []
+                data: listDatosCurva
             }],
 
             title: {
