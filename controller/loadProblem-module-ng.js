@@ -3,6 +3,7 @@
 * Este controlador maneja la vista alumnoEjelirProblema.html que permite al alumno cargar el archivo de un problema provisto por el docente 
 * o elegir un problema por default
 */
+var archivoProblema;
 var loadProblem = angular.module("loadProblemModule", []);
 
 loadProblem.controller('loadProblemCtrl', ['$scope', function($scope) {
@@ -29,7 +30,14 @@ loadProblem.controller('loadProblemCtrl', ['$scope', function($scope) {
         this.problema = $fileContent;
         console.log("JSON: " + this.problema);
 		$archivo=JSON.parse(this.problema);
+		archivoProblema = $archivo;
 		$scope.enunciado=$archivo.enunciado;
+    };
+
+    $scope.continuar = function(){
+		$destinationPath = "http://localhost:8080/view/alumnoProblema";
+		console.log("DESTINATION: " + $destinationPath);
+		window.location.href=$destinationPath;
     };
 	
 	
@@ -57,8 +65,16 @@ loadProblem.directive('onReadFile', function ($parse) {
 		}
 	};
 });
-
+var problema;
 loadProblem.service('problemaJson', function () {
-	var problema = this.problema;
+	this.getProblema = function(){
+		alert(archivoProblema.enunciado);
+		return archivoProblema.enunciado;
+	};
 });
 
+function experimentCtrl($scope, problemaJson){
+	$scope.enunciado = problemaJson.getProblema();
+	alert($scope.enunciado);
+
+}

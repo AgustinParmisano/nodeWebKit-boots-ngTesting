@@ -39,14 +39,15 @@
 	
 	<div class="container-fluid">
 		<div class="panel panel-default">
-			 <div ng-app="loadProblemModule" ng-controller="experimentCtrl"  class="row">
+			 <div class="row">
 			 <div class="row">
 	  	 <!-Problema->
-		 <div class="row">
+		 <div class="row" ng-app="loadProblemModule" ng-controller="experimentCtrl">
 			<div class="col-sm-2 col-md-2 col-lg-2"></div>
 			    <div class="col-sm-8 col-md-8 col-lg-8">
 			      	<div class="jumbotron">
-						<P name="enunciado">{{ enunciado }}</P>
+						<p id="enunciado" ng-model="enunciado" >
+                 {{enunciado}}</p>
 					</div>
 				</div>		
 		</div>
