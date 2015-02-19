@@ -19,9 +19,10 @@ loadProblem.controller('loadProblemCtrl', ['$scope', function($scope) {
 		console.log("CURRENT STRING: " + $currentString);
 		$localPath = $currentString;//.slice(0,-10); //PARA NODE WEB KIT
 		//esto hay que arreglarlo
-		$destinationPath = "http://localhost:8080/view/alumnoProblema";
+		/*$destinationPath = "http://localhost:8080/view/alumnoProblema";
 		console.log("DESTINATION: " + $destinationPath);
-		window.location.href=$destinationPath;
+		window.location.href=$destinationPath;*/
+		
 	};
 
 	//Guarda el archivo cargado en una variable
@@ -35,9 +36,11 @@ loadProblem.controller('loadProblemCtrl', ['$scope', function($scope) {
     };
 
     $scope.continuar = function(){
-		$destinationPath = "http://localhost:8080/view/alumnoProblema";
+		/*$destinationPath = "http://localhost:8080/view/alumnoProblema";
 		console.log("DESTINATION: " + $destinationPath);
-		window.location.href=$destinationPath;
+		window.location.href=$destinationPath;*/
+		$scope.templates =[ { name: 'alumnoProblema.html', url: '/view/alumnoProblema.html'}];
+		$scope.template = $scope.templates[0];
     };
 	
 	

@@ -1,10 +1,12 @@
-/*login.config(function ($routeProvider) {
-    $routeProvider
-        .when('/', {
-            templateUrl: '/index.html',
-            controller: 'loginButtonCtrl'
-        }).when('/index.html/view/docenteProblema.html', {
-            templateUrl: '/view/docenteProblema.html',
-            controller: 'problemCtrl'
-        });
-});*/
+angular.module("taller", ["ngRoute"]).config(function($routeProvider){
+		 $routeProvider
+			 .when("/", {
+			 controller: "loadProblem",
+			 controllerAs: "vm",
+			 templateUrl: "/view/vistaGeneral.html
+		 })
+	 });
+	 .controller("loadProblem", function(){
+		
+	 )
+ });
