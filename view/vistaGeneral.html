@@ -57,13 +57,11 @@
            </div>
            <div class="col-sm-1 col-md-1 col-lg-1"></div>
           </div>
-
+			
 		</div>
-		
+		<ng-view></ng-view>
 	  </div>
-		<div ng-app="taller">
-			<ng-view></ng-view>
-		</div>
+		
 	</div>
 	<!- Scripts ->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -75,6 +73,8 @@
     <script src="../node_modules/bower_components/angular/angular.js"></script>
 	<script src="../node_modules/bower_components/angular-route/angular-route.js"></script>
     <script src="../js/router/routes.js"></script>
+	<!-- Este script lo pongo para probar -->
+	<script src="../controller/loadProblem-module-ng.js"></script>
     
   </body>
 </html>

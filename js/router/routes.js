@@ -3,7 +3,7 @@ app.config(function($routeProvider){
 		 $routeProvider
 			 .when("/", {
 			 controller: "loadProblem",
-			 templateUrl: "app.html"
+			 templateUrl: "vistaAlumnoProblema.html"
 		 })	 
  });
  app.controller("loadProblem", function($scope){
