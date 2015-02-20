@@ -1,12 +1,13 @@
-angular.module("taller", ["ngRoute"]).config(function($routeProvider){
+var app= angular.module("taller", ['ngRoute']);
+app.config(function($routeProvider){
 		 $routeProvider
 			 .when("/", {
 			 controller: "loadProblem",
-			 controllerAs: "vm",
-			 templateUrl: "/view/vistaGeneral.html
-		 })
-	 });
-	 .controller("loadProblem", function(){
-		
-	 )
+			 templateUrl: "app.html"
+		 })	 
  });
+ app.controller("loadProblem", function($scope){
+  $scope.model = {
+    message: "This is my app!!!"
+  }
+});

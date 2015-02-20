@@ -21,7 +21,7 @@
     <![endif]-->
 		
   </head>
-  <body ng-app="loadProblemModule" >
+  <body ng-app="taller" >
 
     <div class="container-fluid">
 		  <div class="panel panel-success" >
@@ -44,7 +44,7 @@
 		   </div>
         
         <!-Controller de Cargado de Problema (Hasta Enunciado)->
-        <div ng-controller="loadProblemCtrl">
+        <div ng-controller="loadProblem">
          <!- Enunciado de problema cargado  ->
          <div class="row">
            <div class="col-sm-1 col-md-1 col-lg-1"></div>
@@ -61,7 +61,9 @@
 		</div>
 		
 	  </div>
-  
+		<div ng-app="taller">
+			<ng-view></ng-view>
+		</div>
 	</div>
 	<!- Scripts ->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -69,7 +71,9 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
     <!-- Scripts De Aplicación--> 
-    <script src="../node_modules/bower_components/angular/angular.min.js"></script>
+	
+    <script src="../node_modules/bower_components/angular/angular.js"></script>
+	<script src="../node_modules/bower_components/angular-route/angular-route.js"></script>
     <script src="../js/router/routes.js"></script>
     
   </body>
