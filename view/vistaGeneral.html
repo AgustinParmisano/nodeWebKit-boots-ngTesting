@@ -31,7 +31,6 @@
 					<img src="../images/logo.png" class="img-responsive" alt="logo secretaria de extension fcalg" width="350" height="270" style="position:relative; float:right">
 					<h1 style="color:#59B958;"><b>Inicio</b></b></h1>
 				</div>
-	 
 		   <!- Titulo  ->
 		   <div class="row">
 			<div class="col-sm-4 col-md-4 col-lg-4"></div>
@@ -42,25 +41,9 @@
 			</div>
 			<div class="col-sm-4 col-md-4 col-lg-4"></div>
 		   </div>
-        
-        <!-Controller de Cargado de Problema (Hasta Enunciado)->
-        <div ng-controller="loadProblem">
-         <!- Enunciado de problema cargado  ->
-         <div class="row">
-           <div class="col-sm-1 col-md-1 col-lg-1"></div>
-           <div class="col-sm-10 col-md-10 col-lg-10">
-             <div class="panel panel-default">
-               <textarea class="form-control" id="enunciado" ng-model="enunciado" >
-                 {{enunciado}}
-               </textarea>
-             </div>
-           </div>
-           <div class="col-sm-1 col-md-1 col-lg-1"></div>
-          </div>
-			
-		</div>
-		<ng-view></ng-view>
+			<ng-view></ng-view>
 	  </div>
+		
 		
 	</div>
 	<!- Scripts ->
@@ -73,8 +56,11 @@
     <script src="../node_modules/bower_components/angular/angular.js"></script>
 	<script src="../node_modules/bower_components/angular-route/angular-route.js"></script>
     <script src="../js/router/routes.js"></script>
+		<script src="../js/highstock.src.js"></script>
+	<script src="../js/highcharts-ng.js"></script>	
 	<!-- Este script lo pongo para probar -->
 	<script src="../controller/loadProblem-module-ng.js"></script>
+	<script src="../controller/alumnoResolverProblemaCtrl.js"></script>
     
   </body>
 </html>

@@ -36,11 +36,10 @@ loadProblem.controller('loadProblemCtrl', ['$scope', function($scope) {
     };
 
     $scope.continuar = function(){
-		/*$destinationPath = "http://localhost:8080/view/alumnoProblema";
+		$destinationPath = "http://localhost:8080/view/alumnoProblema";
 		console.log("DESTINATION: " + $destinationPath);
-		window.location.href=$destinationPath;*/
-		$scope.templates =[ { name: 'alumnoProblema.html', url: '/view/alumnoProblema.html'}];
-		$scope.template = $scope.templates[0];
+		window.location.href=$destinationPath;
+		
     };
 	
 	

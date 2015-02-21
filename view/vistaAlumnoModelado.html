@@ -1,0 +1,77 @@
+	<div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="col-sm-5 col-md-5 col-lg-5">
+				<div class="row">
+						<h3>Variales </h3>
+						
+						<form class="form-horizontal" role="form">
+							  <div class="form-group">
+								<label for="ejemplo_email_3" class="col-lg-2 control-label">Z1</label>
+								<div class="col-lg-10">
+								  <input type="email" class="form-control" id="z"
+										 placeholder="Z1">
+								</div>
+							  </div>
+							  
+							  <div class="form-group">
+								<label for="ejemplo_email_3" class="col-lg-2 control-label">R1</label>
+								<div class="col-lg-10">
+								  <input type="email" class="form-control" id="r1"
+										 placeholder="R1">
+								</div>
+							  </div>
+							  
+							  <div class="form-group">
+								<label for="ejemplo_email_3" class="col-lg-2 control-label">Ag1</label>
+								<div class="col-lg-10">
+								  <input type="email" class="form-control" id="ag"
+										 placeholder="Ag1">
+								</div>
+							  </div>	
+						  </form>
+						  
+					</div>
+				    <div class="row">
+					
+						<button type="button" class="btn btn-success" id="btn-diagramar"><h4><b>Diagramar</b></h4></button>
+					</div>
+				    <div class="row">
+						<!--Tabla Responsive-->
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<tr class="active">
+									<td>z1</td>
+									<td>R1</td>
+									<td>Ag1</td>
+									<td>Error</td>
+								</tr>
+								<tr>
+									<td>valor z1</td>
+									<td>valor R1</td>
+									<td>valor Ag1</td>
+									<td>valor Error</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-1 col-md-1 col-lg-1">
+				</div>
+				
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<div class="row">
+						<h3>Grafico </h3>
+						<div id="container" style="min-width: 500px; height: 200px; margin: 0 auto; border:1px solid #000000;"></div>
+						<span class="label label-danger">Error Promedio</span>
+						<canvas id="myCanvas" width="500" height="150"
+						style="border:1px solid #000000;">
+						</canvas>
+					</div>
+					<div class="row">
+						<button type="button" class="btn btn-success">Corregir</button>
+						<button type="button" class="btn btn-success">Finalizar</button>
+					 </div>
+				</div>
+		</div>
+	</div>

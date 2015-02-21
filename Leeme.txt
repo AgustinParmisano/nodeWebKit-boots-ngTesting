@@ -1,0 +1,14 @@
+Agus!
+
+estuve cambiando lo de las vistas para hacerlo con angular, las vistas que cambie nuevas 
+les puse a todas el mismo nombre pero empiezan con 'vista'. Si entras a vista general se carga primero el elegir problema y 
+si apretas continuar va a la vista que corresponde, si queres saber como lo hace esta en route.js y es este codigo
+ $scope.continuar = function(){
+		
+		$location.path('/alumnoProblemaAngular');
+    };
+
+solo me falta ver como pasarle los parametros ahi pero lo veo mañana. despues te cuento bien 
+
+Chauchi
+
