@@ -187,12 +187,17 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
         setupCanvas();
         ctx.fillText(this.dmax,520,80);
         
+        this.dmaxErrorMsg = "";
         this.z0ErrorMsg = "";
         this.r0ErrorMsg = "";
         this.x0ErrorMsg = "";
         this.deErrorMsg = "";
         this.diErrorMsg = "";
 
+        if (isNaN(this.dmax) || this.dmax == null) {
+            this.dmaxErrorMsg = "Ingrese Numeros";
+            setupCanvas();
+        }
 		if (isNaN(this.z)) {
 			this.z0ErrorMsg = "Ingrese Numeros";
 		}
@@ -225,7 +230,7 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
         }
 
 
-		if( this.z != null && this.r != null && this.x != null  && this.di != null  && this.de != null && this.x < this.dmax && this.z < 300 && this.dmax > 50){
+		if( !(isNaN(this.dmax)) && this.z != null && this.r != null && this.x != null  && this.di != null  && this.de != null && this.x < this.dmax && this.z < 300 && this.dmax > 50){
             var ejeX = this.x + 60;
             var ejeZ = this.z;
             var valorFormula1 = 0;
@@ -260,12 +265,13 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 
     $scope.borrar= function(){
         setupCanvas();
-        this.r = "";
-        this.z = "";
-        this.x = "";
-        this.di = "";
-        this.de = "";
-        $scope.dd = "";
+        this.dmax = null;
+        this.r = null;
+        this.z = null;
+        this.x = null;
+        this.di = null;
+        this.de = null;
+        $scope.dd = null;
         var seriesArray = $scope.highchartsNG.series;
         var rndIdx = Math.floor(Math.random() * seriesArray.length);
         seriesArray.splice(rndIdx, 1);
