@@ -248,6 +248,7 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 	};
 
     $scope.aleatorio = function(){
+        setupCanvas();
         this.dmax = Math.floor(Math.random() * (1000 - 100 + 1)) + 100;
         this.x = Math.floor(Math.random() * (this.dmax - 10 + 1)) + 10;
         this.z = Math.floor(Math.random() * (300 - 100 + 1)) + 100;
