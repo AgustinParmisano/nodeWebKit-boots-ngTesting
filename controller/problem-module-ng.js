@@ -311,6 +311,7 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 				
 			};
 			downloadFile("problema", JSON.stringify(problema, null, 2));
+			texto="El Archivo se Genero Correctamente"
 			
 		}
 		alert(texto);

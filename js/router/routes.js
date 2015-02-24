@@ -1,4 +1,4 @@
-var app= angular.module("taller", ['ngRoute']);
+var app= angular.module("taller", ['ngRoute', "highcharts-ng"]);
 app.config(function($routeProvider){
 		 $routeProvider.
 			  when('/', {
