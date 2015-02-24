@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Graficador de Gravimetría</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" >
+    <!-- Estilos -->
+    <link rel="stylesheet" type="text/css" href="css/sb-admin-2.css" >
+    <link rel="stylesheet" type="text/css" href="css/gravimetria.css"  >
+	<!-- <link href="css/geocharts.css" rel="stylesheet"> -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+		
+  </head>
+  <body>
+
+    <div class="container-fluid">
+		<div class="panel panel-success">
+	      <!- Header  ->
+	        <!--<div class="col-sm-12 col-md-12 col-lg-12" style="background-color:#E0F0D6;">-->
+	        <div class="panel-heading">
+				<img src="images/logo.png" class="img-responsive" alt="logo secretaria de extension fcalg" width="350" height="270" style="position:relative; float:right">
+	        	<h1 style="color:#59B958;"><b>Bienvenido</b></b></h1>
+	        </div>
+
+
+		  <!- Titulo  ->
+	      <div class="row">
+	        <div class="col-sm-4 col-md-4 col-lg-4"></div>
+	        <div class="col-sm-4 col-md-4 col-lg-4">
+	        	<div id="title">
+	        		<h1><b>Aplicación de Prospección Geofísica</b></h1>
+	        	</div>
+	        </div>
+	        <div class="col-sm-4 col-md-4 col-lg-4"></div>
+	      </div>
+			
+		  <!- Botones ingresar como docente/alumno ->
+	      <div ng-app="graficadorApp" ng-controller="loginButtonCtrl" class="row">
+  	        <div class="col-sm-4 col-md-4 col-lg-4"></div>
+	        <div class="col-sm-4 col-md-4 col-lg-4">      
+			
+	        	<button ng-click="click()" ng-show="showButton" type="button" class="btn btn-success" id="btn-login"><h3><b>Comenzar</b></h3></button>
+			<div class="col-sm-4 col-md-4 col-lg-4">
+	        	
+			</div>
+	        <div class="col-sm-4 col-md-4 col-lg-4">  
+	      </div>
+		</div>
+    </div>  
+	
+	<!- Scripts ->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery-1.11.2.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Scripts De Aplicación--> 
+    <script src= "node_modules/bower_components/angular/angular.min.js"></script>
+    <script src= "node_modules/bower_components/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+    <script src= "controller/login-module-ng.js"></script> 
+   	<script src= "controller/loadProblem-module-ng.js"></script> 
+
+ 	<script type="text/javascript" src="js/router/routes.js"></script>
+  </body>
+</html>

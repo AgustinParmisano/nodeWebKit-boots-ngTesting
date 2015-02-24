@@ -2,15 +2,28 @@ var app= angular.module("taller", ['ngRoute']);
 app.config(function($routeProvider){
 		 $routeProvider.
 			  when('/', {
-				templateUrl: 'vistaCargarProblema.html',
+				templateUrl: 'view/inicio.html',
+				controller: 'inicioCtrl'
+			}).
+			 when('/elegirProblema', {
+				templateUrl: 'view/vistaElegirProblema.html',
+				controller: 'elegirProblemaCtrl'
+			}).
+			
+			/* when('/docenteCrearProblema', {
+				templateUrl: 'vistaDocenteProblema.html',
+				controller: 'docenteCrearProblemaCtrl'
+			}).*/
+			when('/cargarProblema', {
+				templateUrl: 'view/vistaCargarProblema.html',
 				controller: 'loadProblemCtrl'
 			}).
-			  when('/alumnoProblemaAngular', {
-				templateUrl: 'vistaAlumnoProblema.html',
+			  when('/alumnoProblemaAngular/:problema', {
+				templateUrl: 'view/vistaAlumnoProblema.html',
 				controller: 'alumnoResolverProblemaCtrl'
 			  }).
 			  when('/alumnoModeladoAngular', {
-				templateUrl: 'vistaAlumnoModelado.html',
+				templateUrl: 'view/vistaAlumnoModelado.html',
 				controller: ''
 			  }).
 			  otherwise({
@@ -45,12 +58,17 @@ app.controller('loadProblemCtrl', ['$scope', '$location', function($scope, $loca
         console.log("JSON: " + this.problema);
 		$archivo=JSON.parse(this.problema);
 		archivoProblema = $archivo;
+		$scope.archivo=$archivo;
 		$scope.enunciado=$archivo.enunciado;
+		
     };
 
     $scope.continuar = function(){
 		//hay que pasarle los parametros!!!
-		$location.path('/alumnoProblemaAngular');
+		alert($scope.problema);
+		//$location.path('/alumnoProblemaAngular/problema:', $scope.problema);
+		$location.url('/alumnoProblemaAngular/problema:'+ $scope.problema);
+
     };
 	
 	
@@ -82,6 +100,7 @@ var problema;
 app.service('problemaJson', function () {
 	this.getProblema = function(){
 		alert(archivoProblema.enunciado);
+		$scope.problema=archivoProblema;
 		return archivoProblema.enunciado;
 	};
 });

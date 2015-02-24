@@ -1,20 +1,19 @@
-//Login Module
-var login = angular.module("loginModule", []);
+ app.controller('inicioCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams) {
 
-login.controller("loginButtonCtrl", function loginButton($scope) {
-	$scope.showButton = true;
-	$scope.showForm = false;
+	
+	$scope.comenzar = function() {
+		$location.path('/elegirProblema');
+	};
+		
+}]);
+
+
+/*app.controller('inicioCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams) {
+	//$scope.showButton = true;
+	//$scope.showForm = false;
 
 	$scope.click = function() {
-			//BUSCAR LA MEJOR MANERA DE HACER ROUTING
-			$currentPath = window.location;
-			$currentString = String($currentPath);
-			console.log("CURRENT STRING: " + $currentString);
-			$localPath = $currentString;//.slice(0,-10); //PARA NODE WEB KIT
-			//console.log($localpath);
-			$destinationPath = $localPath + "/view/docenteElegirProblema"; 
-			console.log("DESTINATION: " + $destinationPath);
-			window.location.href=$destinationPath;
+		$location.path('/elegirProblema');
 	};
 
 	/*$scope.login = function(){
@@ -55,6 +54,6 @@ login.controller("loginButtonCtrl", function loginButton($scope) {
 		$destinationPath = $localPath + "/view/alumnoElegirProblema.html";
 		console.log("DESTINATION: " + $destinationPath);
 		window.location.href=$destinationPath;
-	}*/
+	}
 
-});
+});*/
