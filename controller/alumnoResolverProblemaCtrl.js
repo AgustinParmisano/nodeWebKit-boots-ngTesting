@@ -7,8 +7,7 @@
 	var parsed=JSON.parse($scope.problema);
 	$scope.problema=parsed;
 	$scope.enunciado=$scope.problema.enunciado;
-	//var p=angular.fromJSON(problema);
-	//alert(p);
+	setupCanvas();
 		
 }]);
 
@@ -16,6 +15,8 @@ app.controller('inputsCtrl', ['$scope', function($scope){
 	var xInicial = "";
 	var xFinal = "";
 	var nPasos = "";
+	$scope.costoTotal=0;
+	$scope.costoMedicion=0;
 
 	$scope.changeIni = function(){
 		this.xiniErrorMsg = "";
@@ -23,6 +24,9 @@ app.controller('inputsCtrl', ['$scope', function($scope){
 		if (xFinal != "" && xFinal < xInicial) {
 			this.xiniErrorMsg = "Inicial debe ser menor a final"
 		}else{
+			if(xFinal != "" && xInicial != ""){
+				$scope.lx=xFinal - xInicial;
+			}
 			this.xfinErrorMsg = "";
 			this.xiniErrorMsg = "";
 		};
@@ -35,38 +39,55 @@ app.controller('inputsCtrl', ['$scope', function($scope){
 		if (xInicial != "" && xFinal < xInicial) {
 			this.xiniErrorMsg = "Final debe ser mayor a inicial"
 		}else{
+			if(xFinal != "" && xInicial != ""){
+				$scope.lx=xFinal - xInicial;
+			}
 			this.xfinErrorMsg = "";
 			this.xiniErrorMsg = "";
 		};
 	};
 
 	$scope.calcularPasos = function(){
-		xInicial = $scope.xini;
-		xFinal = $scope.xfin;
-		console.log("INI " + xInicial + " FIN " + xFinal);
+		if( xInicial != "" && xFinal != "" && $scope.nPasos != "" && $scope.lx != ""){
+			$scope.dx=$scope.lx/$scope.nPasos;
+		}
 	};
 
 }]);
 
 function setupCanvas(){
 
-    var oldcanv = document.getElementById('graficoDocente');
+    var oldcanv = document.getElementById('graficoAlumno');
     var canvDiv = document.getElementById('canvasDiv');
     canvDiv.removeChild(oldcanv);
 
     var canv = document.createElement('canvas');
-    canv.id = 'graficoDocente';
+    canv.id = 'graficoAlumno';
     canv.width= "600";
     canv.height="300";
     canv.class = "center-block";
 
     canvDiv.appendChild(canv);
 
-    c = document.getElementById("graficoDocente");
+    c = document.getElementById("graficoAlumno");
     ctx = c.getContext("2d");
     crearLinea();
 
 }
+function crearLinea(){
+    /*Esto grafica la recta*/
+    ctx.moveTo(50,50);
+    ctx.lineTo(550,50);
+    ctx.moveTo(50,40);
+    ctx.lineTo(50,60);
+    ctx.font = "20px Arial";
+    ctx.fillText("0",35,80);
+    ctx.moveTo(550,40);
+    ctx.lineTo(550,60);
+    ctx.stroke();
+    ctx.fill();
+    ctx.fillText("",520,80);
+};
 
 app.controller('canvasCtrl', ['$scope',  function($scope) {
 

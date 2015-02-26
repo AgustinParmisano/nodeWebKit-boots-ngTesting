@@ -3,7 +3,7 @@
            <div class="col-sm-1 col-md-1 col-lg-1"></div>
            <div class="col-sm-10 col-md-10 col-lg-10">
              <div class="panel panel-default">
-               <textarea class="form-control" id="enunciado" ng-model="enunciado" >
+               <textarea class="form-control" id="enunciado" ng-model="enunciado" readonly>
                  {{enunciado}}
                </textarea>
              </div>
@@ -35,14 +35,14 @@
 						  <div class="form-group">
 							<label for="" class="col-lg-2 control-label">N</label>
 							<div class="col-lg-10">
-							  <input type="email" class="form-control" id="n" placeholder="cantidad de mediciones" ng-model="nPasos" ng-change="calcularPasos()">
+							  <input type="number" class="form-control" id="n" placeholder="cantidad de mediciones" ng-model="nPasos" ng-change="calcularPasos()">
 							</div>
 						  </div>
 						  
 						  <div class="form-group">
 							<label for="costo" class="col-lg-2 control-label">Lx</label>
 							<div class="col-lg-10">
-							  <input type="number" class="form-control" id="lx" ng-model="lx" placeholder="l" disabled>
+							  <input type="number" class="form-control" id="lx" ng-model="lx"  disabled>
 							</div>
 						  </div>
 						  <div class="form-group">
@@ -69,11 +69,11 @@
 				<button type="button" ng-click="continuar()" class="btn btn-success" id="btn-continuar"><h3>Continuar</h3></button>
 				</div>
 				<!-Grafico y Curva->
-			       	<div class="col-sm-4 col-md-4 col-lg-4" id="graficosCrearProblema">
+			       	<div class="col-sm-4 col-md-4 col-lg-4" id="graficoResolverAlumno">
 					 	<!-Variables-Titulo->
 						<h3>Grafico </h3>
 						<div id="canvasDiv">
-							<canvas id="graficoDocente" class="center-block" width="600" height="300">
+							<canvas id="graficoAlumno" class="center-block" width="600" height="300">
 								Grafico
 							</canvas>
 						</div>
