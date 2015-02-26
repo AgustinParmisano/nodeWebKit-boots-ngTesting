@@ -11,8 +11,8 @@
            <div class="col-sm-1 col-md-1 col-lg-1"></div>
           
 		
-		<div class="col-md-6">
-					<h3>Variales </h3>
+		<div class="col-md-6" ng-controller="inputsCtrl">
+					<h3>Variables </h3>
 					
 					<form class="form-horizontal" role="form">
 						  <div class="form-group">
@@ -27,7 +27,7 @@
 						  <div class="form-group">
 							<label for="" class="col-lg-2 control-label">X final</label>
 							<div class="col-lg-10">
-								<input class="form-control" maxlength="7" type="number" min="0" step="100" ng-model="xfin" ng-change="change()">
+								<input class="form-control" maxlength="7" type="number" min="0" step="100" ng-model="xfin" ng-change="changeFin()">
 								<b><p id="errorMsg" ng-model="xfinErrorMsg">{{xfinErrorMsg}}</p></b>
 							</div>
 						  </div>
@@ -35,8 +35,7 @@
 						  <div class="form-group">
 							<label for="" class="col-lg-2 control-label">N</label>
 							<div class="col-lg-10">
-							  <!--<input type="email" class="form-control" id="n"
-									 placeholder="cantidad de mediciones"  ng-change="calcularPasos()">-->
+							  <input type="email" class="form-control" id="n" placeholder="cantidad de mediciones" ng-model="nPasos" ng-change="calcularPasos()">
 							</div>
 						  </div>
 						  
@@ -69,18 +68,17 @@
 				 <button type="button" ng-click="swapChartType()" class="btn btn-success" id="btn-continuar"><h3>Graficar Curva</h3></button> 
 				<button type="button" ng-click="continuar()" class="btn btn-success" id="btn-continuar"><h3>Continuar</h3></button>
 				</div>
-				
-				
-				
+				<!-Grafico y Curva->
+			       	<div class="col-sm-4 col-md-4 col-lg-4" id="graficosCrearProblema">
+					 	<!-Variables-Titulo->
+						<h3>Grafico </h3>
+						<div id="canvasDiv">
+							<canvas id="graficoDocente" class="center-block" width="600" height="300">
+								Grafico
+							</canvas>
+						</div>
+					   	<highchart id="chart1" config="highchartsNG"></highchart>
+		       		</div>
 			 </div>
-			 <div class="col-md-6">
-					
-					<highchart id="chart1" config="chartConfig" class="span9" ></highchart>	
-					<!-Grafico->
-					<canvas id="graficoExperimento" width="500" height="300">
-								Your browser does not support the HTML5 canvas tag.
-					</canvas>	
-									
-				</div>
 		 </div>
 </div>
