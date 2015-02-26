@@ -65,7 +65,28 @@ app.controller('loadProblemCtrl', ['$scope', '$location', function($scope, $loca
 
     $scope.continuar = function(){
 		//$location.path('/alumnoProblemaAngular/problema:', $scope.problema);
+		//alert($scope.problema);
 		$location.url('/alumnoProblemaAngular/problema:'+ $scope.problema);
+		
+    };
+	$scope.problemaA = function(){
+		var problema = {
+				enunciado: "Este es el problema A",
+				dmax: "1000",
+				xo: "500",
+				ro: "30",
+				zo: "50",
+				de: "10",
+				di: "15",
+				dd: "-5",
+				costoMedicion: "300",
+				costoMax: "100000"
+				
+			};
+			$scope.problema= JSON.stringify(problema, null, 2);
+			$scope.enunciado=problema.enunciado;
+		//alert(problema);
+		//$location.url('/alumnoProblemaAngular/problema:'+ problema);
 		
     };
 	
