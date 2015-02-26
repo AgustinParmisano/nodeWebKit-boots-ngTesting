@@ -110,7 +110,7 @@
 										<div class="col-lg-10">
 											<div class="input-group">
 												<span class="input-group-addon" id="basic-addon1">$</span>
-												<input class="form-control" aria-describedby="basic-addon1"  onKeyPress="return onlyNumber(event);" ng-model="costoMed" ng-change="validarCosto()">
+												<input class="form-control" aria-describedby="basic-addon1"  onKeyPress="return onlyNumber(event);" ng-model="costoMed" ng-change="validarCostoUnitario()">
 												<b><p id="errorMsg" ng-model="costoMedErrorMsg">{{costoMedErrorMsg}}</p></b>
 											</div>
 										</div>
@@ -121,7 +121,7 @@
 										<div class="col-lg-10">
 											<div class="input-group">
 												<span class="input-group-addon" id="basic-addon1">$</span>
-												<input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="costoMax" ng-change="validarCosto()">
+												<input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="costoMax" ng-change="validarCostoMaximo()">
 												<b><p id="errorMsg" ng-model="costoMaxErrorMsg">{{costoMaxErrorMsg}}</p></b>
 											</div>
 										</div>

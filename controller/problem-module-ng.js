@@ -72,6 +72,15 @@ function crearLinea(){
     ctx.fillText("",520,80);
 };
 
+function resetErrors(){
+        this.dmaxErrorMsg = "";
+        this.z0ErrorMsg = "";
+        this.r0ErrorMsg = "";
+        this.x0ErrorMsg = "";
+        this.deErrorMsg = "";
+        this.diErrorMsg = "";
+}
+
 problem.controller('problemCtrl', ['$scope',  function($scope) {
 	$isWritten = false;
 	$isLong = false;
@@ -87,7 +96,7 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
         //console.log("CURRENT STRING: " + $currentString);
         //$localPath = $currentString;//.slice(0,-10); //PARA NODE WEB KIT
         //console.log($localpath);
-        $destinationPath = "/view/docenteElegirProblema"; 
+        $destinationPath = "../#/elegirProblema"; 
         console.log("DESTINATION: " + $destinationPath);
         window.location.href=$destinationPath;
     };
@@ -167,23 +176,29 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 	/*
 	*  funcion para verificar que costo sea numero
 	*/
-	$scope.validarCosto= function(){
-		this.costoMaxErrorMsg = "";
+	$scope.validarCostoUnitario= function(){
 		this.costoMedErrorMsg = "";
 	
 		if (isNaN(this.costoMed)) {
 			this.costoMedErrorMsg = "Ingrese Numeros";
 		}
-		if (isNaN(this.costoMax)) {
-			this.costoMaxErrorMsg = "Ingrese Numeros";
-		}
 		
 	}
+
+    $scope.validarCostoMaximo= function(){
+        this.costoMaxErrorMsg = "";
+    
+        if (isNaN(this.costoMax)) {
+            this.costoMaxErrorMsg = "Ingrese Numeros";
+        }
+        
+    }
 	
 	/*
 	*  Change esfera
 	*/
 	$scope.graficar= function(){
+        var noGraficar = false;
         setupCanvas();
         ctx.fillText(this.dmax,520,80);
         
@@ -197,10 +212,18 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
         if (isNaN(this.dmax) || this.dmax == null) {
             this.dmaxErrorMsg = "Ingrese Numeros";
             setupCanvas();
-        }
+            noGraficar = true;
+        }else if (this.dmax > 1000) {
+            this.dmaxErrorMsg = "Debe ser menor a 1000";
+            noGraficar = true;
+        };
 		if (isNaN(this.z)) {
 			this.z0ErrorMsg = "Ingrese Numeros";
-		}
+            noGraficar = true;
+		}else if (this.z < 75) {
+            this.z0ErrorMsg = "Debe ser mayor a 75";
+            noGraficar = true;
+        };
 		if (isNaN(this.r)) {
 			this.r0ErrorMsg = "Ingrese Numeros";
 		}
@@ -210,13 +233,27 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 
         if (isNaN(this.di)) {
             this.diErrorMsg = "Ingrese Numeros";
-        }
+        }else if (this.di > 15) {
+            this.diErrorMsg = "Debe ser menor a 15";
+            noGraficar = true;
+        };
         if (isNaN(this.de)) {
             this.deErrorMsg = "Ingrese Numeros";
-        }
+        }else if (this.de > 15) {
+            this.deErrorMsg = "Debe ser menor a 15";
+            noGraficar = true;
+        };
+
+        if ((this.x + this.r) > this.dmax) {
+            this.x0ErrorMsg = "X + R debe ser menor a L";
+            this.r0ErrorMsg = "X + R debe ser menor a L";
+            this.dmaxErrorMsg = "X + R debe ser menor a L";
+            noGraficar = true;
+        };
 
         if (this.x > this.dmax) {
             this.x0ErrorMsg = "X mas grande que dmax";
+            noGraficar = true;
         }
 
         if(this.z > 300){
@@ -230,7 +267,7 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
         }
 
 
-		if( !(isNaN(this.dmax)) && this.z != null && this.r != null && this.x != null  && this.di != null  && this.de != null && this.x < this.dmax && this.z < 300 && this.dmax > 50){
+		if(!noGraficar && !(isNaN(this.dmax)) && this.z != null && this.r != null && this.x != null  && this.di != null  && this.de != null && this.x < this.dmax && this.z < 300 && this.dmax > 50){
             var ejeX = this.x + 60;
             var ejeZ = this.z;
             var valorFormula1 = 0;
@@ -254,6 +291,15 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 
     $scope.aleatorio = function(){
         setupCanvas();
+
+        this.enunErrorMsg = "";
+        this.dmaxErrorMsg = "";
+        this.z0ErrorMsg = "";
+        this.r0ErrorMsg = "";
+        this.x0ErrorMsg = "";
+        this.deErrorMsg = "";
+        this.diErrorMsg = "";
+
         this.dmax = Math.floor(Math.random() * (1000 - 100 + 1)) + 100;
         this.x = Math.floor(Math.random() * (this.dmax - 10 + 1)) + 10;
         this.z = Math.floor(Math.random() * (300 - 100 + 1)) + 100;
@@ -278,23 +324,40 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
     };
 
 	$scope.guardar= function(){
+        this.enunErrorMsg = "";
+        this.dmaxErrorMsg = "";
+        this.z0ErrorMsg = "";
+        this.r0ErrorMsg = "";
+        this.x0ErrorMsg = "";
+        this.deErrorMsg = "";
+        this.diErrorMsg = "";
+
 		var texto= "Falta Completar";
 		if (this.enun == null) {
 			texto+=" Enunciado";
+            this.enunErrorMsg = texto;
 		}else if(this.r == null){
 			texto+=" R0";
+            this.r0ErrorMsg = texto;
 		}else if(this.x == null){
 			texto+=" X0";
+            this.x0ErrorMsg = texto;
 		}else if( this.z == null){
 			texto+=" Z0";
+            this.z0ErrorMsg = texto;
 		}else if ( this.di == null){
 			texto+=" Di0";
+            this.diErrorMsg = texto;
 		}else if(this.de == null){
 			texto+=" De0";
+            this.deErrorMsg = texto;
 		}else if(this.dmax == ""){
 			texto+=" L";//no entra
+            this.dmaxErrorMsg = texto;
 		}else if(this.costoMed == null || this.costoMax == null){
 			texto+=" Costo";
+            this.costoMaxErrorMsg = texto;
+            this.costoMedErrorMsg = texto;
 		}else{
 			//Esto el json que se va a guardar
 			var problema = {
@@ -314,7 +377,7 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 			texto="El Archivo se Genero Correctamente"
 			
 		}
-		alert(texto);
+		//alert(texto);
 	};
 
     $scope.$watch(function(scope){
@@ -355,7 +418,12 @@ function drawChart(scope){
             chart: {
                 type: 'line',
                 width: '600'
-            }
+            },
+
+            /*
+            yAxis: {
+
+            }*/
         },
           series: [{
             data: (function () {
