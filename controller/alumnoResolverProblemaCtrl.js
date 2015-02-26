@@ -3,8 +3,11 @@
 
 	
 	$scope.problema=$routeParams.problema.substring(9,$routeParams.problema.length);
-	alert($scope.problema);
-	//$scope.problema=;
-	$scope.enunciado=$scope.problema;
+
+	var parsed=JSON.parse($scope.problema);
+	$scope.problema=parsed;
+	$scope.enunciado=$scope.problema.enunciado;
+	//var p=angular.fromJSON(problema);
+	//alert(p);
 		
 }]);

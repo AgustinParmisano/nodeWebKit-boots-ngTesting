@@ -64,11 +64,9 @@ app.controller('loadProblemCtrl', ['$scope', '$location', function($scope, $loca
     };
 
     $scope.continuar = function(){
-		//hay que pasarle los parametros!!!
-		alert($scope.problema);
 		//$location.path('/alumnoProblemaAngular/problema:', $scope.problema);
 		$location.url('/alumnoProblemaAngular/problema:'+ $scope.problema);
-
+		
     };
 	
 	
