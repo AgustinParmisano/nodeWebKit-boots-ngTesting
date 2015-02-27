@@ -42,13 +42,13 @@
 						  <div class="form-group">
 							<label for="costo" class="col-lg-2 control-label">Lx</label>
 							<div class="col-lg-10">
-							  <input type="number" class="form-control" id="lx" ng-model="lx" placeholder="l" disabled>
+							  <input type="number" class="form-control" id="lx" ng-model="lx" placeholder={{dmax}} disabled>
 							</div>
 						  </div>
 						  <div class="form-group">
 							<label for="costo" class="col-lg-2 control-label">Dx</label>
 							<div class="col-lg-10">
-							  <input type="number" class="form-control" id="dx" ng-model="dx" placeholder="" disabled>
+							  <input type="number" class="form-control" id="dx" ng-model="dx" placeholder="{{dd}}" disabled>
 							</div>
 						  </div>
 						  
@@ -65,15 +65,15 @@
 							</div>
 						  </div>
 				  </form>
-				 <button type="button" ng-click="swapChartType()" class="btn btn-success" id="btn-continuar"><h3>Graficar Curva</h3></button> 
+				 <button type="button" ng-click="graficar()" class="btn btn-success" id="btn-continuar" ng-controller="canvasCtrl"><h3>Graficar Curva</h3><p id="errorMsg" ng-model="graficErrorMsg">{{graficErrorMsg}}</p></b></button> 
 				<button type="button" ng-click="continuar()" class="btn btn-success" id="btn-continuar"><h3>Continuar</h3></button>
 				</div>
 				<!-Grafico y Curva->
-			       	<div class="col-sm-4 col-md-4 col-lg-4" id="graficosCrearProblema">
+			       	<div class="col-sm-4 col-md-4 col-lg-4" id="graficosCrearProblema" >
 					 	<!-Variables-Titulo->
 						<h3>Grafico </h3>
-						<div id="canvasDiv">
-							<canvas id="graficoDocente" class="center-block" width="600" height="300">
+						<div id="canvasDiv" ng-model="canvasDiv" ng-controller="canvasCtrl">
+							<canvas id="graficoDocente" class="center-block" width="600" height="300" ng-model="graficoDocente">
 								Grafico
 							</canvas>
 						</div>
