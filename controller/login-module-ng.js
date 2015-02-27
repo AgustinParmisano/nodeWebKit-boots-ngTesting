@@ -1,4 +1,4 @@
- app.controller('inicioCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams) {
+ app.controller('inicioCtrl', ['$scope', '$location', '$routeParams',"highcharts-ng", function($scope, $location, $routeParams) {
 
 	
 	$scope.comenzar = function() {

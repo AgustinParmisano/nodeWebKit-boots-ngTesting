@@ -21,6 +21,7 @@ app.controller('inputsCtrl', ['$scope', function($scope){
 	var xInicial = "";
 	var xFinal = "";
 	var nPasos = "";
+	initChart($scope);
 
 	$scope.changeIni = function(){
 		this.xiniErrorMsg = "";
@@ -118,6 +119,23 @@ function graficarPorcion(ini, fin, scope){
     ctx.fillText("",520,80);
 };
 
+function initChart(scope){
+        scope.highchartsNG = {
+        options: {
+            chart: {
+                type: 'line',
+                width: '600'
+            }
+        },
+
+        title: {
+            text: 'Anomalía'
+        },
+        loading: false
+    }
+	console.log(scope.highchartsNG.options.chart.width);
+}
+
 app.controller('canvasCtrl', ['$scope',  function($scope) {
 		setupCanvas($scope.dmax);
 
@@ -151,16 +169,59 @@ app.controller('canvasCtrl', ['$scope',  function($scope) {
 	        	graficarPorcion(this.xini, this.xfin, $scope);
 	        }
 			/* No conoce coosto total de la vista*/
-			if($scope.nPasos != ""){
+			/*if($scope.nPasos != ""){
 				$scope.costoTotal=$scope.nPasos * $scope.problema.costoMedicion;
 				console.log($scope.costoTotal + "Hay q ponerlo en la variable");
-			}
-            drawChart($scope.problema);
+			}*/
+            drawChart($scope);
 
 		};
 }]);
 
-function drawChart(problema){
-	//Funcion que grafica la curva mediante parametrojson problema
-	console.log(problema);
+function drawChart(scope){
+	//NO GRAFICA NO SE POR QUE
+
+	//Para el gráfico de HC
+	console.log();
+    scope.highchartsNG = {
+        options: {
+            chart: {
+                type: 'line',
+                width: '600'
+            },
+
+            /*
+            yAxis: {
+
+            }*/
+        },
+          series: [{
+            data: (function () {
+                //Fomula
+                var data = [],
+                            i;
+                for (i = 0; i <= parseInt(scope.problema.dmax); i++) {
+                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
+                    var valorFormula2 = scope.problema.zo / valorFormula1;
+                    var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
+                    console.log(valorFormula3);
+                    if(isNaN(valorFormula3)){
+                      valorFormula3 = 0;  
+                    };
+                    data.push({
+                        x: i,
+                        y: valorFormula3
+                    });
+                }
+                console.log(data.y)
+                return data;
+            })()
+        }],
+
+        title: {
+            text: 'Anomalía'
+        },
+        loading: false
+    }
+
 };
