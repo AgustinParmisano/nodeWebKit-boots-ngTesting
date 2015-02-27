@@ -73,7 +73,7 @@ function setupCanvas(dmax){
 	canv.id = 'graficoAlumno';
 
     canv.width= "600";
-    canv.height="300";
+    canv.height="150";
     canv.class = "center-block";
 
     canvDiv.appendChild(canv);
