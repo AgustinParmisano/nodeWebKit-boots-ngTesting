@@ -7,6 +7,7 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 	var parsed=JSON.parse($scope.problema);
 	$scope.problema=parsed;
 	$scope.enunciado=$scope.problema.enunciado;
+
 	$scope.dmax=parseInt($scope.problema.dmax);
 	$scope.dd=parseInt($scope.problema.dd);
 	//var p=angular.fromJSON(problema);
@@ -18,6 +19,8 @@ app.controller('inputsCtrl', ['$scope', function($scope){
 	var xInicial = "";
 	var xFinal = "";
 	var nPasos = "";
+	$scope.costoTotal=0;
+	$scope.costoMedicion=0;
 
 	$scope.changeIni = function(){
 		this.xiniErrorMsg = "";
@@ -50,26 +53,32 @@ app.controller('inputsCtrl', ['$scope', function($scope){
 		xFinal = $scope.xfin;
 		//Falta la formula de los costos
 		console.log("Formula de costo INI: " + xInicial + " FIN: " + xFinal);
+
+		if( xInicial != "" && xFinal != "" && $scope.nPasos != "" && $scope.lx != ""){
+			$scope.dx=$scope.lx/$scope.nPasos;
+		}
+
 	};
 
 }]);
 
 function setupCanvas(dmax){
 
-    var oldcanv = document.getElementById('graficoDocente');
+    var oldcanv = document.getElementById('graficoAlumno');
     var canvDiv = document.getElementById('canvasDiv');
 
     canvDiv.removeChild(oldcanv);
+ 	
+ 	var canv = document.createElement('canvas');
+	canv.id = 'graficoAlumno';
 
-    var canv = document.createElement('canvas');
-    canv.id = 'graficoDocente';
     canv.width= "600";
     canv.height="300";
     canv.class = "center-block";
 
     canvDiv.appendChild(canv);
 
-    c = document.getElementById("graficoDocente");
+    c = document.getElementById("graficoAlumno");
     ctx = c.getContext("2d");
     crearLinea(dmax);
 
