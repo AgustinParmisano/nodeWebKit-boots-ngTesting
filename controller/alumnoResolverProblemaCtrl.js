@@ -12,6 +12,8 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 	$scope.dd=parseInt($scope.problema.dd);
 	//var p=angular.fromJSON(problema);
 	//alert(p);
+	$scope.costoTotal=0;
+	$scope.costoAcumulado=0;
 		
 }]);
 
@@ -19,8 +21,6 @@ app.controller('inputsCtrl', ['$scope', function($scope){
 	var xInicial = "";
 	var xFinal = "";
 	var nPasos = "";
-	$scope.costoTotal=0;
-	$scope.costoMedicion=0;
 
 	$scope.changeIni = function(){
 		this.xiniErrorMsg = "";
@@ -150,6 +150,11 @@ app.controller('canvasCtrl', ['$scope',  function($scope) {
 	        if(!noGraficar){
 	        	graficarPorcion(this.xini, this.xfin, $scope);
 	        }
+			/* No conoce coosto total de la vista*/
+			if($scope.nPasos != ""){
+				$scope.costoTotal=$scope.nPasos * $scope.problema.costoMedicion;
+				console.log($scope.costoTotal + "Hay q ponerlo en la variable");
+			}
 	        //inicializar mensajes de error en nada:
 	        //this.dmaxErrorMsg = "";
 	        
