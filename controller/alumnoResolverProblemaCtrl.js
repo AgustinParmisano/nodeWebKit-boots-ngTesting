@@ -1,115 +1,4 @@
 
-app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams) {
-
-	
-	$scope.problema=$routeParams.problema.substring(9,$routeParams.problema.length);
-
-	var parsed=JSON.parse($scope.problema);
-	$scope.problema=parsed;
-	$scope.enunciado=$scope.problema.enunciado;
-
-	$scope.dmax=parseInt($scope.problema.dmax);
-	$scope.dd=parseInt($scope.problema.dd);
-	//var p=angular.fromJSON(problema);
-	//alert(p);
-	$scope.costoTotal=0;
-	$scope.costoAcumulado=0;
-		
-}]);
-
-app.controller('inputsCtrl', ['$scope', function($scope){
-	var xInicial = "";
-	var xFinal = "";
-	var nPasos = "";
-	setupCanvas($scope.dmax);
-
-
-	$scope.changeIni = function(){
-		this.xiniErrorMsg = "";
-		xInicial = $scope.xini;
-		if (xFinal != "" && xFinal < xInicial) {
-			this.xiniErrorMsg = "Inicial debe ser menor a final"
-		}else if (xInicial > $scope.dmax) {
-			this.xiniErrorMsg = "Debe ser menor a la longitud"
-		}else{
-			this.xfinErrorMsg = "";
-			this.xiniErrorMsg = "";
-		};
-	};
-
-	$scope.changeFin = function(){
-		this.xfinErrorMsg = "";
-		xFinal = $scope.xfin;
-		if (xInicial != "" && xFinal < xInicial) {
-			this.xiniErrorMsg = "Final debe ser mayor a inicial"
-		}else if (xFinal > $scope.dmax) {
-			this.xfinErrorMsg = "Debe ser menor a la longitud"
-		}else{
-			this.xfinErrorMsg = "";
-			this.xiniErrorMsg = "";
-		};
-	};
-
-	$scope.calcularPasos = function(){
-		xInicial = $scope.xini;
-		xFinal = $scope.xfin;
-		//Falta la formula de los costos
-		//console.log("Formula de costo INI: " + xInicial + " FIN: " + xFinal);
-
-		if( xInicial != "" && xFinal != "" && $scope.nPasos != "" && $scope.lx != ""){
-			$scope.dx=$scope.lx/$scope.nPasos;
-		}
-
-	};
-
-}]);
-
-
-app.controller('canvasCtrl', ['$scope',  function($scope) {
-	initChart($scope);
-
-	$scope.graficar= function(){
-        var noGraficar = false;
-        setupCanvas($scope.dmax);
-        this.graficErrorMsg = "";
-
-        if(this.xfin == null){
-        	this.graficErrorMsg = "Complete Fin"
-        	noGraficar = true;
-        }
-
-        if(this.xini == null){
-        	this.graficErrorMsg = "Complete Inicio"
-        	noGraficar = true;
-        }
-
-
-        if(this.xfin > $scope.dmax){
-        	this.graficErrorMsg = "Fin debe ser menor a la longitud"
-        	noGraficar = true;
-        }
-
-        if(this.xfin < this.xini){
-        	this.graficErrorMsg = "Inicio debe ser menor a fin"
-        	noGraficar = true;
-        }
-
-        if(!noGraficar){
-        	graficarPorcion(this.xini, this.xfin, $scope);
-        }
-		/* No conoce coosto total de la vista*/
-		/*if($scope.nPasos != ""){
-			$scope.costoTotal=$scope.nPasos * $scope.problema.costoMedicion;
-			console.log($scope.costoTotal + "Hay q ponerlo en la variable");
-		}*/
-
-        if (!noGraficar) {
-        	drawChart($scope)
-        };
-
-	};
-}]);
-
 function setupCanvas(dmax){
 
     var oldcanv = document.getElementById('graficoAlumno');
@@ -179,56 +68,170 @@ function initChart(scope){
         title: {
             text: 'Anomalía'
         },
-        loading: true
+        loading: false
     }
 	//console.log(scope.highchartsNG);
 };
 
-function drawChart(scope){
+
+function drawChart(scope,xini,xfin){
 	//NO GRAFICA NO SE POR QUE
 
 	//Para el gráfico de HC
-	console.log("draw ");
-    scope.highchartsNG = {
-        options: {
-            chart: {
-            	renderTo: 'chartDiv',
-                type: 'line',
-                width: '600'
-            },
+		console.log(scope,xini,xfin);
+		scope.problema.dmax=Math.min(xfin, 999)
+	    console.log(scope.highchartsNG);
+	    scope.highchartsNG = {
+	        options: {
+	            chart: {
+	                type: 'line',
+	                width: '600'
+	            },
 
-            /*
-            yAxis: {
+	            /*
+	            yAxis: {
 
-            }*/
-        },
-          series: [{
-            data: [10, 15, 12, 8, 7]/*(function () {
-                //Fomula
-                var data = [],
-                            i;
-                for (i = 0; i <= parseInt(scope.problema.dmax); i++) {
-                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
-                    var valorFormula2 = scope.problema.zo / valorFormula1;
-                    var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
-                    console.log("V3 " + valorFormula3);
-                    if(isNaN(valorFormula3)){
-                      valorFormula3 = 0;  
-                    };
-                    data.push({
-                        x: i,
-                        y: valorFormula3
-                    });
-                }
-                console.log(data.y)
-                return data;
-            })()*/
-        }],
+	            }*/
+	        },
+	          series: [{
+	            data:(function () {
+	                //Fomula
+	                var data = [],
+	                            i;
+	                for (i = 0; i <= parseInt(xfin); i++) {
+	                    var valorFormula1 = Math.pow(((Math.pow(i - xini,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
+	                    var valorFormula2 = scope.problema.zo / valorFormula1;
+	                    var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
+	                    if(isNaN(valorFormula3)){
+	                      valorFormula3 = 0;  
+	                    };
+	                    data.push({
+	                        x: i,
+	                        y: valorFormula3
+	                    });
+	                }
+	                return data;
+	            })()
+	        }],	
 
-        title: {
-            text: 'Anomalía'
-        },
-        loading: true
-    }
+	        title: {
+	            text: 'Anomalía'
+	        },
+	        loading: false
+	    }
+	console.log(scope.highchartsNG);
+}
 
-};
+app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams) {
+
+	
+	$scope.problema=$routeParams.problema.substring(9,$routeParams.problema.length);
+
+	var parsed=JSON.parse($scope.problema);
+	$scope.problema=parsed;
+	$scope.enunciado=$scope.problema.enunciado;
+
+	$scope.dmax=parseInt($scope.problema.dmax);
+	$scope.dd=parseInt($scope.problema.dd);
+	//var p=angular.fromJSON(problema);
+	//alert(p);
+	$scope.costoTotal=0;
+	$scope.costoAcumulado=0;
+		
+}]);
+
+app.controller('inputsCtrl', ['$scope', function($scope){
+	var xInicial = "";
+	var xFinal = "";
+	var nPasos = "";
+	setupCanvas($scope.dmax);
+
+
+	$scope.changeIni = function(){
+		this.xiniErrorMsg = "";
+		xInicial = $scope.xini;
+		if (xFinal != "" && xFinal < xInicial) {
+			this.xiniErrorMsg = "Inicial debe ser menor a final"
+		}else if (xInicial > $scope.dmax) {
+			this.xiniErrorMsg = "Debe ser menor a la longitud"
+		}else{
+			this.xfinErrorMsg = "";
+			this.xiniErrorMsg = "";
+		};
+	};
+
+	$scope.changeFin = function(){
+		this.xfinErrorMsg = "";
+		xFinal = $scope.xfin;
+		if (xInicial != "" && xFinal < xInicial) {
+			this.xiniErrorMsg = "Final debe ser mayor a inicial"
+		}else if (xFinal > $scope.dmax) {
+			this.xfinErrorMsg = "Debe ser menor a la longitud"
+		}else{
+			this.xfinErrorMsg = "";
+			this.xiniErrorMsg = "";
+		};
+	};
+
+	$scope.calcularPasos = function(){
+		xInicial = $scope.xini;
+		xFinal = $scope.xfin;
+		//Falta la formula de los costos
+		//console.log("Formula de costo INI: " + xInicial + " FIN: " + xFinal);
+
+		if( xInicial != "" && xFinal != "" && $scope.nPasos != "" && $scope.lx != ""){
+			$scope.dx=$scope.lx/$scope.nPasos;
+		}
+
+	};
+
+//}]);
+
+
+//app.controller('canvasCtrl', ['$scope',  function($scope) {
+	
+	initChart($scope);
+	//drawChart($scope,100, 550);
+
+	$scope.graficar = function() {
+        var noGraficar = false;
+        setupCanvas($scope.dmax);
+        this.graficErrorMsg = "";
+
+        if(this.xfin == null){
+        	this.graficErrorMsg = "Complete Fin";
+        	noGraficar = true;
+        };
+
+        if(this.xini == null){
+        	this.graficErrorMsg = "Complete Inicio";
+        	noGraficar = true;
+        };
+
+
+        if(this.xfin > $scope.dmax){
+        	this.graficErrorMsg = "Fin debe ser menor a la longitud";
+        	noGraficar = true;
+        };
+
+        if(this.xfin < this.xini){
+        	this.graficErrorMsg = "Inicio debe ser menor a fin";
+        	noGraficar = true;
+        };
+
+        if(!noGraficar){
+        	drawChart($scope,parseInt(this.xini), parseInt(this.xfin));
+        	$scope.xini = this.xini;
+        	$scope.xfin = this.xfin;
+        	graficarPorcion(this.xini, this.xfin, $scope);
+        };
+		/* No conoce coosto total de la vista*/
+		/*if($scope.nPasos != ""){
+			$scope.costoTotal=$scope.nPasos * $scope.problema.costoMedicion;
+			console.log($scope.costoTotal + "Hay q ponerlo en la variable");
+		}*/
+
+	};
+	drawChart($scope,$scope.xini, $scope.xfin);
+
+}]);

@@ -73,7 +73,7 @@
 				</form>
 
 			
-				<button type="button" ng-click="graficar()" class="btn btn-success" id="btn-continuar" ng-controller="canvasCtrl"><h3>Graficar Curva</h3><p id="errorMsg" ng-model="graficErrorMsg">{{graficErrorMsg}}</p></b></button> 
+				<button type="button" ng-click="graficar()" class="btn btn-success" id="btn-continuar" ng-controller="inputsCtrl"><h3>Graficar Curva</h3><p id="errorMsg" ng-model="graficErrorMsg">{{graficErrorMsg}}</p></b></button> 
 				
 				<button type="button" ng-click="continuar()" class="btn btn-success" id="btn-continuar"><h3>Continuar</h3></button>
 			</div>
@@ -81,15 +81,16 @@
 
 			<!-Grafico y Curva->
 
-	       	<div class="col-sm-6 col-md-6 col-lg-6" id="graficosCrearProblema" ng-controller="canvasCtrl">
+	       	<div class="col-sm-6 col-md-6 col-lg-6" id="graficosCrearProblema" ng-controller="inputsCtrl">
 			 	<!-Variables-Titulo->
 
 				<h3>Grafico </h3>
-				<div id="canvasDiv" ng-model="canvasDiv" ng-controller="canvasCtrl">
+				<div id="canvasDiv" ng-model="canvasDiv" ng-controller="inputsCtrl">
 					<canvas id="graficoAlumno" class="center-block" width="600" height="300" ng-model="graficoAlumno">			</canvas>
 			   	</div>
 
 		   		<highchart id="chart1" config="highchartsNG"></highchart>
+
 	   		</div>
 	   	</div>
 
