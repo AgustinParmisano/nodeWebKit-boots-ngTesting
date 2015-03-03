@@ -21,7 +21,8 @@ app.controller('inputsCtrl', ['$scope', function($scope){
 	var xInicial = "";
 	var xFinal = "";
 	var nPasos = "";
-	initChart($scope);
+	setupCanvas($scope.dmax);
+
 
 	$scope.changeIni = function(){
 		this.xiniErrorMsg = "";
@@ -53,7 +54,7 @@ app.controller('inputsCtrl', ['$scope', function($scope){
 		xInicial = $scope.xini;
 		xFinal = $scope.xfin;
 		//Falta la formula de los costos
-		console.log("Formula de costo INI: " + xInicial + " FIN: " + xFinal);
+		//console.log("Formula de costo INI: " + xInicial + " FIN: " + xFinal);
 
 		if( xInicial != "" && xFinal != "" && $scope.nPasos != "" && $scope.lx != ""){
 			$scope.dx=$scope.lx/$scope.nPasos;
@@ -61,6 +62,52 @@ app.controller('inputsCtrl', ['$scope', function($scope){
 
 	};
 
+}]);
+
+
+app.controller('canvasCtrl', ['$scope',  function($scope) {
+	initChart($scope);
+
+	$scope.graficar= function(){
+        var noGraficar = false;
+        setupCanvas($scope.dmax);
+        this.graficErrorMsg = "";
+
+        if(this.xfin == null){
+        	this.graficErrorMsg = "Complete Fin"
+        	noGraficar = true;
+        }
+
+        if(this.xini == null){
+        	this.graficErrorMsg = "Complete Inicio"
+        	noGraficar = true;
+        }
+
+
+        if(this.xfin > $scope.dmax){
+        	this.graficErrorMsg = "Fin debe ser menor a la longitud"
+        	noGraficar = true;
+        }
+
+        if(this.xfin < this.xini){
+        	this.graficErrorMsg = "Inicio debe ser menor a fin"
+        	noGraficar = true;
+        }
+
+        if(!noGraficar){
+        	graficarPorcion(this.xini, this.xfin, $scope);
+        }
+		/* No conoce coosto total de la vista*/
+		/*if($scope.nPasos != ""){
+			$scope.costoTotal=$scope.nPasos * $scope.problema.costoMedicion;
+			console.log($scope.costoTotal + "Hay q ponerlo en la variable");
+		}*/
+
+        if (!noGraficar) {
+        	drawChart($scope)
+        };
+
+	};
 }]);
 
 function setupCanvas(dmax){
@@ -120,6 +167,7 @@ function graficarPorcion(ini, fin, scope){
 };
 
 function initChart(scope){
+		console.log("SCOPEEE " + scope);
         scope.highchartsNG = {
         options: {
             chart: {
@@ -131,61 +179,20 @@ function initChart(scope){
         title: {
             text: 'Anomalía'
         },
-        loading: false
+        loading: true
     }
-	console.log(scope.highchartsNG.options.chart.width);
-}
-
-app.controller('canvasCtrl', ['$scope',  function($scope) {
-		setupCanvas($scope.dmax);
-
-		$scope.graficar= function(){
-	        var noGraficar = false;
-	        setupCanvas($scope.dmax);
-	        this.graficErrorMsg = "";
-
-	        if(this.xfin == null){
-	        	this.graficErrorMsg = "Complete Fin"
-	        	noGraficar = true;
-	        }
-
-	        if(this.xini == null){
-	        	this.graficErrorMsg = "Complete Inicio"
-	        	noGraficar = true;
-	        }
-
-
-	        if(this.xfin > $scope.dmax){
-	        	this.graficErrorMsg = "Fin debe ser menor a la longitud"
-	        	noGraficar = true;
-	        }
-
-	        if(this.xfin < this.xini){
-	        	this.graficErrorMsg = "Inicio debe ser menor a fin"
-	        	noGraficar = true;
-	        }
-
-	        if(!noGraficar){
-	        	graficarPorcion(this.xini, this.xfin, $scope);
-	        }
-			/* No conoce coosto total de la vista*/
-			/*if($scope.nPasos != ""){
-				$scope.costoTotal=$scope.nPasos * $scope.problema.costoMedicion;
-				console.log($scope.costoTotal + "Hay q ponerlo en la variable");
-			}*/
-            drawChart($scope);
-
-		};
-}]);
+	//console.log(scope.highchartsNG);
+};
 
 function drawChart(scope){
 	//NO GRAFICA NO SE POR QUE
 
 	//Para el gráfico de HC
-	console.log();
+	console.log("draw ");
     scope.highchartsNG = {
         options: {
             chart: {
+            	renderTo: 'chartDiv',
                 type: 'line',
                 width: '600'
             },
@@ -196,7 +203,7 @@ function drawChart(scope){
             }*/
         },
           series: [{
-            data: (function () {
+            data: [10, 15, 12, 8, 7]/*(function () {
                 //Fomula
                 var data = [],
                             i;
@@ -204,7 +211,7 @@ function drawChart(scope){
                     var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
                     var valorFormula2 = scope.problema.zo / valorFormula1;
                     var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
-                    console.log(valorFormula3);
+                    console.log("V3 " + valorFormula3);
                     if(isNaN(valorFormula3)){
                       valorFormula3 = 0;  
                     };
@@ -215,13 +222,13 @@ function drawChart(scope){
                 }
                 console.log(data.y)
                 return data;
-            })()
+            })()*/
         }],
 
         title: {
             text: 'Anomalía'
         },
-        loading: false
+        loading: true
     }
 
 };

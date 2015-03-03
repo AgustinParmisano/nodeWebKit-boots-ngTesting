@@ -1,86 +1,95 @@
 <!- Enunciado de problema cargado  ->
-         <div class="row">
-           <div class="col-sm-1 col-md-1 col-lg-1"></div>
-           <div class="col-sm-10 col-md-10 col-lg-10">
-             <div class="panel panel-default">
-               <textarea class="form-control" id="enunciado" ng-model="enunciado" readonly>
-                 {{enunciado}}
-               </textarea>
-             </div>
-           </div>
-           <div class="col-sm-1 col-md-1 col-lg-1"></div>
+        <div class="row">
+
+         	<div class="col-sm-1 col-md-1 col-lg-1"></div>
+
+     		<div class="col-sm-10 col-md-10 col-lg-10">
+     			<div class="panel panel-default">
+           			<textarea class="form-control" id="enunciado" ng-model="enunciado" readonly>
+             			{{enunciado}}
+           			</textarea>
+         		</div>
+       		</div>
+
+            <div class="col-sm-1 col-md-1 col-lg-1"></div>
           
 		
-		<div class="col-md-6" ng-controller="inputsCtrl">
-					<h3>Variables </h3>
-					
-					<form class="form-horizontal" role="form">
-						  <div class="form-group">
-							<label for="" class="col-lg-2 control-label">X inicial</label>
-							<div class="col-lg-10">
-							  <input class="form-control" maxlength="7" type="number" min="0" step="100" ng-model="xini" ng-change="changeIni()">
-								<b><p id="errorMsg" ng-model="xiniErrorMsg">{{xiniErrorMsg}}</p></b>
-							</div>
-							
-						  </div>
-						  
-						  <div class="form-group">
-							<label for="" class="col-lg-2 control-label">X final</label>
-							<div class="col-lg-10">
-								<input class="form-control" maxlength="7" type="number" min="0" step="100" ng-model="xfin" ng-change="changeFin()">
-								<b><p id="errorMsg" ng-model="xfinErrorMsg">{{xfinErrorMsg}}</p></b>
-							</div>
-						  </div>
-						  
-						  <div class="form-group">
-							<label for="" class="col-lg-2 control-label">N</label>
-							<div class="col-lg-10">
-							  <input type="number" class="form-control" id="n" placeholder="cantidad de mediciones" ng-model="nPasos" ng-change="calcularPasos()">
-							</div>
-						  </div>
-						  
-						  <div class="form-group">
-							<label for="costo" class="col-lg-2 control-label">Lx</label>
-							<div class="col-lg-10">
-							  <input type="number" class="form-control" id="lx" ng-model="lx" placeholder={{dmax}} disabled>
-							</div>
-						  </div>
-						  <div class="form-group">
-							<label for="costo" class="col-lg-2 control-label">Dx</label>
-							<div class="col-lg-10">
-							  <input type="number" class="form-control" id="dx" ng-model="dx" placeholder="{{dd}}" disabled>
-							</div>
-						  </div>
-						  
-						  <div class="form-group">
-							<label for="costo" class="col-lg-2 control-label">Costo Total</label>
-							<div class="col-lg-10">
-							  <input type="number" class="form-control" id="costoTotal" ng-model="costoTotal" placeholder="Costo en $" disabled>
-							</div>
-						  </div>
-						  <div class="form-group">
-							<label for="costo" class="col-lg-2 control-label">Costo acumulado</label>
-							<div class="col-lg-10">
-							  <input type="number" class="form-control" id="costoMedicion" ng-model="costoAcumulado" placeholder="Costo en $" disabled>
-							</div>
-						  </div>
-				  </form>
-				 <button type="button" ng-click="graficar()" class="btn btn-success" id="btn-continuar" ng-controller="canvasCtrl"><h3>Graficar Curva</h3><p id="errorMsg" ng-model="graficErrorMsg">{{graficErrorMsg}}</p></b></button> 
-				<button type="button" ng-click="continuar()" class="btn btn-success" id="btn-continuar"><h3>Continuar</h3></button>
-				</div>
-				<!-Grafico y Curva->
-
-			       	<div class="col-sm-4 col-md-4 col-lg-4" id="graficosCrearProblema" >
-					 	<!-Variables-Titulo->
-						<h3>Grafico </h3>
-						<div id="canvasDiv" ng-model="canvasDiv" ng-controller="canvasCtrl">
-							<canvas id="graficoAlumno" class="center-block" width="600" height="300" ng-model="graficoAlumno">
-
-							</canvas>
+			<div class="col-md-4" ng-controller="inputsCtrl" id="vars">
+				<h3>Variables </h3>
 						
-					   	<highchart id="chart1" config="highchartsNG"></highchart>
-					   	</div>
-		       		</div>
-			 </div>
-		 </div>
-</div>
+				<form class="form-horizontal" role="form">
+
+					<div class="form-group">
+						<label for="" class="col-lg-2 control-label">X inicial</label>
+						<div class="col-lg-10">
+							<input class="form-control" maxlength="7" type="number" min="0" step="100" ng-model="xini" ng-change="changeIni()">
+							<b><p id="errorMsg" ng-model="xiniErrorMsg">{{xiniErrorMsg}}</p></b>
+						</div>							
+					</div>
+						  
+					<div class="form-group">
+						<label for="" class="col-lg-2 control-label">X final</label>
+						<div class="col-lg-10">
+							<input class="form-control" maxlength="7" type="number" min="0" step="100" ng-model="xfin" ng-change="changeFin()">
+							<b><p id="errorMsg" ng-model="xfinErrorMsg">{{xfinErrorMsg}}</p></b>
+						</div>
+					</div>
+						  
+					<div class="form-group">
+						<label for="" class="col-lg-2 control-label">N</label>
+						<div class="col-lg-10">
+							<input type="number" class="form-control" id="n" placeholder="cantidad de mediciones" ng-model="nPasos" ng-change="calcularPasos()">
+						</div>
+					</div>
+						  
+					<div class="form-group">
+						<label for="costo" class="col-lg-2 control-label">Lx</label>
+						<div class="col-lg-10">
+							<input type="number" class="form-control" id="lx" ng-model="lx" placeholder={{dmax}} disabled>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="costo" class="col-lg-2 control-label">Dx</label>
+						<div class="col-lg-10">
+							<input type="number" class="form-control" id="dx" ng-model="dx" placeholder="{{dd}}" disabled>
+						</div>
+					</div>
+						  
+					<div class="form-group">
+						<label for="costo" class="col-lg-2 control-label">Costo Total</label>
+						<div class="col-lg-10">
+							<input type="number" class="form-control" id="costoTotal" ng-model="costoTotal" placeholder="Costo en $" disabled>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="costo" class="col-lg-2 control-label">Costo acumulado</label>
+						<div class="col-lg-10">
+							<input type="number" class="form-control" id="costoMedicion" ng-model="costoAcumulado" placeholder="Costo en $" disabled>
+						</div>
+					</div>
+					  
+				</form>
+
+			
+				<button type="button" ng-click="graficar()" class="btn btn-success" id="btn-continuar" ng-controller="canvasCtrl"><h3>Graficar Curva</h3><p id="errorMsg" ng-model="graficErrorMsg">{{graficErrorMsg}}</p></b></button> 
+				
+				<button type="button" ng-click="continuar()" class="btn btn-success" id="btn-continuar"><h3>Continuar</h3></button>
+			</div>
+
+
+			<!-Grafico y Curva->
+
+	       	<div class="col-sm-6 col-md-6 col-lg-6" id="graficosCrearProblema" ng-controller="canvasCtrl">
+			 	<!-Variables-Titulo->
+
+				<h3>Grafico </h3>
+				<div id="canvasDiv" ng-model="canvasDiv" ng-controller="canvasCtrl">
+					<canvas id="graficoAlumno" class="center-block" width="600" height="300" ng-model="graficoAlumno">			</canvas>
+			   	</div>
+
+		   		<highchart id="chart1" config="highchartsNG"></highchart>
+	   		</div>
+	   	</div>
+
