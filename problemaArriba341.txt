@@ -1,0 +1,12 @@
+{
+  "enunciado": "curva para arriba",
+  "dmax": 769,
+  "xo": 341,
+  "ro": 39,
+  "zo": 226,
+  "de": 6,
+  "di": 4,
+  "dd": 2,
+  "costoMedicion": "10",
+  "costoMax": "60"
+}
