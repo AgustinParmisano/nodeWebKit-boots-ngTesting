@@ -56,7 +56,7 @@ function graficarPorcion(ini, fin, scope){
 };
 
 function initChart(scope){
-		console.log("SCOPEEE " + scope);
+
         scope.highchartsNG = {
         options: {
             chart: {
@@ -70,17 +70,12 @@ function initChart(scope){
         },
         loading: false
     }
-	//console.log(scope.highchartsNG);
 };
 
 
 function drawChart(scope,xini,xfin){
-	//NO GRAFICA NO SE POR QUE
 
-	//Para el gráfico de HC
-		console.log(scope,xini,xfin);
 		scope.problema.dmax=Math.min(xfin, 999)
-	    console.log(scope.highchartsNG);
 	    scope.highchartsNG = {
 	        options: {
 	            chart: {
@@ -88,23 +83,26 @@ function drawChart(scope,xini,xfin){
 	                width: '600'
 	            },
 
-	            /*
-	            yAxis: {
+	            
+	            xAxis: {
+	            	floor: xini,
+            		ceiling: xfin,
 
-	            }*/
+	            },
 	        },
 	          series: [{
 	            data:(function () {
 	                //Fomula
 	                var data = [],
 	                            i;
-	                for (i = 0; i <= parseInt(xfin); i++) {
-	                    var valorFormula1 = Math.pow(((Math.pow(i - xini,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
+	                for (i = 0; i <= parseInt(scope.problema.dmax); i++) {
+	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 	                    var valorFormula2 = scope.problema.zo / valorFormula1;
 	                    var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
 	                    if(isNaN(valorFormula3)){
 	                      valorFormula3 = 0;  
 	                    };
+	   
 	                    data.push({
 	                        x: i,
 	                        y: valorFormula3
@@ -115,11 +113,10 @@ function drawChart(scope,xini,xfin){
 	        }],	
 
 	        title: {
-	            text: 'Anomalía'
+	            text: 'Anomalía Resgistrada entre ' + xini + " y " + xfin
 	        },
 	        loading: false
 	    }
-	console.log(scope.highchartsNG);
 }
 
 app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams) {
@@ -141,10 +138,11 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 }]);
 
 app.controller('inputsCtrl', ['$scope', function($scope){
-	var xInicial = "";
-	var xFinal = "";
+	var xInicial = $scope.xini;
+	var xFinal = $scope.xfin;
 	var nPasos = "";
 	setupCanvas($scope.dmax);
+	initChart($scope);
 
 
 	$scope.changeIni = function(){
@@ -190,10 +188,11 @@ app.controller('inputsCtrl', ['$scope', function($scope){
 
 //app.controller('canvasCtrl', ['$scope',  function($scope) {
 	
-	initChart($scope);
+	
 	//drawChart($scope,100, 550);
 
 	$scope.graficar = function() {
+		
         var noGraficar = false;
         setupCanvas($scope.dmax);
         this.graficErrorMsg = "";
@@ -221,9 +220,8 @@ app.controller('inputsCtrl', ['$scope', function($scope){
 
         if(!noGraficar){
         	drawChart($scope,parseInt(this.xini), parseInt(this.xfin));
-        	$scope.xini = this.xini;
-        	$scope.xfin = this.xfin;
         	graficarPorcion(this.xini, this.xfin, $scope);
+
         };
 		/* No conoce coosto total de la vista*/
 		/*if($scope.nPasos != ""){
@@ -232,6 +230,6 @@ app.controller('inputsCtrl', ['$scope', function($scope){
 		}*/
 
 	};
-	drawChart($scope,$scope.xini, $scope.xfin);
 
 }]);
+
