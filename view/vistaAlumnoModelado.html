@@ -1,5 +1,16 @@
 	<div class="container-fluid">
 		<div class="panel panel-default">
+			<div class="col-sm-1 col-md-1 col-lg-1"></div>
+
+     		<div class="col-sm-10 col-md-10 col-lg-10">
+     			<div class="panel panel-default">
+           			<textarea class="form-control" id="enunciado" ng-model="enunciado" readonly>
+             			{{enunciado}}
+           			</textarea>
+         		</div>
+       		</div>
+
+            <div class="col-sm-1 col-md-1 col-lg-1"></div>
 			<div class="col-sm-5 col-md-5 col-lg-5">
 				<div class="row">
 						<h3>Variales </h3>
@@ -8,7 +19,7 @@
 							  <div class="form-group">
 								<label for="ejemplo_email_3" class="col-lg-2 control-label">Z1</label>
 								<div class="col-lg-10">
-								  <input type="email" class="form-control" id="z"
+								  <input type="email" class="form-control" id="z1" ng-model="z1"
 										 placeholder="Z1">
 								</div>
 							  </div>
@@ -16,7 +27,7 @@
 							  <div class="form-group">
 								<label for="ejemplo_email_3" class="col-lg-2 control-label">R1</label>
 								<div class="col-lg-10">
-								  <input type="email" class="form-control" id="r1"
+								  <input type="email" class="form-control" id="r1" ng-model="r1"
 										 placeholder="R1">
 								</div>
 							  </div>
@@ -24,7 +35,7 @@
 							  <div class="form-group">
 								<label for="ejemplo_email_3" class="col-lg-2 control-label">Ag1</label>
 								<div class="col-lg-10">
-								  <input type="email" class="form-control" id="ag"
+								  <input type="email" class="form-control" id="ag" ng-model="ag1"
 										 placeholder="Ag1">
 								</div>
 							  </div>	
@@ -33,23 +44,23 @@
 					</div>
 				    <div class="row">
 					
-						<button type="button" class="btn btn-success" id="btn-diagramar"><h4><b>Diagramar</b></h4></button>
+						<button type="button" ng-click="diagramar()" class="btn btn-success" id="btn-continuar" ><h3>Diagramar</h3><p id="errorMsg" ng-model="graficErrorMsg">{{graficErrorMsg}}</p></b></button> 
 					</div>
 				    <div class="row">
 						<!--Tabla Responsive-->
 						<div class="table-responsive">
-							<table class="table table-bordered">
+							<table class="table table-bordered" ng-table="tablaPruebas">
 								<tr class="active">
-									<td>z1</td>
-									<td>R1</td>
-									<td>Ag1</td>
+									<td>R</td>
+									<td>Z</td>
+									<td>Ag</td>
 									<td>Error</td>
-								</tr>
 								<tr>
-									<td>valor z1</td>
-									<td>valor R1</td>
-									<td>valor Ag1</td>
-									<td>valor Error</td>
+								<tr ng-repeat="x in pruebas">
+									<td>{{ x.r }}</td>
+									<td>{{ x.z }}</td>
+									<td>{{ x.ag }}</td>
+									<td>{{ x.error }}</td>
 								</tr>
 							</table>
 						</div>
@@ -61,12 +72,17 @@
 				
 				<div class="col-sm-4 col-md-4 col-lg-4">
 					<div class="row">
-						<h3>Grafico </h3>
-						<div id="container" style="min-width: 500px; height: 200px; margin: 0 auto; border:1px solid #000000;"></div>
-						<span class="label label-danger">Error Promedio</span>
-						<canvas id="myCanvas" width="500" height="150"
-						style="border:1px solid #000000;">
-						</canvas>
+						<!-Grafico y Curva->
+
+						<div class="col-sm-6 col-md-6 col-lg-6" id="graficosCrearProblema" ng-controller="canvasCtrl">
+							<!-Variables-Titulo->
+
+							<h3>Grafico </h3>
+							<div id="canvasDiv" ng-model="canvasDiv" ng-controller="canvasCtrl">
+								<canvas id="graficoAlumno" class="center-block" width="600" height="300" ng-model="graficoAlumno">			</canvas>
+							</div>
+							<highchart id="chart1" config="highchartsNG"></highchart>
+						</div>
 					</div>
 					<div class="row">
 						<button type="button" class="btn btn-success">Corregir</button>
