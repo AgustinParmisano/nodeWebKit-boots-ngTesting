@@ -22,9 +22,9 @@ app.config(function($routeProvider){
 				templateUrl: 'view/vistaAlumnoProblema.html',
 				controller: 'alumnoResolverProblemaCtrl'
 			  }).
-			  when('/alumnoModeladoAngular', {
+			  when('/alumnoModeladoAngular/:problema/:experimento', {
 				templateUrl: 'view/vistaAlumnoModelado.html',
-				controller: ''
+				controller: 'alumnoModeladoCtrl'
 			  }).
 			  otherwise({
 				redirectTo: '/'
