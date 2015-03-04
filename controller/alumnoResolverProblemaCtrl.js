@@ -134,6 +134,21 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 	//alert(p);
 	$scope.costoTotal=0;
 	$scope.costoAcumulado=0;
+
+	 $scope.continuar = function(){
+		//if($scope.xini != "" && $scope.xfin != "" && $scope.nPasos != "" && $scope.costoAcumulado != ""){
+			var experimento = {
+					xInicial: $scope.xini,
+					xFinal: $scope.xfin,
+					nPasos: $scope.nPasos,
+					costoAcumulado: $scope.costoAcumulado
+			};
+			$scope.experimento= JSON.stringify(experimento, null, 2);
+			$location.url('/alumnoModeladoAngular/'+$routeParams.problema + '/experimento:'+$scope.experimento);
+		/*}else{
+			alert("Faltan Datos");
+		}*/
+    };
 		
 }]);
 
