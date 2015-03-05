@@ -32,9 +32,10 @@ app.config(function($routeProvider){
  });
  
 var archivoProblema;
-app.controller('loadProblemCtrl', ['$scope', '$location', function($scope, $location) {
+app.controller('loadProblemCtrl', ['$scope', '$location', '$rootScope', function($scope, $location, $rootScope) {
 	/*En esta variable seteo el contenido del json*/
 	$archivo= null;	
+	$scope.loaded = ($rootScope.loaded);
 	
 	//Cargar el problema por default
 	$scope.cargarDefault = function() {
@@ -60,15 +61,15 @@ app.controller('loadProblemCtrl', ['$scope', '$location', function($scope, $loca
 		archivoProblema = $archivo;
 		$scope.archivo=$archivo;
 		$scope.enunciado=$archivo.enunciado;
-		
+		$scope.loaded = true;
     };
 
     $scope.continuar = function(){
 		//$location.path('/alumnoProblemaAngular/problema:', $scope.problema);
 		//alert($scope.problema);
 		$location.url('/alumnoProblemaAngular/problema:'+ $scope.problema);
-		
     };
+    
 	$scope.problemaA = function(){
 		var problema = {
 				enunciado: "Este es el problema A",
@@ -85,6 +86,7 @@ app.controller('loadProblemCtrl', ['$scope', '$location', function($scope, $loca
 			};
 			$scope.problema= JSON.stringify(problema, null, 2);
 			$scope.enunciado=problema.enunciado;
+			$scope.loaded = true;
 		//alert(problema);
 		//$location.url('/alumnoProblemaAngular/problema:'+ problema);
 		

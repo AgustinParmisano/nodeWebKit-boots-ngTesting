@@ -38,8 +38,8 @@ function crearLinea(dmax){
 };
 
 function graficarPorcion(ini, fin, scope){
-	var finPos = Math.round(490 / scope.dmax * fin + 60)
-	var iniPos = Math.round(490 / scope.dmax * ini + 60)
+	var finPos = Math.round(490 / scope.dmax * fin + 60);
+	var iniPos = Math.round(490 / scope.dmax * ini + 60);
 
     ctx.moveTo(50,50);
     ctx.lineTo(550,50);
@@ -74,12 +74,14 @@ function initChart(scope){
 
 
 function drawChart(scope,xini,xfin){
+		var meds = Math.round(xfin / scope.nPasos);
+		//alert(meds);
 
 		scope.problema.dmax=Math.min(xfin, 999)
 	    scope.highchartsNG = {
 	        options: {
 	            chart: {
-	                type: 'line',
+	                type: 'scatter',
 	                width: '600'
 	            },
 
@@ -95,7 +97,7 @@ function drawChart(scope,xini,xfin){
 	                //Fomula
 	                var data = [],
 	                            i;
-	                for (i = 0; i <= parseInt(scope.problema.dmax); i++) {
+	                for (i = 0; i <= parseInt(scope.problema.dmax); i = i + meds) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 	                    var valorFormula2 = scope.problema.zo / valorFormula1;
 	                    var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
@@ -113,13 +115,13 @@ function drawChart(scope,xini,xfin){
 	        }],	
 
 	        title: {
-	            text: 'Anomalía Resgistrada entre ' + xini + " y " + xfin
+	            text: 'Anomalía Resgistrada entre ' + xini + " y " + xfin + " con " + scope.nPasos + " mediciones."
 	        },
 	        loading: false
 	    }
 }
 
-app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams) {
+app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routeParams', '$rootScope', function($scope, $location, $routeParams, $rootScope) {
 
 	
 	$scope.problema=$routeParams.problema.substring(9,$routeParams.problema.length);
@@ -130,13 +132,13 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 
 	$scope.dmax=parseInt($scope.problema.dmax);
 	$scope.dd=parseInt($scope.problema.dd);
+	this.contErrorMsg = "";
 	//var p=angular.fromJSON(problema);
 	//alert(p);
-	$scope.costoTotal=0;
-	$scope.costoAcumulado=0;
+
 
 	 $scope.continuar = function(){
-		//if($scope.xini != "" && $scope.xfin != "" && $scope.nPasos != "" && $scope.costoAcumulado != ""){
+		if($rootScope.xini && $rootScope.xfin && $rootScope.nPasos && $rootScope.costoAcumulado){
 			var experimento = {
 					xInicial: $scope.xini,
 					xFinal: $scope.xfin,
@@ -145,14 +147,14 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 			};
 			$scope.experimento= JSON.stringify(experimento, null, 2);
 			$location.url('/alumnoModeladoAngular/'+$routeParams.problema + '/experimento:'+$scope.experimento);
-		/*}else{
-			alert("Faltan Datos");
-		}*/
+		}else{
+			this.contErrorMsg = "Debe tomar mediciones."
+		}
     };
 		
 }]);
 
-app.controller('inputsCtrl', ['$scope', function($scope){
+app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScope){
 	var xInicial = $scope.xini;
 	var xFinal = $scope.xfin;
 	var nPasos = "";
@@ -192,9 +194,13 @@ app.controller('inputsCtrl', ['$scope', function($scope){
 		//Falta la formula de los costos
 		//console.log("Formula de costo INI: " + xInicial + " FIN: " + xFinal);
 
-		if( xInicial != "" && xFinal != "" && $scope.nPasos != "" && $scope.lx != ""){
+		/*if( xInicial != "" && xFinal != "" && $scope.nPasos != "" && $scope.lx != ""){
 			$scope.dx=$scope.lx/$scope.nPasos;
-		}
+		}*/
+
+		if ($scope.xini != "" && $scope.xfin != "" && $scope.nPasos != "") {
+			$scope.costoTotal = $scope.nPasos * $scope.problema.costoMedicion;
+		};
 
 	};
 
@@ -211,6 +217,12 @@ app.controller('inputsCtrl', ['$scope', function($scope){
         var noGraficar = false;
         setupCanvas($scope.dmax);
         this.graficErrorMsg = "";
+        this.contErrorMsg = "";
+
+        if(this.nPasos == null){
+        	this.graficErrorMsg = "Indique mediciones";
+        	noGraficar = true;
+        };
 
         if(this.xfin == null){
         	this.graficErrorMsg = "Complete Fin";
@@ -233,16 +245,20 @@ app.controller('inputsCtrl', ['$scope', function($scope){
         	noGraficar = true;
         };
 
+        
+
         if(!noGraficar){
+        	$rootScope.xini = $scope.xini;
+        	$rootScope.xfin = $scope.xfin;
+        	$rootScope.nPasos = $scope.nPasos;
         	drawChart($scope,parseInt(this.xini), parseInt(this.xfin));
         	graficarPorcion(this.xini, this.xfin, $scope);
-
+        	if (!$scope.costoAcumulado) {
+        		$scope.costoAcumulado = 0;
+        	};
+        	$scope.costoAcumulado += $scope.costoTotal;
+        	$rootScope.costoAcumulado = $scope.costoAcumulado;
         };
-		/* No conoce coosto total de la vista*/
-		/*if($scope.nPasos != ""){
-			$scope.costoTotal=$scope.nPasos * $scope.problema.costoMedicion;
-			console.log($scope.costoTotal + "Hay q ponerlo en la variable");
-		}*/
 
 	};
 

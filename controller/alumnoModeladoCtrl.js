@@ -61,7 +61,7 @@ function crearLinea(dmax){
     ctx.fillText("",520,80);
 };
 
-function graficarPorcion(ini, fin, scope){
+function graficarPorcion2(ini, fin, scope){
 	var finPos = Math.round(490 / scope.problema.dmax * fin + 60)
 	var iniPos = Math.round(490 / scope.problema.dmax * ini + 60)
 
