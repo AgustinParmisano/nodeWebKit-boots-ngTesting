@@ -73,11 +73,11 @@ function initChart(scope){
 };
 
 
-function drawChart(scope,xini,xfin){
-		var meds = Math.round(xfin / scope.nPasos);
+function drawChart(scope,xini,xfin,dmax){
+		var meds = Math.round((xfin - xini) / scope.nPasos);
 		//alert(meds);
 
-		scope.problema.dmax=Math.min(xfin, 999)
+		scope.dmax=Math.min(dmax, 999)
 	    scope.highchartsNG = {
 	        options: {
 	            chart: {
@@ -87,8 +87,8 @@ function drawChart(scope,xini,xfin){
 
 	            
 	            xAxis: {
-	            	floor: xini,
-            		ceiling: xfin,
+	            	floor: 0,
+            		ceiling: parseInt(scope.problema.dmax)
 
 	            },
 	        },
@@ -96,8 +96,13 @@ function drawChart(scope,xini,xfin){
 	            data:(function () {
 	                //Fomula
 	                var data = [],
-	                            i;
-	                for (i = 0; i <= parseInt(scope.problema.dmax); i = i + meds) {
+	                            i,
+								punto= 0 + xini;
+					data.push({
+	                        x: 0,
+	                        y: 0
+	                    });
+	                for (i = xini; i <= parseInt(xfin); i = i + meds) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 	                    var valorFormula2 = scope.problema.zo / valorFormula1;
 	                    var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
@@ -106,10 +111,15 @@ function drawChart(scope,xini,xfin){
 	                    };
 	   
 	                    data.push({
-	                        x: i,
+	                        x: punto,
 	                        y: valorFormula3
 	                    });
+						punto+=meds;
 	                }
+					data.push({
+	                        x: 999,
+	                        y: 0
+	                    });
 	                return data;
 	            })()
 	        }],	
@@ -173,6 +183,7 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
 			this.xfinErrorMsg = "";
 			this.xiniErrorMsg = "";
 		};
+		$scope.actualizar();
 	};
 
 	$scope.changeFin = function(){
@@ -186,6 +197,7 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
 			this.xfinErrorMsg = "";
 			this.xiniErrorMsg = "";
 		};
+		$scope.actualizar();
 	};
 
 	$scope.calcularPasos = function(){
@@ -193,16 +205,21 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
 		xFinal = $scope.xfin;
 		//Falta la formula de los costos
 		//console.log("Formula de costo INI: " + xInicial + " FIN: " + xFinal);
-
-		/*if( xInicial != "" && xFinal != "" && $scope.nPasos != "" && $scope.lx != ""){
-			$scope.dx=$scope.lx/$scope.nPasos;
-		}*/
-
+		$scope.actualizar();
 		if ($scope.xini != "" && $scope.xfin != "" && $scope.nPasos != "") {
 			$scope.costoTotal = $scope.nPasos * $scope.problema.costoMedicion;
 		};
 
 	};
+	$scope.actualizar = function(){
+		if( xInicial != "" && xFinal != "" && $scope.nPasos != ""){
+			$scope.lx =$scope.xfin-$scope.xini;
+			$scope.dx=$scope.lx/$scope.nPasos;
+		}else{
+			$scope.lx ="";
+			$scope.dx="";
+		}
+	}
 
 //}]);
 
@@ -251,7 +268,7 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
         	$rootScope.xini = $scope.xini;
         	$rootScope.xfin = $scope.xfin;
         	$rootScope.nPasos = $scope.nPasos;
-        	drawChart($scope,parseInt(this.xini), parseInt(this.xfin));
+        	drawChart($scope,parseInt(this.xini), parseInt(this.xfin),parseInt($scope.problema.dmax));
         	graficarPorcion(this.xini, this.xfin, $scope);
         	if (!$scope.costoAcumulado) {
         		$scope.costoAcumulado = 0;
