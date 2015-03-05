@@ -9,18 +9,25 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', fun
 	var exp=JSON.parse($scope.experimento);
 	$scope.experimento=exp;
 	console.log($scope.experimento);
-
 	
 	/*creo el canvas con los parametros del problema y del experimento*/
     setupCanvas($scope.problema.dmax);
     this.graficErrorMsg = "";
-  	graficarPorcion(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
+  	graficarPorcion2(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
 	drawChart($scope);
 	
-	
+	var pruebas=[];
 	$scope.diagramar= function(){
-		$scope.pruebas.r=$scope.r1;
+		pruebas.push({
+	                        r: this.r1,
+	                        z: this.z1,
+							ag: this.ag1,
+							error:7
+	                  });
+		$scope.pruebas=pruebas;
 	}
+	
+	
 
 }]);
 
@@ -35,7 +42,7 @@ function setupCanvas(dmax){
 	canv.id = 'graficoAlumno';
 
     canv.width= "600";
-    canv.height="300";
+    canv.height="150";
     canv.class = "center-block";
 
     canvDiv.appendChild(canv);
@@ -78,4 +85,33 @@ function graficarPorcion2(ini, fin, scope){
     ctx.fill();
     ctx.fillText("",520,80);
 };
+
+app.controller('graficarCtrl', ['$scope', '$rootScope', function($scope, $rootScope){
+	
+	
+	
+	$scope.graficar = function() {
+		
+        var noGraficar = false;
+        setupCanvas($scope.dmax);
+        this.graficErrorMsg = "";
+        this.contErrorMsg = "";
+		
+        if(!noGraficar){
+        	$rootScope.xini = $scope.xini;
+        	$rootScope.xfin = $scope.xfin;
+        	$rootScope.nPasos = $scope.nPasos;
+        	drawChart($scope,parseInt(this.xini), parseInt(this.xfin),parseInt($scope.problema.dmax));
+        	graficarPorcion(this.xini, this.xfin, $scope);
+        	if (!$scope.costoAcumulado) {
+        		$scope.costoAcumulado = 0;
+        	};
+        	$scope.costoAcumulado += $scope.costoTotal;
+        	$rootScope.costoAcumulado = $scope.costoAcumulado;
+        };
+
+	};
+	
+
+}]);
 
