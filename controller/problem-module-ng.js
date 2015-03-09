@@ -201,7 +201,7 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 	$scope.graficar= function(){
         var noGraficar = false;
         console.log(noGraficar);
-        
+        setupCanvas();
         ctx.fillText(this.dmax,520,80);
         
         this.dmaxErrorMsg = "";
@@ -338,7 +338,6 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 			ctx.arc(ejeX,ejeZ,this.r,30,(Math.PI/180)*360,true);
 			ctx.fillStyle="#000000";
 			ctx.fill();
-            setupCanvas();
             drawChart($scope);
 
 		}
