@@ -1,3 +1,2 @@
-app.controller('alumnoFinCtrl', ['$scope', '$location', '$routeParams', '$rootScope', function($scope, $location, $routeParams, $rootScope) {
-
-}
+/*app.controller('alumnoFinCtrl', ['$scope', '$location', '$routeParams', '$rootScope', function($scope, $location, $routeParams, $rootScope) {
+}*/
