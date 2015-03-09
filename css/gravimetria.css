@@ -94,6 +94,7 @@
 
 #errorMsg{
 	color:maroon;
+	font-weight: bold;
 }
 
 #choiceProblemButtons {

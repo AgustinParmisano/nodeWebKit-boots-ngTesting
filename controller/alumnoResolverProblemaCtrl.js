@@ -1,3 +1,4 @@
+var chartData;
 
 function setupCanvas(dmax){
 
@@ -113,10 +114,7 @@ function drawChart(scope,xini,xfin,dmax){
 	                    });
 						punto+=meds;
 	                }
-					data.push({
-	                        x: 999,
-	                        y: 0
-	                    });
+	                chartData = data;
 	                return data;
 	            })()
 	        }],	
@@ -130,7 +128,6 @@ function drawChart(scope,xini,xfin,dmax){
 
 app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routeParams', '$rootScope', function($scope, $location, $routeParams, $rootScope) {
 
-	
 	$scope.problema=$routeParams.problema.substring(9,$routeParams.problema.length);
 
 	var parsed=JSON.parse($scope.problema);
