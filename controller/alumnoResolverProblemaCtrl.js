@@ -74,7 +74,7 @@ function initChart(scope){
 
 
 function drawChart(scope,xini,xfin){
-		var meds = Math.round(xfin / scope.nPasos);
+		var meds = Math.round((xfin - xini) / scope.nPasos);
 		//alert(meds);
 
 		scope.problema.dmax=Math.min(xfin, 999)
