@@ -1,5 +1,6 @@
+
 	<div class="container-fluid">
-		<div class="panel panel-default">
+		
 			<div class="col-sm-1 col-md-1 col-lg-1"></div>
 
      		<div class="col-sm-10 col-md-10 col-lg-10">
@@ -19,7 +20,7 @@
 							  <div class="form-group">
 								<label for="ejemplo_email_3" class="col-lg-2 control-label">Z1</label>
 								<div class="col-lg-10">
-								  <input type="email" class="form-control" id="z1" ng-model="z1"
+								  <input type="number" class="form-control" id="z1" ng-model="z1"
 										 placeholder="Z1">
 								</div>
 							  </div>
@@ -27,7 +28,7 @@
 							  <div class="form-group">
 								<label for="ejemplo_email_3" class="col-lg-2 control-label">R1</label>
 								<div class="col-lg-10">
-								  <input type="email" class="form-control" id="r1" ng-model="r1"
+								  <input type="number" class="form-control" id="r1" ng-model="r1"
 										 placeholder="R1">
 								</div>
 							  </div>
@@ -35,8 +36,7 @@
 							  <div class="form-group">
 								<label for="ejemplo_email_3" class="col-lg-2 control-label">Ag1</label>
 								<div class="col-lg-10">
-								  <input type="email" class="form-control" id="ag" ng-model="ag1"
-										 placeholder="Ag1">
+								  <input type="number" class="form-control" id="ag" ng-model="ag1" placeholder="Ag1">
 								</div>
 							  </div>	
 						  </form>
@@ -45,6 +45,7 @@
 				    <div class="row">
 					
 						<button type="button" ng-click="diagramar()" class="btn btn-success" id="btn-continuar" ><h3>Diagramar</h3><p id="errorMsg" ng-model="graficErrorMsg">{{graficErrorMsg}}</p></b></button> 
+						<button type="button" ng-click="finalizar()" class="btn btn-success" id="btn-continuar" ><h3>Finalizar</h3><p id="errorMsg" ng-model=""></p></b></button> 
 					</div>
 				    <div class="row">
 						<!--Tabla Responsive-->
@@ -74,20 +75,17 @@
 					<div class="row">
 						<!-Grafico y Curva->
 
-						<div class="col-sm-6 col-md-6 col-lg-6" id="graficosCrearProblema" ng-controller="canvasCtrl">
+						<div class="col-sm-6 col-md-6 col-lg-6" id="graficosCrearProblema" >
 							<!-Variables-Titulo->
 
 							<h3>Grafico </h3>
-							<div id="canvasDiv" ng-model="canvasDiv" ng-controller="canvasCtrl">
-								<canvas id="graficoAlumno" class="center-block" width="600" height="300" ng-model="graficoAlumno">			</canvas>
+							<div id="canvasDiv" ng-model="canvasDiv" >
+								<canvas id="graficoAlumno" class="center-block" width="600" height="300" ng-model="graficoAlumno">
+								</canvas>
 							</div>
 							<highchart id="chart1" config="highchartsNG"></highchart>
 						</div>
 					</div>
-					<div class="row">
-						<button type="button" class="btn btn-success">Corregir</button>
-						<button type="button" class="btn btn-success">Finalizar</button>
-					 </div>
 				</div>
 		</div>
 	</div>

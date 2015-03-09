@@ -26,6 +26,10 @@ app.config(function($routeProvider){
 				templateUrl: 'view/vistaAlumnoModelado.html',
 				controller: 'alumnoModeladoCtrl'
 			  }).
+			  when('/finalizar/:problema/:experimento', {
+				templateUrl: 'view/vistaAlumnoFinal.html',
+				controller: 'alumnoFinCtrl'
+			  }).
 			  otherwise({
 				redirectTo: '/'
 		 });		 

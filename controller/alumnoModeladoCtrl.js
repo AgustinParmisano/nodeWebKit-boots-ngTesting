@@ -1,4 +1,4 @@
-app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams) {
+app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$rootScope', function($scope, $location, $routeParams, $rootScope) {
 	
 	$scope.problema=$routeParams.problema.substring(9,$routeParams.problema.length);
 	//alert($scope.problema);
@@ -9,20 +9,100 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', fun
 	var exp=JSON.parse($scope.experimento);
 	$scope.experimento=exp;
 	console.log($scope.experimento);
-
 	
 	/*creo el canvas con los parametros del problema y del experimento*/
     setupCanvas($scope.problema.dmax);
     this.graficErrorMsg = "";
-  	graficarPorcion(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
-	drawChart($scope);
+  	graficarPorcion2(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
+	//drawChart($scope);
 	
-	
+	var pruebas=[];
 	$scope.diagramar= function(){
-		$scope.pruebas.r=$scope.r1;
+		if(this.r1 != null){
+			if(this.z1 != null){
+				if(this.ag1 != null){
+					pruebas.push({
+								r: this.r1,
+								z: this.z1,
+								ag: this.ag1,
+								error:7
+						  });
+				}else{
+					alert("Ingrese Ag1");
+				}
+			}else{
+				alert("Ingrese Z1");
+			}
+		}else{
+			alert("Ingrese R1");
+		}
+		$scope.pruebas=pruebas;
+		graficarModelo($scope);
+	}
+	
+	$scope.finalizar= function(){
+		$location.url('/finalizar/'+$routeParams.problema + '/experimento:'+$scope.experimento);
 	}
 
 }]);
+
+function graficarModelo(scope){
+		var meds = Math.round((scope.experimento.xFinal - scope.experimento.xInicial) / scope.experimento.nPasos);
+		//alert(meds);
+
+		scope.dmax=Math.min(scope.dmax, 999)
+	    scope.highchartsNG = {
+	        options: {
+	            chart: {
+	                type: 'scatter',
+	                width: '600'
+	            },
+
+	            
+	            xAxis: {
+	            	floor: 0,
+            		ceiling: parseInt(scope.problema.dmax)
+
+	            },
+	        },
+	          series: [{
+	            data:(function () {
+	                //Fomula
+	                var data = [],
+	                            i,
+								punto= 0 + scope.experimento.xInicial;
+					data.push({
+	                        x: 0,
+	                        y: 0
+	                    });
+	                /*for (i = xini; i <= parseInt(scope.experimento.xFinal); i = i + meds) {
+	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
+	                    var valorFormula2 = scope.problema.zo / valorFormula1;
+	                    var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
+	                    if(isNaN(valorFormula3)){
+	                      valorFormula3 = 0;  
+	                    };
+	   
+	                    data.push({
+	                        x: punto,
+	                        y: valorFormula3
+	                    });
+						punto+=meds;
+	                }*/
+					data.push({
+	                        x: 999,
+	                        y: 0
+	                    });
+	                return data;
+	            })()
+	        }],	
+
+	        title: {
+	            text: 'Anomalía Resgistrada entre ' + scope.experimento.xInicial + " y " + scope.experimento.xFinal + " con " + scope.experimento.nPasos + " mediciones."
+	        },
+	        loading: false
+	    }
+}
 
 function setupCanvas(dmax){
 
@@ -78,4 +158,5 @@ function graficarPorcion2(ini, fin, scope){
     ctx.fill();
     ctx.fillText("",520,80);
 };
+
 
