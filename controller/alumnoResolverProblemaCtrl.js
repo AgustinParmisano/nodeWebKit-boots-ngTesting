@@ -1,3 +1,4 @@
+var chartData;
 
 function setupCanvas(dmax){
 
@@ -74,7 +75,7 @@ function initChart(scope){
 
 
 function drawChart(scope,xini,xfin,dmax){
-		var meds = Math.round((xfin - xini) / scope.nPasos);
+		var meds = Math.round((xfin - xini) / scope.nPasos +1);
 		//alert(meds);
 
 		scope.dmax=Math.min(dmax, 999)
@@ -98,10 +99,7 @@ function drawChart(scope,xini,xfin,dmax){
 	                var data = [],
 	                            i,
 								punto= 0 + xini;
-					data.push({
-	                        x: 0,
-	                        y: 0
-	                    });
+				
 	                for (i = xini; i <= parseInt(xfin); i = i + meds) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 	                    var valorFormula2 = scope.problema.zo / valorFormula1;
@@ -116,10 +114,7 @@ function drawChart(scope,xini,xfin,dmax){
 	                    });
 						punto+=meds;
 	                }
-					data.push({
-	                        x: 999,
-	                        y: 0
-	                    });
+	                chartData = data;
 	                return data;
 	            })()
 	        }],	
@@ -133,7 +128,6 @@ function drawChart(scope,xini,xfin,dmax){
 
 app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routeParams', '$rootScope', function($scope, $location, $routeParams, $rootScope) {
 
-	
 	$scope.problema=$routeParams.problema.substring(9,$routeParams.problema.length);
 
 	var parsed=JSON.parse($scope.problema);
