@@ -74,7 +74,7 @@ function initChart(scope){
 
 
 function drawChart(scope,xini,xfin,dmax){
-		var meds = Math.round((xfin - xini) / scope.nPasos);
+		var meds = Math.round((xfin - xini) / scope.nPasos +1);
 		//alert(meds);
 
 		scope.dmax=Math.min(dmax, 999)
@@ -98,10 +98,7 @@ function drawChart(scope,xini,xfin,dmax){
 	                var data = [],
 	                            i,
 								punto= 0 + xini;
-					data.push({
-	                        x: 0,
-	                        y: 0
-	                    });
+				
 	                for (i = xini; i <= parseInt(xfin); i = i + meds) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 	                    var valorFormula2 = scope.problema.zo / valorFormula1;
