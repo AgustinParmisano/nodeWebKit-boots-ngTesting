@@ -103,9 +103,9 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 }]);
 
 function graficarCurva(scope){
-		var meds = Math.round((scope.experimento.xFinal - scope.experimento.xInicial) / scope.experimento.nPasos +1 );
-		//alert(meds);
-
+		var meds = Math.round((scope.experimento.xFinal - scope.experimento.xInicial)+1 / scope.experimento.nPasos -1 );
+		alert(meds);
+		console.log(scope.problema.dmax);
 		scope.dmax=Math.min(scope.dmax, 999)
 	    scope.highchartsNG = {
 	        options: {
@@ -127,7 +127,10 @@ function graficarCurva(scope){
 	                var data = [],
 	                            i,
 								punto= 0 + scope.experimento.xInicial;
-		
+					data.push({
+	                        x: -1,
+	                        y: 0
+	                    });
 	                for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal); i = i + meds) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 	                    var valorFormula2 = scope.problema.zo / valorFormula1;
@@ -142,10 +145,10 @@ function graficarCurva(scope){
 	                    });
 						punto+=meds;
 	                }
-					/*data.push({
-	                        x: 999,
+					data.push({
+	                        x: 9999,
 	                        y: 0
-	                    });*/
+	                    });
 	                return data;
 	            })()
 	        }],	

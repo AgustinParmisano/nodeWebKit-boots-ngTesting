@@ -75,8 +75,8 @@ function initChart(scope){
 
 
 function drawChart(scope,xini,xfin,dmax){
-		var meds = Math.round((xfin - xini) / scope.nPasos +1);
-		//alert(meds);
+		var meds = Math.round(((xfin - xini)+1) / (scope.nPasos -1));
+		alert(meds);
 
 		scope.dmax=Math.min(dmax, 999)
 	    scope.highchartsNG = {
@@ -99,11 +99,15 @@ function drawChart(scope,xini,xfin,dmax){
 	                var data = [],
 	                            i,
 								punto= 0 + xini;
-				
-	                for (i = xini; i <= parseInt(xfin); i = i + meds) {
-	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
-	                    var valorFormula2 = scope.problema.zo / valorFormula1;
-	                    var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
+					data.push({
+	                        x: -1,
+	                        y: 0
+	                    });
+	                for (i = xini; i <= (parseInt(xfin)+meds); i = i + meds) {
+	                    var valorFormula1 = Math.pow(((Math.pow(i - parseFloat(scope.problema.xo),2)) +(Math.pow(parseFloat(scope.problema.zo),2))), 3/2);
+	                    var valorFormula2 = parseFloat(scope.problema.zo) / valorFormula1;
+						console.log(parseFloat(0.027939) * parseFloat(scope.problema.dd) * Math.pow(parseFloat(scope.problema.ro),3) * valorFormula2);
+						var valorFormula3 = parseFloat(0.027939) * parseFloat(scope.problema.dd) * Math.pow(parseFloat(scope.problema.ro),3) * valorFormula2;
 	                    if(isNaN(valorFormula3)){
 	                      valorFormula3 = 0;  
 	                    };
@@ -114,6 +118,10 @@ function drawChart(scope,xini,xfin,dmax){
 	                    });
 						punto+=meds;
 	                }
+					data.push({
+	                        x: 9999,
+	                        y: 0
+	                    });
 	                chartData = data;
 	                return data;
 	            })()
