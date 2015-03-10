@@ -51,7 +51,7 @@
 				        <div class="col-sm-2 col-md-2 col-lg-2"></div>
 				        <div class="col-sm-8 col-md-8 col-lg-8">
 				        	<div class="jumbotron">
-				        		<p><b>Problema</b></p><textarea class="form-control" ng-model="enun" ng-change="change()" rows="3" cols="40">Se sabe que una caverna tiene forma esférica pero se encuentra enterrada. La densidad del material que se encuentra alrededor consta de 1,5 g/cm3. Los lugareños no conocen bien sus dimensiones pero suponen que debe tener no menos de 60 m de diámetro. Simular el relevamiento gravimétrico y obtener los datos del objeto considerando el error medio sin superar los costos pautados.</textarea>
+				        		<p><b>Problema</b></p><textarea class="form-control" ng-model="enun" ng-change="change()" rows="3" cols="40"></textarea>
 								<b><p id="errorMsg" ng-model="enunErrorMsg">{{enunErrorMsg}}
 				        	</div>
 							
@@ -76,42 +76,42 @@
 										</div>
 									  </div>
 									<div class="form-group">
-										<label for="" class="col-lg-2 control-label">X0</label>
+										<label for="" class="col-lg-2 control-label">X<sub>0</sub></label>
 										<div class="col-lg-10">
 										<input onKeyPress="return onlyNumber(event);" class="form-control" ng-model="x"><P>metros</p>
 										<b><p id="errorMsg" ng-model="xErrorMsg">{{x0ErrorMsg}}</p></b>
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="" class="col-lg-2 control-label">Z0</label>
+										<label for="" class="col-lg-2 control-label">Z<sub>0</sub></label>
 										<div class="col-lg-10">
 										</p><input onKeyPress="return onlyNumber(event);" class="form-control" ng-model="z" ><P>metros</p>
 										<b><p id="errorMsg" ng-model="zErrorMsg">{{z0ErrorMsg}}</p></b>
 									</div>
 									</div>
 									<div class="form-group">
-										<label for="" class="col-lg-2 control-label">R0</label>
+										<label for="" class="col-lg-2 control-label">R<sub>0</sub></label>
 										<div class="col-lg-10">
 										<input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="r"><P>metros</p>
 										<b><p id="errorMsg" ng-model="rErrorMsg">{{r0ErrorMsg}}</p></b>
 									</div>
 									</div>
 									<div class="form-group">
-										<label for="" class="col-lg-2 control-label">De0</label>
+										<label for="" class="col-lg-2 control-label">&delta;e<sub>0</sub></label>
 										<div class="col-lg-10">
 										<input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="de" ng-change="changeD()" id="de"><P>g/Cm3</p>
 										<b><p id="errorMsg" ng-model="deErrorMsg">{{deErrorMsg}}</p></b>
 									</div>
 									</div>
 									<div class="form-group">
-										<label for="" class="col-lg-2 control-label">Di0</label>
+										<label for="" class="col-lg-2 control-label">&delta;i<sub>0</sub></label>
 										<div class="col-lg-10">
 										<input class="form-control" onKeyPress="return onlyNumber(event);" ng-model="di" ng-change="changeD()" id="di"><P>g/Cm3</p>
 										<b><p id="errorMsg" ng-model="diErrorMsg">{{diErrorMsg}}</p></b>
 									</div>
 									</div>
 									<div class="form-group">
-										<label for="" class="col-lg-2 control-label">Dd0</label>
+										<label for="" class="col-lg-2 control-label">&delta;d<sub>0</sub></label>
 										<div class="col-lg-10">
 										<input class="form-control" ng-model="dd" disabled id="dd">
 										<b><p id="errorMsg" ng-model="ddErrorMsg">{{deltaErrorMsg}}</p></b><P>g/Cm3</p>

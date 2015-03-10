@@ -200,6 +200,9 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 	*/
 	$scope.graficar= function(){
         var noGraficar = false;
+        var zLimit = 0;
+        var dmaxLimit = 0;
+
         console.log(noGraficar);
         setupCanvas();
         ctx.fillText(this.dmax,520,80);
@@ -222,16 +225,18 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
             this.dmaxErrorMsg = "";
             this.dmaxErrorMsg = "Debe ser menor a 1000";
             noGraficar = true;
+        }else if (this.dmax === 1000) {
+            dmaxLimit = 999;
         };
 		if (isNaN(this.z)) {
             //alert("if (isNaN(this.z)) {");
             this.z0ErrorMsg = "";
 			this.z0ErrorMsg = "Ingrese Numeros";
             noGraficar = true;
-		}else if (this.z < 75) {
+		}else if (this.z < 0) {
             //alert("}else if (this.z < 75) {");
             this.z0ErrorMsg = "";
-            this.z0ErrorMsg = "Debe ser mayor a 75";
+            this.z0ErrorMsg = "Debe ser mayor a 0";
             noGraficar = true;
         };
 		if (isNaN(this.r)) {
@@ -251,6 +256,7 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
             //alert("if (isNaN(this.di)) {");
             this.diErrorMsg = "";
             this.diErrorMsg = "Ingrese Numeros";
+            noGraficar = true;
         }else if (parseInt(this.di) > 15) {
             //alert("}else if (this.di > 15) {");
             this.diErrorMsg = "";
@@ -261,6 +267,7 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
             //alert("if (isNaN(this.de)) {");
             this.deErrorMsg = "";
             this.deErrorMsg = "Ingrese Numeros";
+            noGraficar = true;
         }else if (parseInt(this.de) > 15) {
             //alert("}else if (this.de > 15) {");
             this.deErrorMsg = "";
@@ -292,6 +299,8 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
             this.z0ErrorMsg = ""
             this.z0ErrorMsg = "Z debe ser menor a 300."
             noGraficar = true;
+        }else if(parseInt(this.z) === 300){
+            zLimit = 229;
         }
 
         if(parseInt(this.dmax) < 50){
@@ -320,14 +329,25 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
             noGraficar = true;
         }
 
-		if(!noGraficar && !(isNaN(this.dmax)) && this.z != null && this.r != null && this.x != null  && this.di != null  && this.de != null && this.x < this.dmax && this.z < 300 && this.dmax > 50){
+		if(!noGraficar && !(isNaN(this.dmax)) && this.z != null && this.r != null && this.x != null  && this.di != null  && this.de != null && this.dmax > 50){
             var ejeX = this.x + 60;
-            var ejeZ = this.z;
+            var ejeZ = 0;   
             var valorFormula1 = 0;
             var valorFormula2 = 0;
             var valorFormula3 = 0;
+            
+            if (dmaxLimit != 0) {
+                ejeX = Math.round(490 / dmaxLimit * this.x + 60);
+            }else{
+                ejeX = Math.round(490 / this.dmax * this.x + 60);
+            };
 
-            ejeX = Math.round(490 / this.dmax * this.x + 60);
+            if (zLimit != 0) {
+                ejeZ = parseInt(zLimit) + 70;
+            }else{
+                ejeZ = parseInt(this.z) + 70;
+            };
+            
             //$scope.x = ejeX;
 
             console.log("X " + ejeX);
@@ -470,7 +490,8 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 
 function drawChart(scope){
     //Para el gráfico de HC
-
+    scope.dmax=Math.min(scope.dmax, 999);
+    console.log(scope.dmax);
     scope.highchartsNG = {
         options: {
             chart: {

@@ -66,31 +66,57 @@ app.controller('loadProblemCtrl', ['$scope', '$location', '$rootScope', function
 		$scope.archivo=$archivo;
 		$scope.enunciado=$archivo.enunciado;
 		$scope.loaded = true;
+		localStorage.setItem('problema',$fileContent);
     };
 
     $scope.continuar = function(){
 		//$location.path('/alumnoProblemaAngular/problema:', $scope.problema);
 		//alert($scope.problema);
-		$location.url('/alumnoProblemaAngular/problema:'+ $scope.problema);
+		$location.url('/alumnoProblemaAngular/problema');//:'+ $scope.problema);
     };
     
 	$scope.problemaA = function(){
 		var problema = {
-				enunciado: "Este es el problema A",
-				dmax: "1000",
-				xo: "500",
-				ro: "30",
-				zo: "50",
-				de: "10",
-				di: "15",
-				dd: "-5",
+				enunciado: "Detrás de una vieja estación de servicio abandonada se encuentra una cancha de fútbol de 90 m de extensión. Debajo de ella (en la primera mitad del campo) se encuentra enterrado un tanque donde se almacenaba combustible, rodeado por arenas de baja densidad (1,7 g/cm3). El tanque tiene forma esférica, con un radio de 4 m, y está lleno de agua (1 g/cm3). Realizando un modelado gravimétrico, determinar con la mayor precisión posible la ubicación y la profundidad del tanque.",
+				dmax: "90",
+				xo: "25",
+				ro: "4",
+				zo: "8",
+				de: "1,7",
+				di: "1,0",
+				dd: "-0,7",
 				costoMedicion: "300",
+				costoMax: "50000"
+				
+			};
+
+			$scope.problema= JSON.stringify(problema, null, 2);
+			$scope.enunciado=problema.enunciado;
+			$scope.loaded = true;
+			localStorage.setItem('problema',$scope.problema);
+		//alert(problema);
+		//$location.url('/alumnoProblemaAngular/problema:'+ problema);
+		
+    };
+
+	$scope.problemaB = function(){
+		var problema = {
+				enunciado: "En algunos barrios de la ciudad se han producido enormes pozos en calles y veredas debido a la presencia de cavernas en el subsuelo que se desmoronan al vaciarse por completo del agua que las llenaba. Particularmente, en la calle Iraola al 2669 (a 20 m de la esquina de la cuadra) un vecino ha reportado que la vereda está cediendo, por lo que se sospecha que debajo de ella se ha formado una caverna. Se sabe que el suelo está formado por arcillas de 1,8 g/cm3 de densidad y que la caverna tendría forma esférica con un diámetro de 6 m, ubicándose el techo de la misma a 12 m de profundidad. El grado de riesgo de desmoronamiento de esta caverna puede evaluarse determinando si se encuentra llena o vacía. Realizar las mediciones necesarias y el modelado correspondiente para determinar si existe peligro inminente de derrumbe o no.",
+				dmax: "100",
+				xo: "80",
+				ro: "15",
+				zo: "3",
+				de: "1,8",
+				di: "0",
+				dd: "-1,8",
+				costoMedicion: "500",
 				costoMax: "100000"
 				
 			};
 			$scope.problema= JSON.stringify(problema, null, 2);
 			$scope.enunciado=problema.enunciado;
 			$scope.loaded = true;
+			localStorage.setItem('problema',$scope.problema);
 		//alert(problema);
 		//$location.url('/alumnoProblemaAngular/problema:'+ problema);
 		

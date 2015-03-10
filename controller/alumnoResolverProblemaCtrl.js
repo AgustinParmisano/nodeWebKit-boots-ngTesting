@@ -128,7 +128,7 @@ function drawChart(scope,xini,xfin,dmax){
 
 app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routeParams', '$rootScope', function($scope, $location, $routeParams, $rootScope) {
 
-	$scope.problema=$routeParams.problema.substring(9,$routeParams.problema.length);
+	$scope.problema=localStorage.getItem('problema');//$routeParams.problema.substring(9,$routeParams.problema.length);
 
 	var parsed=JSON.parse($scope.problema);
 	$scope.problema=parsed;
@@ -150,6 +150,7 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 					costoAcumulado: $scope.costoAcumulado
 			};
 			$scope.experimento= JSON.stringify(experimento, null, 2);
+			localStorage.setItem('experimento',$scope.experimento);
 			$location.url('/alumnoModeladoAngular/'+$routeParams.problema + '/experimento:'+$scope.experimento);
 		}else{
 			this.contErrorMsg = "Debe tomar mediciones."
