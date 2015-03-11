@@ -1,3 +1,17 @@
+/* Funcion para que ingrese solo numeros */
+var charData = null;
+
+function onlyNumber(event)
+{
+    keyPress = event.keyCode ? event.keyCode: event.which ? event.which:event;
+    if (keyPress == 8 || keyPress == 9) return true;
+    patron = /\d/;
+    test = String.fromCharCode(keyPress);
+    return patron.test(test);
+}
+
+/*aca empieza el controller*/
+
 var chartData;
 
 function setupCanvas(dmax){
