@@ -82,9 +82,9 @@ app.controller('loadProblemCtrl', ['$scope', '$location', '$rootScope', function
 				xo: "25",
 				ro: "4",
 				zo: "8",
-				de: "1,7",
-				di: "1,0",
-				dd: "-0,7",
+				de: "1.7",
+				di: "1.0",
+				dd: "-0.7",
 				costoMedicion: "300",
 				costoMax: "50000"
 				
@@ -106,9 +106,9 @@ app.controller('loadProblemCtrl', ['$scope', '$location', '$rootScope', function
 				xo: "80",
 				ro: "15",
 				zo: "3",
-				de: "1,8",
+				de: "1.8",
 				di: "0",
-				dd: "-1,8",
+				dd: "-1.8",
 				costoMedicion: "500",
 				costoMax: "100000"
 				

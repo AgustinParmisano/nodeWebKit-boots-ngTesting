@@ -18,7 +18,7 @@
 						
 						<form class="form-horizontal" role="form">
 							  <div class="form-group">
-									<label for="ejemplo_email_3" class="col-lg-2 control-label">X<sub>1</sub></label>
+									<label for="ejemplo_email_3" class="col-lg-2 control-label">x<sub>m</sub></label>
 									<div class="col-lg-10">
 								  		<input type="number" class="form-control" id="x1" ng-model="x1"
 										 placeholder="X1" ngRequired>
@@ -29,7 +29,7 @@
 
 
 							  <div class="form-group">
-									<label for="ejemplo_email_3" class="col-lg-2 control-label">Z<sub>1</sub></label>
+									<label for="ejemplo_email_3" class="col-lg-2 control-label">z<sub>m</sub></label>
 									<div class="col-lg-10">
 								  		<input type="number" class="form-control" id="z1" ng-model="z1"
 										 placeholder="Z1">
@@ -38,7 +38,7 @@
 							  </div>
 							  
 							  <div class="form-group">
-								<label for="ejemplo_email_3" class="col-lg-2 control-label">R<sub>1</sub></label>
+								<label for="ejemplo_email_3" class="col-lg-2 control-label">r<sub>m</sub></label>
 								<div class="col-lg-10">
 								  <input type="number" class="form-control" id="r1" ng-model="r1"
 										 placeholder="R1">
@@ -47,7 +47,7 @@
 							  </div>							  
 
 							  <div class="form-group">
-								<label for="ejemplo_email_3" class="col-lg-2 control-label">&delta;em<sub>1</sub></label>
+								<label for="ejemplo_email_3" class="col-lg-2 control-label">&delta;e<sub>m</sub></label>
 								<div class="col-lg-10">
 								  <input type="number" class="form-control" id="dem" ng-model="dem1" placeholder="dem1" ng-change="changeDdm()">
 								  <p id="errorMsg" ng-model="dem1errorMsg">{{dem1errorMsg}}</p>
@@ -55,7 +55,7 @@
 							  </div>
 
 							  <div class="form-group">
-								<label for="ejemplo_email_3" class="col-lg-2 control-label">&delta;im<sub>1</sub></label>
+								<label for="ejemplo_email_3" class="col-lg-2 control-label">&delta;i<sub>m</sub></label>
 								<div class="col-lg-10">
 								  <input type="number" class="form-control" id="dim1" ng-model="dim1" placeholder="dim1" ng-change="changeDdm()">
 								   <p id="errorMsg" ng-model="dim1errorMsg">{{dim1errorMsg}}</p>
@@ -63,19 +63,12 @@
 							  </div>
 
 							  <div class="form-group">
-								<label for="ejemplo_email_3" class="col-lg-2 control-label">&delta;dm<sub>1</sub></label>
+								<label for="ejemplo_email_3" class="col-lg-2 control-label">&Delta;&delta;<sub>m</sub></label>
 								<div class="col-lg-10">
 								  <input type="number" class="form-control" id="ddm1" ng-model="ddm1" placeholder="ddm1" disabled>
 								</div>
 							  </div>
-
-							  <div class="form-group">
-								<label for="ejemplo_email_3" class="col-lg-2 control-label">Ag<sub>1</sub></label>
-								<div class="col-lg-10">
-								  <input type="number" class="form-control" id="ag" ng-model="ag1" placeholder="Ag1">
-								  <p id="errorMsg" ng-model="ag1errorMsg">{{ag1errorMsg}}</p>
-								</div>
-							  </div>	
+	
 						  </form>
 						  
 					</div>
@@ -95,7 +88,6 @@
 									<td>&delta;em</td>
 									<td>&delta;im</td>
 									<td>&delta;dm</td>
-									<td>Ag</td>
 									<td>Error</td>
 								<tr>
 								<tr ng-repeat="x in pruebas">
@@ -105,7 +97,6 @@
 									<td>{{ x.dem }}</td>
 									<td>{{ x.dim }}</td>
 									<td>{{ x.ddm }}</td>
-									<td>{{ x.ag }}</td>
 									<td>{{ x.error }}</td>
 								</tr>
 							</table>

@@ -156,6 +156,7 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 	var parsed=JSON.parse($scope.problema);
 	$scope.problema=parsed;
 	$scope.enunciado=$scope.problema.enunciado;
+	$scope.costoMaximo=parseInt($scope.problema.costoMax);
 
 	$scope.dmax=parseInt($scope.problema.dmax);
 	$scope.dd=parseInt($scope.problema.dd);
@@ -166,15 +167,19 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 
 	 $scope.continuar = function(){
 		if($rootScope.xini && $rootScope.xfin && $rootScope.nPasos && $rootScope.costoAcumulado){
-			var experimento = {
-					xInicial: $scope.xini,
-					xFinal: $scope.xfin,
-					nPasos: $scope.nPasos,
-					costoAcumulado: $scope.costoAcumulado
-			};
-			$scope.experimento= JSON.stringify(experimento, null, 2);
-			localStorage.setItem('experimento',$scope.experimento);
-			$location.url('/alumnoModeladoAngular/'+$routeParams.problema + '/experimento:'+$scope.experimento);
+			if ($rootScope.costoAcumulado < $scope.costoMaximo) {;		
+				var experimento = {
+						xInicial: $scope.xini,
+						xFinal: $scope.xfin,
+						nPasos: $scope.nPasos,
+						costoAcumulado: $scope.costoAcumulado
+				};
+				$scope.experimento= JSON.stringify(experimento, null, 2);
+				localStorage.setItem('experimento',$scope.experimento);
+				$location.url('/alumnoModeladoAngular/'+$routeParams.problema + '/experimento:'+$scope.experimento);
+			}else{
+				this.contErrorMsg = "El costo acumulado superó al máximo."
+			}
 		}else{
 			this.contErrorMsg = "Debe tomar mediciones."
 		}
@@ -250,9 +255,31 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
 	$scope.graficar = function() {
 		
         var noGraficar = false;
+        var acum = 0;
+
         setupCanvas($scope.dmax);
         this.graficErrorMsg = "";
         this.contErrorMsg = "";
+
+
+        alert(this.costoTotal);
+        alert(this.costoAcumulado);
+        alert(this.costoMaximo);
+        
+        if (this.costoAcumulado) {
+        	acum = this.costoAcumulado;
+        };
+
+
+        if (this.costoTotal > this.costoMaximo) {
+        	this.graficErrorMsg = "No debe superar el costo máximo.";
+        	noGraficar = true;
+        };
+		
+        if (this.costoTotal + acum > this.costoMaximo) {
+        	this.graficErrorMsg = "No debe superar el costo máximo.";
+        	noGraficar = true;
+        };
 
         if(this.nPasos == null){
         	this.graficErrorMsg = "Indique mediciones";
