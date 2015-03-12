@@ -5,7 +5,7 @@ function onlyNumber(event)
 {
     keyPress = event.keyCode ? event.keyCode: event.which ? event.which:event;
     if (keyPress == 8 || keyPress == 9) return true;
-    patron = /\d/;
+    patron = /[0-9.]/;
     test = String.fromCharCode(keyPress);
     return patron.test(test);
 }
