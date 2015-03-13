@@ -262,9 +262,9 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
         this.contErrorMsg = "";
 
 
-        alert(this.costoTotal);
-        alert(this.costoAcumulado);
-        alert(this.costoMaximo);
+        //alert(this.costoTotal);
+        //alert(this.costoAcumulado);
+        //alert(this.costoMaximo);
         
         if (this.costoAcumulado) {
         	acum = this.costoAcumulado;

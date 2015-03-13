@@ -27,7 +27,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 	$scope.experimento=exp;
 	console.log("EXPERIMENT: " + $scope.experimento);
 	graficarCurva($scope);
-
+	$scope.graficar=false;
 	/*creo el canvas con los parametros del problema y del experimento*/
     setupCanvas($scope.problema.dmax);
     this.graficErrorMsg = "";
@@ -55,7 +55,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 										dem: this.dem1,
 										dim: this.dim1,
 										ddm: this.dem1 - this.dim1,
-										error:7
+										error:0
 							  });	
 						}else{
 							graficar = false;
@@ -83,6 +83,11 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 			graficarPorcionModel(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
 			graficarModelo($scope);
 			graficarCurvaModelado($scope);
+		};
+	}
+	$scope.guardar= function(){
+		if (graficar) {
+			//$scope.pruebas=pruebas;
 		};
 	}
 	

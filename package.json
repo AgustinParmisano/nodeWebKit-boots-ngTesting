@@ -1,19 +1,15 @@
 {
-  "name": "nw-demo",
-  "version": "0.0.1",
-  "description": "Graficador de Gravimetria",
   "main": "index.html",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "MIT",
+  "name": "Geofisica",
+  "keywords": [ "Construct 2", "node-webkit", "Space Blaster" ],
+  "version": "0.1",
+  "keywords": [ "demo", "node-webkit" ],
   "window": {
-    "toolbar": true,
-    "width": 1000,
-    "height": 700
-  },
-  "dependencies": {
-    "fs-extra": "^0.13.0"
-  }
+    "icon": "logo.png",
+    "toolbar": false,
+    "position": "center",
+    "resizable": true
+   }
 }
+
+
