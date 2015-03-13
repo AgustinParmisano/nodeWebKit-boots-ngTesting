@@ -91,7 +91,7 @@
 									<td>&delta;dm</td>
 									<td>Error</td>
 								<tr>
-								<tr ng-repeat="x in pruebas">
+								<tr ng-repeat="x in guardados track by $index" ng-click="selectData(x.id);" ng-class="{selected: x.id === idSelectedX}">
 									<td>{{ x.x }}</td>
 									<td>{{ x.r }}</td>
 									<td>{{ x.z }}</td>

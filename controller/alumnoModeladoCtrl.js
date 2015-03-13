@@ -16,7 +16,10 @@ function initChartModel(scope){
 };
 
 app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$rootScope', function($scope, $location, $routeParams, $rootScope) {
-	
+	var modeloSeleccionado = null;
+	var idCounter = 0;
+	$scope.idSelectedX = 0;
+
 	$scope.problema=JSON.parse(localStorage.getItem('problema'));//$routeParams.problema.substring(9,$routeParams.problema.length);
 	//alert($scope.problema);
 	var parsed=($scope.problema);
@@ -35,7 +38,20 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
   	graficarPorcionModel(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
 	
 	var pruebas=[];
+	var guardados=[];
+	var ultimaPrueba = {
+		x1:"",
+		r1:"",
+		z1:"",
+		dem:"",
+		dim:"",
+		ddm:"",
+		error:"",
+		id: ""
+	};
+
 	$scope.diagramar= function(){
+
 		var graficar = true;
 		this.x1errorMsg = "";
 		this.r1errorMsg = "";
@@ -56,7 +72,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 										dim: this.dim1,
 										ddm: this.dem1 - this.dim1,
 										error:0
-							  });	
+							  });
 						}else{
 							graficar = false;
 							this.dim1errorMsg = "Ingrese Dim1."
@@ -78,26 +94,53 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 			this.x1errorMsg = "Ingrese X1."
 		}
 		if (graficar) {
-			$scope.pruebas=pruebas;
+		   ultimaPrueba = {
+  				x: this.x1,
+				r: this.r1,
+				z: this.z1,
+				dem: this.dem1,
+				dim: this.dim1,
+				ddm: this.dem1 - this.dim1,
+				error:0,
+				id: idCounter++
+		  	};
 			$scope.dd1 = $scope.dim1 - $scope.dem1;
 			graficarPorcionModel(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
 			graficarModelo($scope);
 			graficarCurvaModelado($scope);
+			modeloSeleccionado = ultimaPrueba;
 		};
 	}
 	$scope.guardar= function(){
-		if (graficar) {
-			//$scope.pruebas=pruebas;
+		if (ultimaPrueba.x) {
+			guardados.push(ultimaPrueba);
+			$scope.guardados = guardados;
+			$scope.idSelectedX = ultimaPrueba.x.id;
 		};
 	}
 	
 	$scope.finalizar= function(){
+		$rootScope.modeloFinal = modeloSeleccionado;
 		$location.url('/finalizar/'+$routeParams.problema + '/experimento:'+$scope.experimento);
 	}
 
 	$scope.changeDdm = function(){
 		this.ddm1 = parseInt(this.dim1) - parseInt(this.dem1);
 		$scope.ddm1 = this.ddm1;
+	}
+
+	$scope.selectData = function(xid){;
+		modeloSeleccionado = this.x;
+		$scope.idSelectedX = this.x.id;
+		$scope.x1 = modeloSeleccionado.x;
+		$scope.r1 = modeloSeleccionado.r;
+		$scope.z1 = modeloSeleccionado.z;
+		$scope.dem1 = modeloSeleccionado.dem;
+		$scope.dim1 = modeloSeleccionado.dim;
+		$scope.ddm1 = modeloSeleccionado.ddm;
+		graficarPorcionModel(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
+		graficarModelo($scope);
+		graficarCurvaModelado($scope);
 	}
 
 }]);

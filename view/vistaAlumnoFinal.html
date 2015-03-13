@@ -1,25 +1,65 @@
-<div class="container-fluid">
-		
+<div class="container-fluid">		
+	<div class="row">
+		<div class="col-sm-6 col-md-6 col-lg-6">
+			<!--Tabla Responsive-->
+			<h3>Valores</h3>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tr class="active">
+						<td><b>X<sub>m</sub></b></td>
+						<td>{{xm}}</td>
+						<td><b>X<sub>0</sub></b></td>
+						<td>{{xo}}</td>
+					</tr>
+					<tr class="active">
+						<td><b>Z<sub>m</sub></b></td>
+						<td>{{zm}}</td>
+						<td><b>Z<sub>0</sub></b></td>
+						<td>{{zo}}</td>
+					</tr>
+					<tr class="active">
+						<td><b>r<sub>m</sub></b></td>
+						<td>{{rm}}</td>
+						<td><b>r<sub>0</sub></b></td>
+						<td>{{ro}}</td>
+					</tr>
+					<tr class="active">
+						<td><b>de<sub>m</sub></b></td>
+						<td>{{dem}}</td>
+						<td><b>de<sub>0</sub></b></td>
+						<td>{{deo}}</td>
+					</tr>
+					<tr class="active">
+						<td><b>di<sub>m</sub></b></td>
+						<td>{{dim}}</td>
+						<td><b>di<sub>0</sub></b></td>
+						<td>{{dio}}</td>
+					</tr>
+					<tr class="active">
+						<td><b>Dd<sub>m</sub></b></td>
+						<td>{{ddm}}</td>
+						<td><b>Dd<sub>0</sub></b></td>
+						<td>{{ddo}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	
+		<div class="col-sm-6 col-md-6 col-lg-6">
+			<!-Grafico y Curva->
+			
+			<div class="col-sm-6 col-md-6 col-lg-6" id="graficosCrearProblema" >
+				<!-Variables-Titulo->
 
-<div class="col-sm-4 col-md-4 col-lg-4"></div>
-
-<div class="col-sm-4 col-md-4 col-lg-4">
-					<div class="row">
-						<!-Grafico y Curva->
-
-						<div class="col-sm-6 col-md-6 col-lg-6" id="graficosCrearProblema" >
-							<!-Variables-Titulo->
-
-							<h3>Grafico </h3>
-							<div id="canvasDiv" ng-model="canvasDiv" >
-								<canvas id="graficoAlumno" class="center-block" width="600" height="300" ng-model="graficoAlumno">
-								</canvas>
-							</div>
-							<highchart id="chart1" config="highchartsNG"></highchart>
-						</div>
-					</div>
+				<h3>Grafico </h3>
+				<div id="canvasDiv" ng-model="canvasDiv" >
+					<canvas id="graficoAlumno" class="center-block" width="600" height="300" ng-model="graficoAlumno">
+					</canvas>
 				</div>
-<div class="col-sm-4 col-md-4 col-lg-4"></div>
-
+				<highchart id="chart1" config="highchartsNG"></highchart>
+			</div>
+		</div>
+	</div>
 </div>
+
 	
