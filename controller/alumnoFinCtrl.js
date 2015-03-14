@@ -9,7 +9,7 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', function($scope, $rootS
 	var exp=($scope.experimento);
 	$scope.experimento=exp;
 	console.log("EXPERIMENT: " + $scope.experimento);
-	graficarCurva($scope);
+	graficarCurvaFinal($scope);
 	$scope.graficar=false;
 	/*creo el canvas con los parametros del problema y del experimento*/
     setupCanvas($scope.problema.dmax);
@@ -36,3 +36,87 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', function($scope, $rootS
   	//Grafico esfera Real(Docente) Negra y Final(Alumno) Roja (graficarla Roja en la pantalla anterior tb)
   	//Grafico Curva Real(Docente)
 }]);
+
+function graficarCurvaFinal(scope){
+		var meds = Math.round((scope.experimento.xFinal - scope.experimento.xInicial+1) / (scope.experimento.nPasos -1) );
+		//alert(meds);
+		//console.log(scope.problema.dmax);
+		scope.dmax=Math.min(scope.problema.dmax, 999)
+	    scope.highchartsNG = {
+	        options: {
+	            chart: {
+	                type: 'line',
+	                width: '600'
+	            },
+
+	            
+	            xAxis: {
+	            	floor: 0,
+            		ceiling: parseInt(scope.problema.dmax)
+
+	            },
+	        },
+	          series: [{
+				name: 'Curva Real',
+				 data: (function () {
+                //Fomula
+                var data = [],
+                            i;
+					for (i = 0; i <= scope.problema.dmax; i++) {
+						var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
+						var valorFormula2 = scope.problema.zo / valorFormula1;
+						var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
+						if(isNaN(valorFormula3)){
+						  valorFormula3 = 0;  
+						};
+						data.push({
+							x: i,
+							y: valorFormula3
+						});
+					}
+					return data;
+					})(),
+					type: "scatter",
+					dashStyle: "Solid"
+				},
+				{
+					name:'Curva Resuelta',
+					data:(function () {
+						//Fomula
+						var data = [],
+									i,
+									punto= 0 + scope.experimento.xInicial;
+						data.push({
+								x: -1,
+								y: 0
+							});
+						for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal)+meds; i = i + meds) {
+							var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
+							var valorFormula2 = scope.problema.zo / valorFormula1;
+							var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
+							if(isNaN(valorFormula3)){
+							  valorFormula3 = 0;  
+							};
+		   
+							data.push({
+								x: punto,
+								y: valorFormula3
+							});
+							punto+=meds;
+						}
+						data.push({
+								x: 9999,
+								y: 0
+							});
+						return data;
+						 })(),
+					type: "scatter",
+					dashStyle: "Solid"
+				}],	
+
+	        title: {
+	            text: 'Anomalía Resgistrada entre ' + scope.experimento.xInicial + " y " + scope.experimento.xFinal + " con " + scope.experimento.nPasos + " mediciones."
+	        },
+	        loading: false
+	    }
+}
