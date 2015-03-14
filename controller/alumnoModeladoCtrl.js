@@ -331,7 +331,7 @@ function graficarCurvaModelado(scope){
 	                //Fomula
 	                var data = [],
 	                            i;
-	                for (i = 0; i <= parseInt(scope.dmax); i++) {
+	                for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal); i ++) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.x1,2)) +(Math.pow(scope.z1,2))), 3/2);
 	                    var valorFormula2 = scope.z1 / valorFormula1;
 	                    var valorFormula3 = 0.027939 * scope.dd1 * Math.pow(scope.r1,3) * valorFormula2;

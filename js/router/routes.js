@@ -30,6 +30,10 @@ app.config(function($routeProvider){
 				templateUrl: 'view/vistaAlumnoFinal.html',
 				controller: 'alumnoFinCtrl'
 			  }).
+			  when('/ayuda', {
+				templateUrl: 'view/vistaAyuda.html',
+				controller: ''
+			  }).
 			  otherwise({
 				redirectTo: '/'
 		 });		 
