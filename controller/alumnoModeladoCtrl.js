@@ -1,3 +1,15 @@
+/* Funcion para que ingrese solo numeros */
+var charData = null;
+
+function onlyNumber(event)
+{
+    keyPress = event.keyCode ? event.keyCode: event.which ? event.which:event;
+    if (keyPress == 8 || keyPress == 9) return true;
+    patron = /[0-9.]/;
+    test = String.fromCharCode(keyPress);
+    return patron.test(test);
+}
+
 function initChartModel(scope){
 		console.log();
         scope.highchartsNG = {
@@ -28,7 +40,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 	$scope.experimento=JSON.parse(localStorage.getItem('experimento'));//$routeParams.experimento.substring(12,$routeParams.experimento.length);
 	var exp=($scope.experimento);
 	$scope.experimento=exp;
-	console.log("EXPERIMENT: " + $scope.experimento);
+	//console.log("EXPERIMENT: " + $scope.experimento);
 	graficarCurva($scope);
 	$scope.graficar=false;
 	/*creo el canvas con los parametros del problema y del experimento*/
@@ -36,6 +48,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
     this.graficErrorMsg = "";
     //alert($scope.experimento.xInicial);
   	graficarPorcionModel(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
+	$scope.guardado=false;
 	
 	var pruebas=[];
 	var guardados=[];
@@ -51,7 +64,8 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 	};
 
 	$scope.diagramar= function(){
-
+		this.guardarErrorMsg="";
+		this.finalizarErrorMsg="";
 		var graficar = true;
 		this.x1errorMsg = "";
 		this.r1errorMsg = "";
@@ -113,20 +127,42 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 	}
 	$scope.guardar= function(){
 		if (ultimaPrueba.x) {
+			this.guardarErrorMsg="";
 			guardados.push(ultimaPrueba);
 			$scope.guardados = guardados;
 			$scope.idSelectedX = ultimaPrueba.x.id;
-		};
+			$scope.guardado=true;
+			this.finalizarErrorMsg="";
+		}else{
+			this.guardarErrorMsg="Primero debe diagramar";
+		}
 	}
 	
 	$scope.finalizar= function(){
-		$rootScope.modeloFinal = modeloSeleccionado;
-		$location.url('/finalizar/'+$routeParams.problema + '/experimento:'+$scope.experimento);
+		if($scope.guardado){
+			this.finalizarErrorMsg="";
+			$rootScope.modeloFinal = modeloSeleccionado;
+			$location.url('/finalizar/'+$routeParams.problema + '/experimento:'+$scope.experimento);
+		}else{
+			this.finalizarErrorMsg="Primero debe guardar";
+		}
 	}
 
 	$scope.changeDdm = function(){
 		this.ddm1 = parseInt(this.dim1) - parseInt(this.dem1);
 		$scope.ddm1 = this.ddm1;
+	}
+	$scope.changeX1 = function(){
+		if(this.x1 >= $scope.experimento.xInicial && this.x1 <= $scope.experimento.xFinal || this.x1 == null){
+			this.x1errorMsg= "";
+		}else{
+			if(this.x1 < $scope.experimento.xInicial){
+				this.x1errorMsg= "X debe ser mayor a "+ $scope.experimento.xInicial;
+			}	
+			if(this.x1 > $scope.experimento.xFinal){
+				this.x1errorMsg= "X debe ser menor a "+ $scope.experimento.xFinal;
+			}
+		}	
 	}
 
 	$scope.selectData = function(xid){;

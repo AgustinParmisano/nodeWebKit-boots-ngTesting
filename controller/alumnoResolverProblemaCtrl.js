@@ -1,4 +1,4 @@
-/* Funcion para que ingrese solo numeros */
+/* Funcion para que ingrese solo numeros y punto */
 var charData = null;
 
 function onlyNumber(event)
@@ -188,8 +188,6 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 }]);
 
 app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScope){
-	var xInicial = $scope.xini;
-	var xFinal = $scope.xfin;
 	var nPasos = "";
 	setupCanvas($scope.dmax);
 	initChart($scope);
@@ -197,10 +195,9 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
 
 	$scope.changeIni = function(){
 		this.xiniErrorMsg = "";
-		xInicial = $scope.xini;
-		if (xFinal != "" && xFinal < xInicial) {
+		if ($scope.xfin != "" && $scope.xfin < $scope.xini) {
 			this.xiniErrorMsg = "Inicial debe ser menor a final"
-		}else if (xInicial > $scope.dmax) {
+		}else if ($scope.xini > $scope.dmax) {
 			this.xiniErrorMsg = "Debe ser menor a la longitud"
 		}else{
 			this.xfinErrorMsg = "";
@@ -211,10 +208,9 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
 
 	$scope.changeFin = function(){
 		this.xfinErrorMsg = "";
-		xFinal = $scope.xfin;
-		if (xInicial != "" && xFinal < xInicial) {
-			this.xiniErrorMsg = "Final debe ser mayor a inicial"
-		}else if (xFinal > $scope.dmax) {
+		if ($scope.xini != "" && $scope.xfin < $scope.xini) {
+			this.xfinErrorMsg = "Final debe ser mayor a inicial"
+		}else if ($scope.xfin> $scope.dmax) {
 			this.xfinErrorMsg = "Debe ser menor a la longitud"
 		}else{
 			this.xfinErrorMsg = "";
@@ -224,20 +220,13 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
 	};
 
 	$scope.calcularPasos = function(){
-		xInicial = $scope.xini;
-		xFinal = $scope.xfin;
-		//Falta la formula de los costos
-		//console.log("Formula de costo INI: " + xInicial + " FIN: " + xFinal);
 		$scope.actualizar();
-		if ($scope.xini != "" && $scope.xfin != "" && $scope.nPasos != "") {
-			$scope.costoTotal = $scope.nPasos * $scope.problema.costoMedicion;
-		};
-
 	};
 	$scope.actualizar = function(){
-		if( xInicial != "" && xFinal != "" && $scope.nPasos != ""){
+		if( $scope.xini != "" && $scope.xfin != "" && $scope.nPasos != ""){
 			$scope.lx =$scope.xfin-$scope.xini;
 			$scope.dx=$scope.lx/$scope.nPasos;
+			$scope.costoTotal = $scope.nPasos * $scope.problema.costoMedicion;
 		}else{
 			$scope.lx ="";
 			$scope.dx="";
