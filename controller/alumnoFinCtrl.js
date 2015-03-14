@@ -34,7 +34,7 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', function($scope, $rootS
   	//Guardo el modelo final para graficar (pudo haber sido antes)
   	$scope.modeloFinal = $rootScope.modeloFina;
   	//Grafico esfera Real(Docente) Negra y Final(Alumno) Roja (graficarla Roja en la pantalla anterior tb)
-  	//Grafico Curva Real(Docente)
+	
 }]);
 
 function graficarCurvaFinal(scope){

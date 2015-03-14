@@ -120,7 +120,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 		  	};
 			$scope.dd1 = $scope.dim1 - $scope.dem1;
 			graficarPorcionModel(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
-			//graficarModelo($scope);
+			graficarModelo($scope);
 			graficarCurvaModelado($scope);
 			modeloSeleccionado = ultimaPrueba;
 		};
@@ -301,7 +301,7 @@ function graficarModelo(scope){
 	var ejeX = Math.round(490 / scope.problema.dmax * scope.x1 + 60);
     ctx.moveTo(ejeX,scope.z1);
 	ctx.arc(ejeX,scope.z1 + 100,scope.r1,30,(Math.PI/180)*360,true);
-	ctx.fillStyle="#000000";
+	ctx.fillStyle="#FF0000";
     //ctx.fillText(scope.problema.dmax,520,80);
 	ctx.fill();
 }
