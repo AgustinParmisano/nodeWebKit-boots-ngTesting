@@ -108,6 +108,7 @@ function drawChart(scope,xini,xfin,dmax){
 	            },
 	        },
 	          series: [{
+				name: 'Curva Experimental',
 	            data:(function () {
 	                //Fomula
 	                var data = [],

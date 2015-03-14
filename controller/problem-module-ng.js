@@ -508,6 +508,7 @@ function drawChart(scope){
             }
         },
           series: [{
+			name: 'Curva Modelada',
             data: (function () {
                 //Fomula
                 var data = [],

@@ -120,7 +120,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 		  	};
 			$scope.dd1 = $scope.dim1 - $scope.dem1;
 			graficarPorcionModel(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
-			graficarModelo($scope);
+			//graficarModelo($scope);
 			graficarCurvaModelado($scope);
 			modeloSeleccionado = ultimaPrueba;
 		};
@@ -201,6 +201,7 @@ function graficarCurva(scope){
 	            },
 	        },
 	          series: [{
+				name: 'Curva Experimental',
 	            data:(function () {
 	                //Fomula
 	                var data = [],
@@ -325,6 +326,7 @@ function graficarCurvaModelado(scope){
 	            },
 	        },
 	          series: [{
+				name: 'Curva prueba',
 	            data:(function () {
 	                //Fomula
 	                var data = [],
@@ -343,44 +345,44 @@ function graficarCurvaModelado(scope){
 	                    });
 	                }
 	                return data;
-	            })(),
-	            type: "line",
-	            dashStyle: "Solid"
-	        },
-
-	        {
-	            data:(function () {
-	                //Fomula
-	                var data = [],
-	                            i,
-								punto= 0 + scope.experimento.xInicial;
-					data.push({
-	                        x: -1,
-	                        y: 0
-	                    });
-	                for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal)+meds; i = i + meds) {
-	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
-	                    var valorFormula2 = scope.problema.zo / valorFormula1;
-	                    var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
-	                    if(isNaN(valorFormula3)){
-	                      valorFormula3 = 0;  
-	                    };
-	   
-	                    data.push({
-	                        x: punto,
-	                        y: valorFormula3
-	                    });
-						punto+=meds;
-	                }
-					data.push({
-	                        x: 9999,
-	                        y: 0
-	                    });
-	                return data;
-	            })(),
-	            type: "scatter",
-	            dashStyle: "Solid"
-	        }],	
+					})(),
+					type: "line",
+					dashStyle: "Solid"
+				},
+				{
+					name:'Curva Experimental',
+					data:(function () {
+						//Fomula
+						var data = [],
+									i,
+									punto= 0 + scope.experimento.xInicial;
+						data.push({
+								x: -1,
+								y: 0
+							});
+						for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal)+meds; i = i + meds) {
+							var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
+							var valorFormula2 = scope.problema.zo / valorFormula1;
+							var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
+							if(isNaN(valorFormula3)){
+							  valorFormula3 = 0;  
+							};
+		   
+							data.push({
+								x: punto,
+								y: valorFormula3
+							});
+							punto+=meds;
+						}
+						data.push({
+								x: 9999,
+								y: 0
+							});
+						return data;
+						 })(),
+					type: "scatter",
+					dashStyle: "Solid"
+				}],	
 
 	        title: {
 	            text: 'Anomalía Resgistrada entre ' + scope.experimento.xInicial + " y " + scope.experimento.xFinal + " con " + scope.experimento.nPasos + " mediciones."
