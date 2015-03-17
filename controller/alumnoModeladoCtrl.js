@@ -381,7 +381,7 @@ function graficarCurvaModelado(scope){
 						return data;
 						 })(),
 					type: "scatter",
-					dashStyle: "Solid"
+
 				}],	
 
 	        title: {
