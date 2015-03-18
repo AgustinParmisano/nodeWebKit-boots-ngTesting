@@ -41,7 +41,7 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', function($scope, $rootS
 
 function graficarEsferaFinal(scope){
 	var ejeX = Math.round(490 / scope.problema.dmax * scope.xm + 60);
-    alert(ejeX + " " + scope.zm + " " + scope.rm);
+    //alert(ejeX + " " + scope.zm + " " + scope.rm);
     ctx.beginPath();
     ctx.moveTo(ejeX,scope.zm);
 	ctx.arc(ejeX,scope.zm + 100,scope.rm,30,(Math.PI/180)*360,true);
@@ -52,7 +52,7 @@ function graficarEsferaFinal(scope){
 }
 function graficarEsferaReal(scope){
 	var ejeX = Math.round(490 / scope.problema.dmax * scope.xo + 110);
-	alert(ejeX + " " + scope.zm + " " + scope.ro);
+	//alert(ejeX + " " + scope.zm + " " + scope.ro);
 	ctx.beginPath();
     ctx.moveTo(ejeX,scope.zo);
 	ctx.arc(ejeX,scope.zo + 100,scope.ro,30,(Math.PI/180)*360,true);

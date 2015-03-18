@@ -2,7 +2,7 @@
   "main": "index.html",
   "name": "Geofisica",
   "keywords": [ "Construct 2", "node-webkit", "Space Blaster" ],
-  "version": "0.1",
+  "version": "0.0.2",
   "keywords": [ "demo", "node-webkit" ],
   "window": {
     "icon": "logo.png",
