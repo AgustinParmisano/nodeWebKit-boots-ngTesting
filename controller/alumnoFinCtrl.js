@@ -96,7 +96,7 @@ function graficarCurvaFinal(scope){
 					}
 					return data;
 					})(),
-					type: "scatter",
+					type: "line",
 					dashStyle: "Solid"
 				},
 				{
@@ -111,9 +111,9 @@ function graficarCurvaFinal(scope){
 								y: 0
 							});
 						for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal)+meds; i = i + meds) {
-							var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
-							var valorFormula2 = scope.problema.zo / valorFormula1;
-							var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
+							var valorFormula1 = Math.pow(((Math.pow(i - scope.xm,2)) +(Math.pow(scope.zm,2))), 3/2);
+							var valorFormula2 = scope.zm / valorFormula1;
+							var valorFormula3 = 0.027939 * scope.ddm * Math.pow(scope.rm,3) * valorFormula2;
 							if(isNaN(valorFormula3)){
 							  valorFormula3 = 0;  
 							};
