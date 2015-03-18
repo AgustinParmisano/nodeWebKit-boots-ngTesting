@@ -9,7 +9,7 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', function($scope, $rootS
 	var exp=($scope.experimento);
 	$scope.experimento=exp;
 	console.log("EXPERIMENT: " + $scope.experimento);
-	graficarCurvaFinal($scope);
+
 	$scope.graficar=false;
 	/*creo el canvas con los parametros del problema y del experimento*/
     setupCanvas($scope.problema.dmax);
@@ -30,31 +30,36 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', function($scope, $rootS
   	$scope.rm = $rootScope.modeloFinal.r;
   	$scope.dem = $rootScope.modeloFinal.dem;
   	$scope.dim = $rootScope.modeloFinal.dim;
-  	$scope.ddm = $rootScope.modeloFinal.ddm;
+  	$scope.ddm = $rootScope.modeloFinal.dim - $rootScope.modeloFinal.dem;
   	//Guardo el modelo final para graficar (pudo haber sido antes)
   	$scope.modeloFinal = $rootScope.modeloFina;
   	//Grafico esfera Real(Docente) Negra y Final(Alumno) Roja (graficarla Roja en la pantalla anterior tb)
-	
+	graficarCurvaFinal($scope);
 	graficarEsferaFinal($scope);
 	graficarEsferaReal($scope);
 }]);
 
 function graficarEsferaFinal(scope){
 	var ejeX = Math.round(490 / scope.problema.dmax * scope.xm + 60);
+    alert(ejeX + " " + scope.zm + " " + scope.rm);
+    ctx.beginPath();
     ctx.moveTo(ejeX,scope.zm);
 	ctx.arc(ejeX,scope.zm + 100,scope.rm,30,(Math.PI/180)*360,true);
 	ctx.fillStyle="#FF0000";
     //ctx.fillText(scope.problema.dmax,520,80);
 	ctx.fill();
+	ctx.closePath();
 }
 function graficarEsferaReal(scope){
-	/*ctx2 = c.getContext("2d");
-	var ejeX = Math.round(490 / scope.problema.dmax * scope.xo + 60);
-    ctx2.moveTo(ejeX,scope.zo);
-	ctx2.arc(ejeX,scope.zo + 100,scope.ro,30,(Math.PI/180)*360,true);
-	ctx2.fillStyle="#000000";
+	var ejeX = Math.round(490 / scope.problema.dmax * scope.xo + 110);
+	alert(ejeX + " " + scope.zm + " " + scope.ro);
+	ctx.beginPath();
+    ctx.moveTo(ejeX,scope.zo);
+	ctx.arc(ejeX,scope.zo + 100,scope.ro,30,(Math.PI/180)*360,true);
+	ctx.fillStyle="#00FF00";
     //ctx.fillText(scope.problema.dmax,520,80);
-	ctx2.fill();*/
+	ctx.fill();
+	ctx.closePath();
 }
 
 function graficarCurvaFinal(scope){
@@ -130,7 +135,7 @@ function graficarCurvaFinal(scope){
 							});
 						return data;
 						 })(),
-					type: "scatter",
+					type: "line",
 					dashStyle: "Solid"
 				}],	
 
