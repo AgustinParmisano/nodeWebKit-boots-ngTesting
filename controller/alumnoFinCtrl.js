@@ -23,14 +23,14 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', function($scope, $rootS
   	$scope.ro = $scope.problema.ro;
   	$scope.deo = $scope.problema.de;
   	$scope.dio = $scope.problema.di;
-  	$scope.ddo = $scope.problema.dd;
+  	$scope.ddo = (parseFloat($scope.problema.dd)).toPrecision(4);
   	//variables alumno modelo final para la tabla
   	$scope.xm = $rootScope.modeloFinal.x;
   	$scope.zm = $rootScope.modeloFinal.z;
   	$scope.rm = $rootScope.modeloFinal.r;
   	$scope.dem = $rootScope.modeloFinal.dem;
   	$scope.dim = $rootScope.modeloFinal.dim;
-  	$scope.ddm = $rootScope.modeloFinal.dim - $rootScope.modeloFinal.dem;
+  	$scope.ddm = (parseFloat($rootScope.modeloFinal.dim - $rootScope.modeloFinal.dem)).toPrecision(4);
   	//Guardo el modelo final para graficar (pudo haber sido antes)
   	$scope.modeloFinal = $rootScope.modeloFina;
   	//Grafico esfera Real(Docente) Negra y Final(Alumno) Roja (graficarla Roja en la pantalla anterior tb)

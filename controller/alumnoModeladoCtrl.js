@@ -114,7 +114,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 				z: this.z1,
 				dem: this.dem1,
 				dim: this.dim1,
-				ddm: this.dem1 - this.dim1,
+				ddm: (parseFloat(this.dim1) - parseFloat(this.dem1)).toPrecision(4),
 				error:0,
 				id: idCounter++
 		  	};
@@ -149,8 +149,8 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 	}
 
 	$scope.changeDdm = function(){
-		this.ddm1 = parseInt(this.dim1) - parseInt(this.dem1);
-		$scope.ddm1 = this.ddm1;
+		this.ddm1 = parseFloat(this.dim1) - parseFloat(this.dem1);
+		$scope.ddm1 = parseFloat(this.ddm1);
 	}
 	$scope.changeX1 = function(){
 		if(this.x1 >= $scope.experimento.xInicial && this.x1 <= $scope.experimento.xFinal || this.x1 == null){

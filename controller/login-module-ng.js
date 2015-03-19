@@ -2,6 +2,7 @@
 
 	
 	$scope.comenzar = function() {
+		$scope={};
 		$location.path('/elegirProblema');
 	};
 		

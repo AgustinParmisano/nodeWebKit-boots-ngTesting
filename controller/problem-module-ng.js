@@ -432,9 +432,11 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
 		}else if(this.dmax == ""){
 			texto+=" L";//no entra
             this.dmaxErrorMsg = texto;
-		}else if(this.costoMed == null || this.costoMax == null){
-			texto+=" Costo";
+		}else if(this.costoMax == "" || this.costoMax == null){
+			texto+=" Costo Maximo";
             this.costoMaxErrorMsg = texto;
+		}else if(this.costoMed == "" || this.costoMed == null){
+			texto+=" Costo Medicion";
             this.costoMedErrorMsg = texto;
 		}else{
 			//Esto el json que se va a guardar
