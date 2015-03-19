@@ -35,32 +35,46 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', function($scope, $rootS
   	$scope.modeloFinal = $rootScope.modeloFina;
   	//Grafico esfera Real(Docente) Negra y Final(Alumno) Roja (graficarla Roja en la pantalla anterior tb)
 	graficarCurvaFinal($scope);
-	graficarEsferaFinal($scope);
-	graficarEsferaReal($scope);
+	//graficarEsferaReal($scope);
+	graficarEsferas($scope);
+
 }]);
 
-function graficarEsferaFinal(scope){
+function graficarEsferas(scope){
+	//Graficar Esfera Final
 	var ejeX = Math.round(490 / scope.problema.dmax * scope.xm + 60);
-    //alert(ejeX + " " + scope.zm + " " + scope.rm);
     ctx.beginPath();
     ctx.moveTo(ejeX,scope.zm);
 	ctx.arc(ejeX,scope.zm + 100,scope.rm,30,(Math.PI/180)*360,true);
 	ctx.fillStyle="#FF0000";
-    //ctx.fillText(scope.problema.dmax,520,80);
 	ctx.fill();
 	ctx.closePath();
-}
-function graficarEsferaReal(scope){
-	var ejeX = Math.round(490 / scope.problema.dmax * scope.xo + 110);
-	//alert(ejeX + " " + scope.zm + " " + scope.ro);
+
+	//Graficar Esfera Real
+	ejeX = Math.round(490 / parseInt(scope.problema.dmax) * parseInt(scope.xo) + 60);
+	var zo = parseInt(scope.zo);
+	var ro = parseInt(scope.ro);
 	ctx.beginPath();
-    ctx.moveTo(ejeX,scope.zo);
-	ctx.arc(ejeX,scope.zo + 100,scope.ro,30,(Math.PI/180)*360,true);
-	ctx.fillStyle="#00FF00";
-    //ctx.fillText(scope.problema.dmax,520,80);
+    ctx.moveTo(ejeX,zo);
+	ctx.arc(ejeX,zo + 100,ro,30,(Math.PI/180)*360,true);
+	ctx.fillStyle="#000000";
 	ctx.fill();
 	ctx.closePath();
 }
+/*function graficarEsferaReal(scope){
+	//Sólo grafica si se hardcodean los números directamente, raro
+	var ejeX = Math.round(490 / parseInt(scope.problema.dmax) * parseInt(scope.xo) + 110);
+	var zo = parseInt(scope.zo);
+	var ro = parseInt(scope.ro);
+	alert(ejeX + " " + zo + " " + ro);
+	ctx.beginPath();
+    ctx.moveTo(ejeX,zo);
+	ctx.arc(ejeX,zo + 100,ro,30,(Math.PI/180)*360,true);
+	ctx.fillStyle="#000000";
+    //ctx.fillText(scope.problema.dmax,520,80);
+	ctx.fill();
+	ctx.closePath();
+}*/
 
 function graficarCurvaFinal(scope){
 		var meds = Math.round((scope.experimento.xFinal - scope.experimento.xInicial+1) / (scope.experimento.nPasos -1) );
