@@ -97,7 +97,7 @@ problem.controller('problemCtrl', ['$scope',  function($scope) {
         //console.log("CURRENT STRING: " + $currentString);
         //$localPath = $currentString;//.slice(0,-10); //PARA NODE WEB KIT
         //console.log($localpath);
-        $destinationPath = "../#/elegirProblema"; 
+        $destinationPath = "/index.html#/elegirProblema"; 
         console.log("DESTINATION: " + $destinationPath);
         window.location.href=$destinationPath;
     };
