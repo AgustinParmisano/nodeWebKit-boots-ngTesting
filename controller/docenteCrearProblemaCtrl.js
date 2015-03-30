@@ -1,5 +1,10 @@
 /* Funcion para que ingrese solo numeros */
 
+/**********************************************************************/
+/****************************SE USA ESTO???****************************/
+/**********************************************************************/
+
+
 function onlyNumber(event)
 {
     keyPress = event.keyCode ? event.keyCode: event.which ? event.which:event;
@@ -79,6 +84,12 @@ app.controller('docenteCrearProblemaCtrl', ['$scope',  function($scope) {
 	$scope.showButton = true;
 
     initChart($scope);
+    
+    $scope.inicioAceptar = function(){
+        alert("OK");
+        $scope={};
+        $location.path('/');
+    };
     
     $scope.atras = function() {
         //BUSCAR LA MEJOR MANERA DE HACER ROUTING

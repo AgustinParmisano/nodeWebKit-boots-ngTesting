@@ -22,7 +22,7 @@
   </head>
   <body>
 
-	<div class="container-fluid">
+	<div class="container-fluid" ng-app="problemModule">
 		<div class="panel panel-default">
 			<div class="panel panel-success">
 		      <!- Header  ->
@@ -31,21 +31,43 @@
 					<img src="../images/logo.png" class="img-responsive" alt="logo secretaria de extension fcalg" width="350" height="270" style="position:relative; float:right">
 		        	<h1 style="color:#59B958;"><b>Crear Problema</b></b></h1>
 		        </div>	
-			<!- Menu ->
+				<!- Menu ->
 				<div class="row">
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
 					<nav class="navbar navbar-default" role="navigation">
 							 <ul class="nav navbar-nav navbar-left">
-								  <li class="active"><a href="../index.html"><b>Inicio</b></a></li>
-								  <li><a href="../index.html#/ayuda"><b>Ayuda</b></a></li>
+								  <li class="active"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><b>Inicio</b></button></li>
+								  <li class="active"><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"><b>Ayuda</b></button></li>
 							</ul>
+
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="exampleModalLabel">Volver a Inicio</h4>
+						      </div>
+						      <div class="modal-body">
+						        <form>
+						          <div class="form-group">
+						            <label for="message-text" class="control-label"><h4>Atención! Usted perderá los datos ingresados al retornar a la pantalla de inicio.</h4></label>
+						          </div>
+						        </form>
+						      </div>
+						      <div class="modal-footer" ng-controller="problemCtrl">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						        <button type="button" ng-click="inicioAceptar()" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
 					</nav>
 					</div>
 				</div>				
 				
 				
 			      <!-Problema/Variables/Grafico->
-			      <div ng-app="problemModule" ng-controller="problemCtrl" class="row">
+			      <div ng-controller="problemCtrl" class="row">
 		  	        <!-Problema->
 			      	<div class="row">
 				        <div class="col-sm-2 col-md-2 col-lg-2"></div>

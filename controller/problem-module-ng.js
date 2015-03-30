@@ -82,13 +82,19 @@ function resetErrors(){
         this.diErrorMsg = "";
 }
 
-problem.controller('problemCtrl', ['$scope',  function($scope) {
+problem.controller('problemCtrl', ['$scope','$location',  function($scope, $location) {
 	$isWritten = false;
 	$isLong = false;
 	$tooLong = false;
 	$scope.showButton = true;
 
     initChart($scope);
+
+    $scope.inicioAceptar = function(){
+        alert("No anda, habría que incluir el menú que está en el inicio y en el resto de las pantallas que si anda bien, además para no repetir código. Hay una pantalla docenteProblema.html (ésta) y otra viewDocenteProblema.html VER QUE ONDA CUAL ES MEJOR!!");
+        $scope={};
+        $location.path('/');
+    };
     
     $scope.atras = function() {
         //BUSCAR LA MEJOR MANERA DE HACER ROUTING

@@ -36,9 +36,31 @@
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
 					<nav class="navbar navbar-default" role="navigation">
 							 <ul class="nav navbar-nav navbar-left">
-								  <li class="active"><a ng-href="#/"><b>Inicio</b></a></li>
-								  <li><a ng-href="#/ayuda"><b>Ayuda</b></a></li>
+								  <li class="active"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><b>Inicio</b></button></li>
+								  <li class="active"><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"><b>Ayuda</b></button></li>
 							</ul>
+
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="exampleModalLabel">Volver a Inicio</h4>
+						      </div>
+						      <div class="modal-body">
+						        <form>
+						          <div class="form-group">
+						            <label for="message-text" class="control-label"><h4>Atención! Usted perderá los datos ingresados al retornar a la pantalla de inicio.</h4></label>
+						          </div>
+						        </form>
+						      </div>
+						      <div class="modal-footer" ng-controller="inicioCtrl">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						        <button type="button" ng-click="inicioAceptar()" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
 					</nav>
 					</div>
 				</div>

@@ -5,6 +5,11 @@
 		$scope={};
 		$location.path('/elegirProblema');
 	};
+
+	$scope.inicioAceptar = function(){
+		$scope={};
+		$location.path('/');
+	};
 		
 }]);
 
