@@ -86,8 +86,7 @@
 			      	<div class="row">
 			      		<form role="form" class="form-horizontal" >
 				  	        <!-Variables-Inputs->
-							<div class="col-sm-4 col-md-4 col-lg-4" id="containerInputs">
-								<h2><b>Valores</b></h2>
+							<div class="col-sm-3 col-md-3 col-lg-3" id="containerInputs">
 								<form class="form-horizontal" role="form">
 									<div class="form-group">
 										<label for="" class="col-lg-2 control-label">L</label>
@@ -170,7 +169,7 @@
 								</form>	
 							</div>
 				  	        <!-Grafico y Curva->
-					       	<div class="col-sm-4 col-md-4 col-lg-4" id="graficosCrearProblema">
+					       	<div class="col-sm-6 col-md-6 col-lg-6" id="graficosCrearProblema">
 								 <!-Variables-Titulo->
 	 								<!--<h3>Grafico </h3>-->
 									<div id="canvasDiv">
@@ -181,7 +180,7 @@
 								   <highchart id="chart1" config="highchartsNG"></highchart>
 				       		</div>
    				  	        <!-Botones->
-							<div class="col-sm-2 col-md-2 col-lg-2" id="botonesCrearProblema">
+							<div class="col-sm-1 col-md-1 col-lg-1" id="botonesCrearProblema">
 								<button ng-click="graficar()" ng-show="showButton" type="button" class="btn btn-success" id="btn-small-2"><h3><b>Graficar</b></h3></button>
 								<button ng-click="borrar()" ng-show="showButton" type="button" class="btn btn-success" id="btn-small-2"><h3><b>Borrar</b></h3></button>
 								<button ng-click="guardar()" ng-show="showButton" type="button" class="btn btn-success" id="btn-small-2"><h3><b>Guardar</b></h3></button>
@@ -209,10 +208,6 @@
     <script src="../controller/problem-module-ng.js"></script> 
     <script src="../js/highstock.src.js"></script>
     <script src="../js/highcharts-ng.js"></script> 
-	<div id="footer">
-	  <div class="container text-center">
-		<p class="text-muted credit" style="color:#59B958">GG v 0.0.2</p>
-	  </div>
-	</div>
+	
   </body>
 </html>

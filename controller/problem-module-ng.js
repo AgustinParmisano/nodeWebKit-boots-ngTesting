@@ -544,7 +544,7 @@ function drawChart(scope){
         }],
 
         title: {
-            text: 'Anomalía'
+            text: ''
         },
         loading: false
     }

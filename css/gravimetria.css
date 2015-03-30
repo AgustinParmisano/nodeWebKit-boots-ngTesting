@@ -85,7 +85,7 @@
 
 #graficoDocente{
 	border: 3px solid #58B957;
-	margin-top: 5%;
+    width: 100%;
 }
 #graficoAlumno{
 	border: 3px solid #58B957;
@@ -114,8 +114,8 @@
 }
 
 #botonesCrearProblema{
-	margin-left: 12%;
-	margin-top: 6%;
+	/*margin-left: 12%;
+	margin-top: 6%;*/
 }
 
 #vars{
@@ -123,7 +123,8 @@
 }
 
 #canvasDiv{
-	margin-left: 4%;
+	/*margin-left: 4%;*/
+	
 }
 
 #graficosCrearProblema{
