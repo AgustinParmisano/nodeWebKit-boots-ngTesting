@@ -46,6 +46,7 @@ $(function () {
             }
         },
         series: [ {
+            color: '0000FF',
             name: 'Curva',
             data: [2, 2, 20, 30, 13, 5, 1]
         }]

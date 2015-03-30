@@ -384,13 +384,18 @@ problem.controller('problemCtrl', ['$scope','$location',  function($scope, $loca
         this.x = Math.floor(Math.random() * (this.dmax - 10 + 1)) + 10;
         this.z = Math.floor(Math.random() * (300 - 100 + 1)) + 100;
         this.r = Math.floor(Math.random() * ((this.z - 100) - 2 + 10)) + 2;
-        while((this.r > this.x) || ((this.r + this.x) > this.dmax)){
+        if((this.r > this.x) || ((this.r + this.x) > this.dmax)){
             console.log(this.r + " " + this.x);
-            this.r = Math.floor(Math.random() * ((this.z - 100) - 2 + 1)) + 2;
+            this.r = 50;
+            this.x = Math.floor(this.dmax / 2);
+        }
+        if((this.r + this.z > 230)){
+            this.r = 50;
+            this.z = 150;
         }
         this.de = Math.floor(Math.random() * ((15 - 1) - 2 + 1)) + 2;
         this.di = Math.floor(Math.random() * ((15 - 1) - 2 + 1)) + 2;
-        $scope.dd = this.de - this.di;
+        $scope.dd = this.di - this.de;
     };
 
     $scope.borrar= function(){
@@ -516,6 +521,7 @@ function drawChart(scope){
             }
         },
           series: [{
+            color: '#000000',
 			name: 'Curva Modelada',
             data: (function () {
                 //Fomula

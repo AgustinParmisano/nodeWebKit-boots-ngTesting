@@ -96,6 +96,7 @@ function graficarCurvaFinal(scope){
 	            },
 	        },
 	          series: [{
+	          	color: '#000000',
 				name: 'Curva Real',
 				 data: (function () {
                 //Fomula
@@ -118,7 +119,8 @@ function graficarCurvaFinal(scope){
 					type: "line",
 					dashStyle: "Solid"
 				},
-				{
+				{	
+					color: '#FF0000',
 					name:'Curva Resuelta',
 					data:(function () {
 						//Fomula

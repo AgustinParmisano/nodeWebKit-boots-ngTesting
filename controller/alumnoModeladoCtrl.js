@@ -201,6 +201,7 @@ function graficarCurva(scope){
 	            },
 	        },
 	          series: [{
+	          	color: '#0000FF',
 				name: 'Curva Experimental',
 	            data:(function () {
 	                //Fomula
@@ -326,6 +327,7 @@ function graficarCurvaModelado(scope){
 	            },
 	        },
 	          series: [{
+	          	color: '#FF0000',
 				name: 'Curva prueba',
 	            data:(function () {
 	                //Fomula
@@ -350,6 +352,7 @@ function graficarCurvaModelado(scope){
 					dashStyle: "Solid"
 				},
 				{
+					color: '#0000FF',
 					name:'Curva Experimental',
 					data:(function () {
 						//Fomula
