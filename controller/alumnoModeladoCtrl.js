@@ -202,7 +202,7 @@ function graficarCurva(scope){
 	        },
 	          series: [{
 	          	color: '#0000FF',
-				name: 'Curva Experimental',
+				name: 'Mediciones',
 	            data:(function () {
 	                //Fomula
 	                var data = [],
@@ -353,7 +353,7 @@ function graficarCurvaModelado(scope){
 				},
 				{
 					color: '#0000FF',
-					name:'Curva Experimental',
+					name:'Mediciones',
 					data:(function () {
 						//Fomula
 						var data = [],
