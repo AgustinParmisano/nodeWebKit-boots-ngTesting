@@ -121,7 +121,7 @@ function graficarCurvaFinal(scope){
 				},
 				{	
 					marker: {
-						enabled: false,
+						enabled: true,
 						symbol: 'circle',
 						radius: 0
 					},
@@ -130,13 +130,8 @@ function graficarCurvaFinal(scope){
 					data:(function () {
 						//Fomula
 						var data = [],
-									i,
-									punto= 0 + scope.experimento.xInicial;
-						data.push({
-								x: -1,
-								y: 0
-							});
-						for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal)+meds; i = i + meds) {
+									i;
+						for (i = 0; i <= scope.problema.dmax; i++) {
 							var valorFormula1 = Math.pow(((Math.pow(i - scope.xm,2)) +(Math.pow(scope.zm,2))), 3/2);
 							var valorFormula2 = scope.zm / valorFormula1;
 							var valorFormula3 = 0.027939 * scope.ddm * Math.pow(scope.rm,3) * valorFormula2;
@@ -145,19 +140,13 @@ function graficarCurvaFinal(scope){
 							};
 		   
 							data.push({
-								x: punto,
+								x: i,
 								y: valorFormula3
 							});
-							punto+=meds;
 						}
-						data.push({
-								x: 9999,
-								y: 0
-							});
 						return data;
 						 })(),
-					type: "line",
-					dashStyle: "Solid"
+					type: "line"
 				}],	
 
 	        title: {
