@@ -201,6 +201,11 @@ function graficarCurva(scope){
 	            },
 	        },
 	          series: [{
+				marker: {
+					enabled: true,
+					symbol: 'circle',
+					radius: 2
+				},
 	          	color: '#0000FF',
 				name: 'Mediciones',
 	            data:(function () {
@@ -327,13 +332,18 @@ function graficarCurvaModelado(scope){
 	            },
 	        },
 	          series: [{
+				marker: {
+					enabled: false,
+					symbol: 'circle',
+					radius: 0
+				},
 	          	color: '#FF0000',
 				name: 'Curva prueba',
 	            data:(function () {
 	                //Fomula
 	                var data = [],
 	                            i;
-	                for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal); i ++) {
+	                for (i = 0; i <= parseInt(scope.problema.dmax); i ++) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.x1,2)) +(Math.pow(scope.z1,2))), 3/2);
 	                    var valorFormula2 = scope.z1 / valorFormula1;
 	                    var valorFormula3 = 0.027939 * scope.dd1 * Math.pow(scope.r1,3) * valorFormula2;
@@ -352,6 +362,11 @@ function graficarCurvaModelado(scope){
 					dashStyle: "Solid"
 				},
 				{
+					marker: {
+						enabled: true,
+						symbol: 'circle',
+						radius: 2
+					},
 					color: '#0000FF',
 					name:'Mediciones',
 					data:(function () {

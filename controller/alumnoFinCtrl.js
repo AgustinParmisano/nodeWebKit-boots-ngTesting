@@ -120,6 +120,11 @@ function graficarCurvaFinal(scope){
 					dashStyle: "Solid"
 				},
 				{	
+					marker: {
+						enabled: false,
+						symbol: 'circle',
+						radius: 0
+					},
 					color: '#FF0000',
 					name:'Curva Resuelta',
 					data:(function () {

@@ -1,4 +1,4 @@
- app.controller('inicioCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams) {
+ app.controller('inicioCtrl', ['$scope', '$location', '$routeParams', '$window', function($scope, $location, $routeParams, $window) {
 
 	
 	$scope.comenzar = function() {
@@ -6,9 +6,9 @@
 		$location.path('/elegirProblema');
 	};
 
-	$scope.inicioAceptar = function(){
-		$scope={};
+	$scope.inicioAceptar = function(){		
 		$location.path('/');
+		$window.location.reload();
 	};
 		
 }]);

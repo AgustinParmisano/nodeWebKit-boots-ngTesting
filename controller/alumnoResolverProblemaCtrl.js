@@ -108,6 +108,11 @@ function drawChart(scope,xini,xfin,dmax){
 	            },
 	        },
 	          series: [{
+				marker: {
+					enabled: true,
+					symbol: 'circle',
+					radius: 2
+				},
 	          	color: '#0000FF',
 				name: 'Mediciones',
 	            data:(function () {
@@ -256,7 +261,11 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
         //alert(this.costoTotal);
         //alert(this.costoAcumulado);
         //alert(this.costoMaximo);
-        
+        if (this.nPasos < 2) {
+        	this.graficErrorMsg = "Mínimo de mediciones debe ser 2.";
+        	noGraficar = tru
+        };
+
         if (this.costoAcumulado) {
         	acum = this.costoAcumulado;
         };
