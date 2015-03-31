@@ -88,10 +88,13 @@ function graficarCurvaFinal(scope){
 	                width: '600'
 	            },
 
-	            
+	            yAxis: {
+					title:{text:'Anomalia de Gravedad'}
+	            },
 	            xAxis: {
 	            	floor: 0,
-            		ceiling: parseInt(scope.problema.dmax)
+            		ceiling: parseInt(scope.problema.dmax),
+					title:{text:'dg[mGal]'}
 
 	            },
 	        },

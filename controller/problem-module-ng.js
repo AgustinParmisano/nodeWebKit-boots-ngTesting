@@ -33,7 +33,7 @@ function initChartDocente(scope){
         },
 
         title: {
-            text: ''
+            text: 'Anomalia'
         },
         loading: false
     }
@@ -513,13 +513,15 @@ function drawChartDocente(scope){
                 type: 'line',
                 width: '600'
             },
-
+			xAxis: {
+					title:{text:'Anomalia de Gravedad'}
+	            },
             
             yAxis: { 
                 plotLines: [{value: 0}],
                 height: '100%',
                 startOnTick: false,
-
+				title:{text:'dg[mGal]'}
             }
         },
           series: [{
