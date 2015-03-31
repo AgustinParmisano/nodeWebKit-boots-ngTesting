@@ -14,15 +14,16 @@ function onlyNumber(event)
 /*
 * Este controlador maneja la pantanlla docenteProblema.html la cual permite el ingreso de los datos de un problema y su posterior guardado
 */
-var problem = angular.module("problemModule", ["highcharts-ng"]);
+//var problem = angular.module("problemModule", ["highcharts-ng"]);
+//app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams', 'highcharts-ng', function($scope, $location, $routeParams) {
 //Modulo de FileDialog para guardar/cargar archivos con angular y node web-kit https://github.com/DWand/nw-fileDialog
 //Paint default canvas configuration
 var c;
 var ctx;
 
-setupCanvas();
 
-function initChart(scope){
+
+function initChartDocente(scope){
         scope.highchartsNG = {
         options: {
             chart: {
@@ -32,13 +33,13 @@ function initChart(scope){
         },
 
         title: {
-            text: 'Anomalía'
+            text: ''
         },
         loading: false
     }
 }
 
-function setupCanvas(){
+function setupCanvasDocente(){
 
     var oldcanv = document.getElementById('graficoDocente');
     var canvDiv = document.getElementById('canvasDiv');
@@ -81,14 +82,15 @@ function resetErrors(){
         this.deErrorMsg = "";
         this.diErrorMsg = "";
 }
-
-problem.controller('problemCtrl', ['$scope','$location',  function($scope, $location) {
+app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams',  function($scope, $location, $routeParams) {
+//problem.controller('problemCtrl', ['$scope','$location',  function($scope, $location) {
 	$isWritten = false;
 	$isLong = false;
 	$tooLong = false;
 	$scope.showButton = true;
-
-    initChart($scope);
+	setupCanvasDocente();
+    initChartDocente($scope);
+	
 
     $scope.inicioAceptar = function(){
         alert("No anda, habría que incluir el menú que está en el inicio y en el resto de las pantallas que si anda bien, además para no repetir código. Hay una pantalla docenteProblema.html (ésta) y otra viewDocenteProblema.html VER QUE ONDA CUAL ES MEJOR!!");
@@ -204,13 +206,13 @@ problem.controller('problemCtrl', ['$scope','$location',  function($scope, $loca
 	/*
 	*  Change esfera
 	*/
-	$scope.graficar= function(){
+	$scope.graficarEsfera= function(){
         var noGraficar = false;
         var zLimit = 0;
         var dmaxLimit = 0;
 
         console.log(noGraficar);
-        setupCanvas();
+        setupCanvasDocente();
         ctx.fillText(this.dmax,520,80);
         
         this.dmaxErrorMsg = "";
@@ -224,7 +226,7 @@ problem.controller('problemCtrl', ['$scope','$location',  function($scope, $loca
             //alert("if (isNaN(this.dmax) || this.dmax == null) {");
             this.dmaxErrorMsg = "";
             this.dmaxErrorMsg = "Ingrese Numeros";
-            setupCanvas();
+            setupCanvasDocente();
             noGraficar = true;
         }else if (this.dmax > 1000) {
             //alert("}else if (this.dmax > 1000) {");
@@ -364,13 +366,13 @@ problem.controller('problemCtrl', ['$scope','$location',  function($scope, $loca
 			ctx.arc(ejeX,ejeZ,this.r,30,(Math.PI/180)*360,true);
 			ctx.fillStyle="#000000";
 			ctx.fill();
-            drawChart($scope);
+            drawChartDocente($scope);
 
 		}
 	};
 
     $scope.aleatorio = function(){
-        setupCanvas();
+        setupCanvasDocente();
 
         this.enunErrorMsg = "";
         this.dmaxErrorMsg = "";
@@ -399,7 +401,7 @@ problem.controller('problemCtrl', ['$scope','$location',  function($scope, $loca
     };
 
     $scope.borrar= function(){
-        setupCanvas();
+        setupCanvasDocente();
         this.dmax = null;
         this.r = null;
         this.z = null;
@@ -501,7 +503,7 @@ problem.controller('problemCtrl', ['$scope','$location',  function($scope, $loca
 	
 }]);
 
-function drawChart(scope){
+function drawChartDocente(scope){
     //Para el gráfico de HC
     scope.dmax=Math.min(scope.dmax, 999);
     console.log(scope.dmax);

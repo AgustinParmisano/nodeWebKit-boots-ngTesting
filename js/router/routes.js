@@ -10,10 +10,10 @@ app.config(function($routeProvider){
 				controller: 'elegirProblemaCtrl'
 			}).
 			
-			/* when('/docenteCrearProblema', {
-				templateUrl: 'vistaDocenteProblema.html',
+			when('/docenteCrearProblema', {
+				templateUrl: 'view/vistaDocenteProblema.html',
 				controller: 'docenteCrearProblemaCtrl'
-			}).*/
+			}).
 			when('/cargarProblema', {
 				templateUrl: 'view/vistaCargarProblema.html',
 				controller: 'loadProblemCtrl'
