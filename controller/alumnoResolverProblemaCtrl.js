@@ -100,11 +100,13 @@ function drawChart(scope,xini,xfin,dmax){
 	                width: '600'
 	            },
 
-	            
+	            yAxis: {
+					title:{text:'dg[mGal]'}
+	            },
 	            xAxis: {
 	            	floor: 0,
-            		ceiling: parseInt(scope.problema.dmax)
-
+            		ceiling: parseInt(scope.problema.dmax),
+					title:{text:'Anomalia de Gravedad'}
 	            },
 	        },
 	          series: [{

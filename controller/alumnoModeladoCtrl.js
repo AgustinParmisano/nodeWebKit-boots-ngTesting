@@ -192,13 +192,14 @@ function graficarCurva(scope){
 	                type: 'scatter',
 	                width: '600'
 	            },
-
-	            
-	            xAxis: {
+				xAxis: {
 	            	floor: 0,
-            		ceiling: parseInt(scope.problema.dmax)
-
+            		ceiling: parseInt(scope.problema.dmax),
+					title:{text:'Anomalia de Gravedad'}
 	            },
+				yAxis: { 
+					title:{text:'dg[mGal]'}
+				}
 	        },
 	          series: [{
 				marker: {
@@ -240,7 +241,7 @@ function graficarCurva(scope){
 	        }],	
 
 	        title: {
-	            text: 'Anomalía Resgistrada entre ' + scope.experimento.xInicial + " y " + scope.experimento.xFinal + " con " + scope.experimento.nPasos + " mediciones."
+	            text: 'Anomalía Registrada entre ' + scope.experimento.xInicial + " y " + scope.experimento.xFinal + " con " + scope.experimento.nPasos + " mediciones."
 	        },
 	        loading: false
 	    }
