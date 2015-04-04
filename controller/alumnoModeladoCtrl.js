@@ -182,7 +182,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 }]);
 
 function graficarCurva(scope){
-		var meds = Math.round((scope.experimento.xFinal - scope.experimento.xInicial+1) / (scope.experimento.nPasos -1) );
+		var meds = Math.round((scope.experimento.xFinal - scope.experimento.xInicial) / (scope.experimento.nPasos -1) );
 		//alert(meds);
 		//console.log(scope.problema.dmax);
 		scope.dmax=Math.min(scope.dmax, 999)
@@ -218,7 +218,7 @@ function graficarCurva(scope){
 	                        x: -1,
 	                        y: 0
 	                    });
-	                for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal)+meds; i = i + meds) {
+	                for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal); i = i + meds) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 	                    var valorFormula2 = scope.problema.zo / valorFormula1;
 	                    var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
@@ -249,13 +249,13 @@ function graficarCurva(scope){
 
 function setupCanvas(dmax){
 
-    var oldcanv = document.getElementById('graficoAlumno');
+    var oldcanv = document.getElementById('graficoAlumnoModel');
     var canvDiv = document.getElementById('canvasDiv');
 
     canvDiv.removeChild(oldcanv);
  	
  	var canv = document.createElement('canvas');
-	canv.id = 'graficoAlumno';
+	canv.id = 'graficoAlumnoModel';
 
     canv.width= "600";
     canv.height="300";
@@ -263,7 +263,7 @@ function setupCanvas(dmax){
 
     canvDiv.appendChild(canv);
 
-    c = document.getElementById("graficoAlumno");
+    c = document.getElementById("graficoAlumnoModel");
     ctx = c.getContext("2d");
     crearLinea(dmax);
 }

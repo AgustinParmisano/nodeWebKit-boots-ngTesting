@@ -33,15 +33,17 @@
 				</div>
 				<!- Menu ->
 				<div class="row">
-				<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<div class="collapse navbar-collapse navbar-ex1-collapse" ng-controller="inicioCtrl">
 					<nav class="navbar navbar-default" role="navigation">
 							 <ul class="nav navbar-nav navbar-left">
 								  <li class="active"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><b>Inicio</b></button></li>
-								  <li class="active"><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"><b>Ayuda</b></button></li>
+								  <li class="active"><button type="button" class="btn btn-primary" ng-click="acercaDe()" data-toggle="modal" data-target=".bs-example-modal-sm">
+										<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+										Acerca de</button></li>
 							</ul>
 
 						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						  <div class="modal-dialog">
+						  <div class="modal-dialog" >
 						    <div class="modal-content">
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

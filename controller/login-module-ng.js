@@ -10,6 +10,10 @@
 		$location.path('/');
 		$window.location.reload();
 	};
+	
+	$scope.acercaDe= function(){
+		$location.path('/ayuda');
+	}
 		
 }]);
 

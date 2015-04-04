@@ -14,7 +14,7 @@ function onlyNumber(event)
 
 var chartData;
 
-function setupCanvas(dmax){
+function setupCanvasResolver(dmax){
 
     var oldcanv = document.getElementById('graficoAlumno');
     var canvDiv = document.getElementById('canvasDiv');
@@ -25,18 +25,18 @@ function setupCanvas(dmax){
 	canv.id = 'graficoAlumno';
 
     canv.width= "600";
-    canv.height="150";
+    canv.height="300";
     canv.class = "center-block";
 
     canvDiv.appendChild(canv);
 
     c = document.getElementById("graficoAlumno");
     ctx = c.getContext("2d");
-    crearLinea(dmax);
+    crearLineaResolver(dmax);
 
 }
 
-function crearLinea(dmax){
+function crearLineaResolver(dmax){
     /*Esto grafica la recta*/
     ctx.moveTo(50,50);
     ctx.lineTo(550,50);
@@ -88,8 +88,8 @@ function initChart(scope){
 };
 
 
-function drawChart(scope,xini,xfin,dmax){
-		var meds = Math.round(((xfin - xini)+1) / (scope.nPasos -1));
+function drawChartResolver(scope,xini,xfin,dmax){
+		var meds = Math.round((xfin-xini) / (scope.nPasos-1));
 		//alert(meds);
 
 		scope.dmax=Math.min(dmax, 999)
@@ -126,7 +126,7 @@ function drawChart(scope,xini,xfin,dmax){
 	                        x: -1,
 	                        y: 0
 	                    });
-	                for (i = xini; i <= (parseInt(xfin)+meds); i = i + meds) {
+	                for (i = xini; i <= (parseInt(xfin)); i = i + meds) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - parseFloat(scope.problema.xo),2)) +(Math.pow(parseFloat(scope.problema.zo),2))), 3/2);
 	                    var valorFormula2 = parseFloat(scope.problema.zo) / valorFormula1;
 						//console.log( Math.pow(parseFloat(scope.problema.ro),3) * valorFormula2);
@@ -198,7 +198,7 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 
 app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScope){
 	var nPasos = "";
-	setupCanvas($scope.dmax);
+	setupCanvasResolver($scope.dmax);
 	initChart($scope);
 
 
@@ -211,8 +211,9 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
 		}else{
 			this.xfinErrorMsg = "";
 			this.xiniErrorMsg = "";
+			$scope.actualizarResolver();
 		};
-		$scope.actualizar();
+		
 	};
 
 	$scope.changeFin = function(){
@@ -224,21 +225,22 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
 		}else{
 			this.xfinErrorMsg = "";
 			this.xiniErrorMsg = "";
+			$scope.actualizarResolver();
 		};
-		$scope.actualizar();
 	};
 
 	$scope.calcularPasos = function(){
-		$scope.actualizar();
+		$scope.actualizarResolver();
 	};
-	$scope.actualizar = function(){
-		if( $scope.xini != "" && $scope.xfin != "" && $scope.nPasos != ""){
+	$scope.actualizarResolver = function(){
+		if( ($scope.xini != null) && ($scope.xfin != null) && ($scope.nPasos != null)){
 			$scope.lx =$scope.xfin-$scope.xini;
-			$scope.dx=$scope.lx/$scope.nPasos;
+			$scope.dx=$scope.lx/($scope.nPasos-1);
 			$scope.costoTotal = $scope.nPasos * $scope.problema.costoMedicion;
 		}else{
 			$scope.lx ="";
 			$scope.dx="";
+			$scope.costoTotal="";
 		}
 	}
 
@@ -255,7 +257,7 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
         var noGraficar = false;
         var acum = 0;
 
-        setupCanvas($scope.dmax);
+        setupCanvasResolver($scope.dmax);
         this.graficErrorMsg = "";
         this.contErrorMsg = "";
 
@@ -315,7 +317,7 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
         	$rootScope.xini = $scope.xini;
         	$rootScope.xfin = $scope.xfin;
         	$rootScope.nPasos = $scope.nPasos;
-        	drawChart($scope,parseInt(this.xini), parseInt(this.xfin),parseInt($scope.problema.dmax));
+        	drawChartResolver($scope,parseInt(this.xini), parseInt(this.xfin),parseInt($scope.problema.dmax));
         	graficarPorcion(this.xini, this.xfin, $scope);
         	if (!$scope.costoAcumulado) {
         		$scope.costoAcumulado = 0;
