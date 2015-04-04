@@ -1,14 +1,17 @@
 {
   "main": "index.html",
   "name": "Geofisica",
-  "keywords": [ "Construct 2", "node-webkit", "Space Blaster" ],
   "version": "0.0.2",
   "keywords": [ "demo", "node-webkit" ],
   "window": {
-    "icon": "logo.png",
+    "icon": "images/imagen.png",
+	"width": 800,
+    "height": 600,
     "toolbar": false,
     "position": "center",
-    "resizable": true
+    "resizable": true,
+	"min_width": 800,
+    "min_height": 600
    }
 }
 

@@ -116,7 +116,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 				dem: this.dem1,
 				dim: this.dim1,
 				ddm: (parseFloat(this.dim1) - parseFloat(this.dem1)).toPrecision(4),
-				error:errorAct,
+				error:errorAct.toPrecision(4) + "%",
 				id: idCounter++
 		  	};
 			$scope.dd1 = $scope.dim1 - $scope.dem1;
@@ -127,14 +127,20 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 		};
 	}
 	$scope.calculoError= function(){
-	//No esta terminada la formula
 		var medpuntos=Math.round(($scope.experimento.xFinal - $scope.experimento.xInicial) / ($scope.experimento.nPasos -1) );
 		var errori=0;
-		 for (i = $scope.experimento.xInicial; i <= parseInt($scope.experimento.xFinal); i = i + medpuntos) {
-	           errori+=i;
+		var n= parseInt($scope.experimento.nPasos);
+		var dgm=0;
+		var dgo=0;
+		for (i = $scope.experimento.xInicial; i <= parseInt($scope.experimento.xFinal); i = i + medpuntos) {
+				dgm=0.027939 * $scope.problema.dd * Math.pow($scope.problema.ro,3) *($scope.problema.zo / (Math.pow(((Math.pow(i - $scope.problema.xo,2)) +(Math.pow($scope.problema.zo,2))), 3/2)));
+				dgo=0.027939 * (parseFloat(this.dim1) - parseFloat(this.dem1)) * Math.pow(this.r1,3) *(this.z1 / (Math.pow(((Math.pow(i - this.x1,2)) +(Math.pow(this.z1,2))), 3/2)));;
+	           errori+=(Math.pow(dgm-dgo,2))/(Math.pow(dgo,2));
 	          };
-		return errori;
+		var errorFin= (100/n)*(Math.sqrt(errori))
+		return errorFin;
 	}
+	
 	$scope.guardar= function(){
 		if (ultimaPrueba.x) {
 			this.guardarErrorMsg="";
@@ -228,6 +234,7 @@ function graficarCurva(scope){
 	                        x: -1,
 	                        y: 0
 	                    });
+					var errorj=0.0013969*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
 	                for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal); i = i + meds) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 	                    var valorFormula2 = scope.problema.zo / valorFormula1;
@@ -238,7 +245,7 @@ function graficarCurva(scope){
 	   
 	                    data.push({
 	                        x: punto,
-	                        y: valorFormula3
+	                        y: valorFormula3+errorj
 	                    });
 						punto+=meds;
 	                }

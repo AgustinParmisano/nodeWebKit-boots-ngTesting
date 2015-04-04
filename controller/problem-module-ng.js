@@ -93,7 +93,7 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 	
 
     $scope.inicioAceptar = function(){
-        alert("No anda, habría que incluir el menú que está en el inicio y en el resto de las pantallas que si anda bien, además para no repetir código. Hay una pantalla docenteProblema.html (ésta) y otra viewDocenteProblema.html VER QUE ONDA CUAL ES MEJOR!!");
+        alert("No anda");
         $scope={};
         $location.path('/');
     };

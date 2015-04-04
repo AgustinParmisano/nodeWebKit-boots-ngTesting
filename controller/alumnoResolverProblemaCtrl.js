@@ -126,11 +126,10 @@ function drawChartResolver(scope,xini,xfin,dmax){
 	                        x: -1,
 	                        y: 0
 	                    });
+					var errorj=0.0013969*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
 	                for (i = xini; i <= (parseInt(xfin)); i = i + meds) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - parseFloat(scope.problema.xo),2)) +(Math.pow(parseFloat(scope.problema.zo),2))), 3/2);
 	                    var valorFormula2 = parseFloat(scope.problema.zo) / valorFormula1;
-						//console.log( Math.pow(parseFloat(scope.problema.ro),3) * valorFormula2);
-						//console.log(scope.problema.dd* 0.027939);
 						var valorFormula3 = parseFloat(0.027939) * parseFloat(scope.problema.dd) * Math.pow(parseFloat(scope.problema.ro),3) * valorFormula2;
 	                    if(isNaN(valorFormula3)){
 	                      valorFormula3 = 0;  
@@ -138,7 +137,7 @@ function drawChartResolver(scope,xini,xfin,dmax){
 	   
 	                    data.push({
 	                        x: punto,
-	                        y: valorFormula3
+	                        y: valorFormula3+errorj
 	                    });
 						punto+=meds;
 	                }
