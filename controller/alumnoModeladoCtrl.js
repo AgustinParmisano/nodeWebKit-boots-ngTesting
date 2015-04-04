@@ -108,6 +108,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 			this.x1errorMsg = "Ingrese X1."
 		}
 		if (graficar) {
+			var errorAct=$scope.calculoError();
 		   ultimaPrueba = {
   				x: this.x1,
 				r: this.r1,
@@ -115,7 +116,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 				dem: this.dem1,
 				dim: this.dim1,
 				ddm: (parseFloat(this.dim1) - parseFloat(this.dem1)).toPrecision(4),
-				error:0,
+				error:errorAct,
 				id: idCounter++
 		  	};
 			$scope.dd1 = $scope.dim1 - $scope.dem1;
@@ -124,6 +125,15 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 			graficarCurvaModelado($scope);
 			modeloSeleccionado = ultimaPrueba;
 		};
+	}
+	$scope.calculoError= function(){
+	//No esta terminada la formula
+		var medpuntos=Math.round(($scope.experimento.xFinal - $scope.experimento.xInicial) / ($scope.experimento.nPasos -1) );
+		var errori=0;
+		 for (i = $scope.experimento.xInicial; i <= parseInt($scope.experimento.xFinal); i = i + medpuntos) {
+	           errori+=i;
+	          };
+		return errori;
 	}
 	$scope.guardar= function(){
 		if (ultimaPrueba.x) {
