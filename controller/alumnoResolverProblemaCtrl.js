@@ -208,6 +208,7 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
 	$scope.xfin = "";
 	$scope.nPasos = "";
 	$scope.lx = "";
+	$scope.costoAcumulado = "";
 
 	$scope.changeIni = function(){
 		this.xiniErrorMsg = "";

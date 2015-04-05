@@ -86,6 +86,7 @@
 #graficoDocente{
 	border: 3px solid #58B957;
     width: 100%;
+    margin-left: 2em;
 }
 #graficoAlumno{
 	border: 3px solid #58B957;
@@ -93,7 +94,7 @@
 }
 #graficoAlumnoModel{
 	border: 3px solid #58B957;
-	margin-left: 16%;
+	margin-left: 2%;
 }
 
 #errorMsg{
@@ -132,9 +133,14 @@
 }
 
 #graficosCrearProblema{
-	margin-right: 1%;
+	margin-right: 3%;
 }
 
 .selected {
 	background-color: #58B957;
 }
+
+.table {
+	width: 80%;
+}
+

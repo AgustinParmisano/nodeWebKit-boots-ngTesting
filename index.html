@@ -37,9 +37,7 @@
 					<nav class="navbar navbar-default" role="navigation">
 							 <ul class="nav navbar-nav navbar-left">
 								  <li class="active"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><b>Inicio</b></button></li>
-								  <li class="active"><button type="button" class="btn btn-primary" ng-click="acercaDe()" data-toggle="modal" data-target=".bs-example-modal-sm">
-										<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-										Acerca de</button></li>
+								  <li class="active"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ayudaModal" data-whatever="@mdo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Acerca de</button></li>
 							</ul>
 
 						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -59,6 +57,34 @@
 						      <div class="modal-footer" ng-controller="inicioCtrl">
 						        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 						        <button type="button" ng-click="inicioAceptar()" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						<div class="modal fade" id="ayudaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" >
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="exampleModalLabel">Sobre nosotros</h4>
+						      </div>
+						      <div class="modal-body">
+						        <form>
+						          <div class="form-group">
+						            <label for="message-text" class="control-label"><h4>Esta aplicacion fue desarrollada por: 
+Agustin Parmisano Sabbione, Carla Luna Gennari, en conjunto con Andres Cesanelli y Santiago Gabriel Solazzi.</h4>
+
+Contacto: 
+agustinparmisano@gmail.com 
+carla.lunagennari@gmail.com
+andres@cesanelli.com.ar
+solazzi.santiago@gmail.com
+Version de Aplicación 0.0.2o.</label>
+						          </div>
+						        </form>
+						      </div>
+						      <div class="modal-footer" ng-controller="inicioCtrl">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 						      </div>
 						    </div>
 						  </div>
