@@ -10,7 +10,7 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', function($scope, $rootS
 	$scope.experimento=exp;
 	console.log("EXPERIMENT: " + $scope.experimento);
 
-	$scope.graficar=false;
+	//$scope.graficar=false;
 	/*creo el canvas con los parametros del problema y del experimento*/
     setupCanvas($scope.problema.dmax);
     this.graficErrorMsg = "";

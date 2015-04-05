@@ -1,4 +1,4 @@
- app.controller('inicioCtrl', ['$scope', '$location', '$routeParams', '$window', function($scope, $location, $routeParams, $window) {
+ app.controller('inicioCtrl', ['$scope', '$location', '$routeParams', '$window', '$rootScope', function($scope, $location, $routeParams, $window, $rootScope) {
 
 	
 	$scope.comenzar = function() {
@@ -8,11 +8,13 @@
 
 	$scope.inicioAceptar = function(){		
 		$location.path('/');
-		$window.location.reload();
+		console.log($scope);
+		//$window.location.reload();
 	};
 	
 	$scope.acercaDe= function(){
 		$location.path('/ayuda');
+		$rootScope.xini = "";
 	}
 		
 }]);

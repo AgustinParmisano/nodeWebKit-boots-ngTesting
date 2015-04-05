@@ -168,6 +168,10 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 
 	$scope.dmax=parseInt($scope.problema.dmax);
 	$scope.dd=parseInt($scope.problema.dd);
+
+
+
+
 	this.contErrorMsg = "";
 	//var p=angular.fromJSON(problema);
 	//alert(p);
@@ -200,6 +204,10 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
 	setupCanvasResolver($scope.dmax);
 	initChart($scope);
 
+	$scope.xini = "";
+	$scope.xfin = "";
+	$scope.nPasos = "";
+	$scope.lx = "";
 
 	$scope.changeIni = function(){
 		this.xiniErrorMsg = "";
