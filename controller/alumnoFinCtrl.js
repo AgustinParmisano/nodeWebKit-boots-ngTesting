@@ -45,7 +45,7 @@ function graficarEsferas(scope){
 	var ejeX = Math.round(490 / scope.problema.dmax * scope.xm + 60);
     ctx.beginPath();
     ctx.moveTo(ejeX,scope.zm);
-	ctx.arc(ejeX,scope.zm + 100,scope.rm,30,(Math.PI/180)*360,true);
+	ctx.arc(ejeX,scope.zm + 50,scope.rm,30,(Math.PI/180)*360,true);
 	ctx.fillStyle="#FF0000";
 	ctx.fill();
 	ctx.closePath();
@@ -56,7 +56,7 @@ function graficarEsferas(scope){
 	var ro = parseInt(scope.ro);
 	ctx.beginPath();
     ctx.moveTo(ejeX,zo);
-	ctx.arc(ejeX,zo + 100,ro,30,(Math.PI/180)*360,true);
+	ctx.arc(ejeX,zo + 50,ro,30,(Math.PI/180)*360,true);
 	ctx.fillStyle="#000000";
 	ctx.fill();
 	ctx.closePath();

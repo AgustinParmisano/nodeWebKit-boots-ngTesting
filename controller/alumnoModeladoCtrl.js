@@ -89,24 +89,52 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 							  });
 						}else{
 							graficar = false;
-							this.dim1errorMsg = "Ingrese Dim1."
+							this.dim1errorMsg = "Ingrese Dim1.";
 						}
 					}else{
 						graficar = false;
-						this.dem1errorMsg = "Ingrese Dem1."
+						this.dem1errorMsg = "Ingrese Dem1.";
 					}
 				}else{
 					graficar = false;
-					this.r1errorMsg = "Ingrese R1."
+					this.r1errorMsg = "Ingrese R1.";
 				}
 			}else{
 				graficar = false;
-				this.z1errorMsg = "Ingrese Z1."
+				this.z1errorMsg = "Ingrese Z1.";
 			}
 		}else{
 			graficar = false;
-			this.x1errorMsg = "Ingrese X1."
+			this.x1errorMsg = "Ingrese X1.";
 		}
+
+		/*if (this.r1 + this.x1 > $scope.problema.dmax) {
+			graficar = false;
+			this.x1errorMsg = "X1 y R1 muy grandes.";
+			this.r1errorMsg = "X1 y R1 muy grandes.";
+		};*/
+
+		if (this.dem1 > 15) {
+			graficar = false;
+			this.dem1errorMsg =  "Dem1 debe ser menor a 15.";
+		};
+
+		if (this.dim1 > 15) {
+			graficar = false;
+			this.dim1errorMsg =  "Dim1 debe ser menor a 15.";
+		};
+
+		if (this.r1 > this.z1) {
+			graficar = false;
+			this.r1errorMsg = "R1 debe ser menor a Z1";
+			this.z1errorMsg = "Z1 debe ser mayor a R1";
+		};
+
+		if (this.r1 > 120) {
+			graficar = false;
+			this.r1errorMsg = "R1 debe ser menor a 120.";
+		};
+
 		if (graficar) {
 			var errorAct=$scope.calculoError();
 		   ultimaPrueba = {
@@ -282,11 +310,13 @@ function setupCanvas(dmax){
 
     c = document.getElementById("graficoAlumnoModel");
     ctx = c.getContext("2d");
-    crearLinea(dmax);
+
+    crearLineaModel(dmax);
 }
 
-function crearLinea(dmax){
+function crearLineaModel(dmax){
     /*Esto grafica la recta*/
+
     ctx.moveTo(50,50);
     ctx.lineTo(550,50);
     ctx.moveTo(50,40);
@@ -324,7 +354,7 @@ function graficarPorcionModel(ini, fin, scope){
 function graficarModelo(scope){
 	var ejeX = Math.round(490 / scope.problema.dmax * scope.x1 + 60);
     ctx.moveTo(ejeX,scope.z1);
-	ctx.arc(ejeX,scope.z1 + 100,scope.r1,30,(Math.PI/180)*360,true);
+	ctx.arc(ejeX,scope.z1 + 50,scope.r1,30,(Math.PI/180)*360,true);
 	ctx.fillStyle="#FF0000";
     //ctx.fillText(scope.problema.dmax,520,80);
 	ctx.fill();
