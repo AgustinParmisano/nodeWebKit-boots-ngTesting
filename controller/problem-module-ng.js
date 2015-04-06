@@ -253,6 +253,15 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 			this.r0ErrorMsg = "Ingrese Numeros";
             noGraficar = true;
 		}
+
+        if (parseInt(this.r) + parseInt(this.z) > 230) {
+            this.z0ErrorMsg = "";
+            this.z0ErrorMsg = "El R y el Z son muy grandes.";
+            this.r0ErrorMsg = "";
+            this.r0ErrorMsg = "El R y el Z son muy grandes.";
+            noGraficar = true;
+        };
+
 		if (isNaN(this.x)) {
             //alert("if (isNaN(this.x)) {");
             this.x0ErrorMsg = "";
@@ -328,12 +337,12 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
             noGraficar = true;
         }
 
-        if(parseInt(this.r) > 150){
+        if(parseInt(this.r) > 120){
             //alert("if(this.r > this.x)");
             this.x0ErrorMsg = "";
             this.r0ErrorMsg = "";
             this.dmaxErrorMsg = "";
-            this.r0ErrorMsg = "R debe ser menor a 150."
+            this.r0ErrorMsg = "R debe ser menor a 120."
             noGraficar = true;
         }
 
@@ -451,6 +460,9 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 		}else if(this.costoMed == "" || this.costoMed == null){
 			texto+=" Costo Medicion";
             this.costoMedErrorMsg = texto;
+        }else if(this.costoMax < this.costoMed){
+            texto = "Costo máximo no debe ser menor a costo de medición."
+            this.costoMaxErrorMsg  = texto;
 		}else{
 			//Esto el json que se va a guardar
 			var problema = {

@@ -178,7 +178,7 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 
 
 	 $scope.continuar = function(){
-		if($rootScope.xini && $rootScope.xfin && $rootScope.nPasos && $rootScope.costoAcumulado){
+		if(($rootScope.xini >= 0) && $rootScope.xfin && $rootScope.nPasos && $rootScope.costoAcumulado){
 			if ($rootScope.costoAcumulado < $scope.costoMaximo) {;		
 				var experimento = {
 						xInicial: $scope.xini,
@@ -275,7 +275,7 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
         //alert(this.costoMaximo);
         if (this.nPasos < 2) {
         	this.graficErrorMsg = "Mínimo de mediciones debe ser 2.";
-        	noGraficar = tru
+        	noGraficar = true;
         };
 
         if (this.costoAcumulado) {
