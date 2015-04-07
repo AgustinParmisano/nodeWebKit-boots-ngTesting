@@ -41,7 +41,7 @@
 							  <div class="form-group">
 								<label for="ejemplo_email_3" class="col-lg-2 control-label">r<sub>m</sub></label>
 								<div class="col-lg-8">
-								  <input type="number" class="form-control" id="r1" ng-model="r1"
+								  <input type="number" class="form-control" id="r1" ng-model="r1" ng-change="changeR1()"
 										 placeholder="R1" onKeyPress="return onlyNumber(event);">
 							 	  <p id="errorMsg" ng-model="r1errorMsg">{{r1errorMsg}}</p>
 								</div>

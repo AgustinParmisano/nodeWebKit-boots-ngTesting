@@ -197,15 +197,57 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 		$scope.ddm1 = parseFloat(this.ddm1);
 	}
 	$scope.changeX1 = function(){
-		if(this.x1 >= $scope.experimento.xInicial && this.x1 <= $scope.experimento.xFinal || this.x1 == null){
+		if((this.x1 >= this.r1 && this.x1 <= ($scope.problema.dmax - this.r1)) && this.x1 >= 0 && this.x1 <= $scope.problema.dmax || this.x1 == null){
 			this.x1errorMsg= "";
 		}else{
+			if(this.x1 > $scope.problema.dmax){
+				this.x1errorMsg= "X debe ser menor a "+ $scope.problema.dmax;
+			}else{
+				if(this.r1 != null){
+					if(this.x1 < this.r1){
+						this.x1errorMsg= "X debe ser mayor a "+ this.r1;
+					}else{
+						if(this.x1 > ($scope.problema.dmax - this.r1)){
+							this.x1errorMsg= "X debe ser menor a "+ ($scope.problema.dmax - this.r1);
+						}
+					}
+				}
+			}
+			
+			/*Se usaba para verificar que xo esta entre xiini y xfin, no es necesario
 			if(this.x1 < $scope.experimento.xInicial){
 				this.x1errorMsg= "X debe ser mayor a "+ $scope.experimento.xInicial;
 			}	
 			if(this.x1 > $scope.experimento.xFinal){
 				this.x1errorMsg= "X debe ser menor a "+ $scope.experimento.xFinal;
+			}*/
+		}	
+	}
+	$scope.changeR1 = function(){
+		if((this.x1 >= this.r1 && this.x1 <= ($scope.problema.dmax - this.r1)) ||  this.r1 == null){
+			this.r1errorMsg= "";
+			
+		}else{
+			if(this.r1 > $scope.problema.dmax){
+				this.r1errorMsg= "R debe ser menor a "+ $scope.problema.dmax;
+			}else{
+				if(this.r1 > $scope.problema.dmax/2){
+					this.r1errorMsg= "R debe ser menor a "+ $scope.problema.dmax/2;
+				}
 			}
+			if(this.x1 != null){
+				this.x1errorMsg= "";
+				if(this.x1 < this.r1){
+					this.r1errorMsg= "X debe ser mayor a "+ this.r1;
+					}else{
+						if(this.x1 > ($scope.problema.dmax - this.r1)){
+							this.r1errorMsg= "X debe ser menor a "+ ($scope.problema.dmax - this.r1);
+						}
+					}
+			}else{
+					this.x1errorMsg= "";
+			}
+				
 		}	
 	}
 
