@@ -105,9 +105,10 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
         //console.log("CURRENT STRING: " + $currentString);
         //$localPath = $currentString;//.slice(0,-10); //PARA NODE WEB KIT
         //console.log($localpath);
-        $destinationPath = "/index.html#/elegirProblema"; 
-        console.log("DESTINATION: " + $destinationPath);
-        window.location.href=$destinationPath;
+        //$destinationPath = "/index.html#/elegirProblema"; 
+        //console.log("DESTINATION: " + $destinationPath);
+        //window.location.href=$destinationPath;
+		$location.url("/elegirProblema");
     };
 
 	$scope.change = function() {

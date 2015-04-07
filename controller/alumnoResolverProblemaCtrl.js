@@ -243,7 +243,7 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
 	$scope.actualizarResolver = function(){
 		if( ($scope.xini != null) && ($scope.xfin != null) && ($scope.nPasos != null)){
 			$scope.lx =$scope.xfin-$scope.xini;
-			$scope.dx=$scope.lx/($scope.nPasos-1);
+			$scope.dx=parseFloat(($scope.lx/($scope.nPasos-1)).toFixed(4));
 			$scope.costoTotal = $scope.nPasos * $scope.problema.costoMedicion;
 		}else{
 			$scope.lx ="";
