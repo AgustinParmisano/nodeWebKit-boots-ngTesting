@@ -398,8 +398,10 @@ function graficarPorcionModel(ini, fin, scope){
 
 function graficarModelo(scope){
 	var ejeX = Math.round(490 / scope.problema.dmax * scope.x1 + 60);
-    ctx.moveTo(ejeX,scope.z1);
-	ctx.arc(ejeX,scope.z1 + 50,scope.r1,30,(Math.PI/180)*360,true);
+	console.log(ejeX);
+    ctx.moveTo(ejeX,scope.z1+70);
+	//ctx.arc(ejeX,scope.z1 + 50,scope.r1,30,(Math.PI/180)*360,true);
+	ctx.arc(ejeX,scope.z1 + 70,scope.r1,30,(Math.PI/180)*360,true);
 	ctx.fillStyle="#FF0000";
     //ctx.fillText(scope.problema.dmax,520,80);
 	ctx.fill();
