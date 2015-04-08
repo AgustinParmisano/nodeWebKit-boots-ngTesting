@@ -47,6 +47,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
     setupCanvas($scope.problema.dmax);
     this.graficErrorMsg = "";
     //alert($scope.experimento.xInicial);
+	$scope.ruido=$scope.experimento.ruido;
   	graficarPorcionModel(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
 	$scope.guardado=false;
 	
@@ -270,6 +271,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 function graficarCurva(scope){
 		var meds = Math.round((scope.experimento.xFinal - scope.experimento.xInicial) / (scope.experimento.nPasos -1) );
 		//alert(meds);
+		var paso= 0;
 		//console.log(scope.problema.dmax);
 		scope.dmax=Math.min(scope.dmax, 999)
 	    scope.highchartsNG = {
@@ -315,8 +317,9 @@ function graficarCurva(scope){
 	   
 	                    data.push({
 	                        x: punto,
-	                        y: valorFormula3+errorj
+	                        y: valorFormula3+(errorj*(parseFloat(scope.ruido[paso])))
 	                    });
+						paso++;
 						punto+=meds;
 	                }
 					data.push({
@@ -405,6 +408,7 @@ function graficarModelo(scope){
 function graficarCurvaModelado(scope){
 		var meds = Math.round((scope.experimento.xFinal - scope.experimento.xInicial+1) / (scope.experimento.nPasos -1) );
 		//alert(meds);
+		var paso=0;
 		//console.log(scope.problema.dmax);
 		scope.dmax=Math.min(scope.problema.dmax, 999)
 	    scope.highchartsNG = {
@@ -468,6 +472,7 @@ function graficarCurvaModelado(scope){
 								x: -1,
 								y: 0
 							});
+						var errorj=0.0013969*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
 						for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal)+meds; i = i + meds) {
 							var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 							var valorFormula2 = scope.problema.zo / valorFormula1;
@@ -478,8 +483,9 @@ function graficarCurvaModelado(scope){
 		   
 							data.push({
 								x: punto,
-								y: valorFormula3
+								y: valorFormula3+(errorj*(parseFloat(scope.ruido[paso])))
 							});
+							paso++;
 							punto+=meds;
 						}
 						data.push({

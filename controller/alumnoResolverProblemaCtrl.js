@@ -9,7 +9,10 @@ function onlyNumber(event)
     test = String.fromCharCode(keyPress);
     return patron.test(test);
 }
-
+/*Funcion para ramdom*/
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 /*aca empieza el controller*/
 
 var chartData;
@@ -90,8 +93,9 @@ function initChart(scope){
 
 function drawChartResolver(scope,xini,xfin,dmax){
 		var meds = Math.round((xfin-xini) / (scope.nPasos-1));
-		//alert(meds);
-
+		//alert(scope.nPasos);
+		var cant=scope.nPasos;
+		var paso=0;
 		scope.dmax=Math.min(dmax, 999)
 	    scope.highchartsNG = {
 	        options: {
@@ -126,6 +130,7 @@ function drawChartResolver(scope,xini,xfin,dmax){
 	                        x: -1,
 	                        y: 0
 	                    });
+					scope.ruido[paso]= getRandomInt(-1,1);
 					var errorj=0.0013969*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
 	                for (i = xini; i <= (parseInt(xfin)); i = i + meds) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - parseFloat(scope.problema.xo),2)) +(Math.pow(parseFloat(scope.problema.zo),2))), 3/2);
@@ -137,8 +142,10 @@ function drawChartResolver(scope,xini,xfin,dmax){
 	   
 	                    data.push({
 	                        x: punto,
-	                        y: valorFormula3+errorj
+	                        y: valorFormula3+(errorj*(parseFloat(scope.ruido[paso])))
 	                    });
+						paso=paso+1;
+						scope.ruido[paso]= getRandomInt(-1,1);
 						punto+=meds;
 	                }
 					data.push({
@@ -184,7 +191,8 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 						xInicial: $scope.xini,
 						xFinal: $scope.xfin,
 						nPasos: $scope.nPasos,
-						costoAcumulado: $scope.costoAcumulado
+						costoAcumulado: $scope.costoAcumulado,
+						ruido: $scope.ruido
 				};
 				$scope.experimento= JSON.stringify(experimento, null, 2);
 				localStorage.setItem('experimento',$scope.experimento);
@@ -208,6 +216,7 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
 	$scope.xfin = "";
 	$scope.nPasos = "";
 	$scope.lx = "";
+	$scope.ruido=[];
 	$scope.costoAcumulado = "";
 
 	$scope.changeIni = function(){
@@ -326,6 +335,7 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
         	$rootScope.xfin = $scope.xfin;
         	$rootScope.nPasos = $scope.nPasos;
         	drawChartResolver($scope,parseInt(this.xini), parseInt(this.xfin),parseInt($scope.problema.dmax));
+			$rootScope.ruido=$scope.ruido;
         	graficarPorcion(this.xini, this.xfin, $scope);
         	if (!$scope.costoAcumulado) {
         		$scope.costoAcumulado = 0;
