@@ -209,6 +209,7 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 	*/
 	$scope.graficarEsfera= function(){
         var noGraficar = false;
+        var labelZ = false;
         var zLimit = 0;
         var dmaxLimit = 0;
 
@@ -256,11 +257,13 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 		}
 
         if (parseInt(this.r) + parseInt(this.z) > 230) {
-            this.z0ErrorMsg = "";
+            /*this.z0ErrorMsg = "";
             this.z0ErrorMsg = "El R y el Z son muy grandes.";
             this.r0ErrorMsg = "";
             this.r0ErrorMsg = "El R y el Z son muy grandes.";
-            noGraficar = true;
+            noGraficar = true;*/
+            //this.z = 229;
+            labelZ = true;
         };
 
 		if (isNaN(this.x)) {
@@ -314,11 +317,11 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
         if(parseInt(this.z) > 300){
             //alert("if(this.z > 300){");
             //NO ANDA EL MENSAJE DE ERROR
-            this.z0ErrorMsg = ""
-            this.z0ErrorMsg = "Z debe ser menor a 300."
-            noGraficar = true;
-        }else if(parseInt(this.z) === 300){
-            zLimit = 229;
+            //this.z0ErrorMsg = ""
+            //this.z0ErrorMsg = "Z debe ser menor a 300."
+            labelZ = true;
+        /*}else if(parseInt(this.z) === 300){
+            zLimit = 229;*/
         }
 
         if(parseInt(this.dmax) < 50){
@@ -360,12 +363,16 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
                 ejeX = Math.round(490 / this.dmax * this.x + 60);
             };
 
-            if (zLimit != 0) {
+            /*if (zLimit != 0) {
                 ejeZ = parseInt(zLimit) + 70;
             }else{
                 ejeZ = parseInt(this.z) + 70;
-            };
+            };*/
             
+            ejeZ = parseInt(this.z) + 70;
+            if (ejeZ > 300) {
+                ejeZ = 300;
+            };
             //$scope.x = ejeX;
 
             console.log("X " + ejeX);
@@ -375,6 +382,10 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
             ctx.moveTo(ejeX,ejeZ);
 			ctx.arc(ejeX,ejeZ,this.r,30,(Math.PI/180)*360,true);
 			ctx.fillStyle="#000000";
+            if(labelZ){
+                ctx.font = "20px Arial";
+                ctx.fillText("Eje Z: " + (this.z),10,150);
+            }
 			ctx.fill();
             drawChartDocente($scope);
 
@@ -432,6 +443,8 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
         this.x0ErrorMsg = "";
         this.deErrorMsg = "";
         this.diErrorMsg = "";
+        this.costoMaxErrorMsg = "";
+        this.costoMedErrorMsg = "";
 
 		var texto= "Falta Completar";
 		if (this.enun == null) {
@@ -461,9 +474,10 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 		}else if(this.costoMed == "" || this.costoMed == null){
 			texto+=" Costo Medicion";
             this.costoMedErrorMsg = texto;
-        }else if(this.costoMax < this.costoMed){
+        }else if(parseInt(this.costoMax) < parseInt(this.costoMed)){
             texto = "Costo máximo no debe ser menor a costo de medición."
             this.costoMaxErrorMsg  = texto;
+            cosole.log(texto);
 		}else{
 			//Esto el json que se va a guardar
 			var problema = {
