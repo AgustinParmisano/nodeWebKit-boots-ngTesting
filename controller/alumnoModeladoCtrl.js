@@ -195,7 +195,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 
 	$scope.changeDdm = function(){
 		this.ddm1 = parseFloat(this.dim1) - parseFloat(this.dem1);
-		$scope.ddm1 = parseFloat(this.ddm1);
+		$scope.ddm1 = parseFloat((this.ddm1).toFixed(2));
 	}
 	$scope.changeX1 = function(){
 		if((this.x1 >= this.r1 && this.x1 <= ($scope.problema.dmax - this.r1)) && this.x1 >= 0 && this.x1 <= $scope.problema.dmax || this.x1 == null){
@@ -261,9 +261,10 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 		$scope.dem1 = modeloSeleccionado.dem;
 		$scope.dim1 = modeloSeleccionado.dim;
 		$scope.ddm1 = modeloSeleccionado.ddm;
-		graficarPorcionModel(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
-		graficarModelo($scope);
-		graficarCurvaModelado($scope);
+		//graficarPorcionModel(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
+		//graficarModelo($scope);
+		//graficarCurvaModelado($scope);
+		$scope.diagramar();
 	}
 
 }]);
@@ -399,9 +400,9 @@ function graficarPorcionModel(ini, fin, scope){
 function graficarModelo(scope){
 	var ejeX = Math.round(490 / scope.problema.dmax * scope.x1 + 60);
 	console.log(ejeX);
-    ctx.moveTo(ejeX,scope.z1+70);
+    ctx.moveTo(ejeX,scope.z1+52);
 	//ctx.arc(ejeX,scope.z1 + 50,scope.r1,30,(Math.PI/180)*360,true);
-	ctx.arc(ejeX,scope.z1 + 70,scope.r1,30,(Math.PI/180)*360,true);
+	ctx.arc(ejeX,scope.z1 + 52,scope.r1,30,(Math.PI/180)*360,true);
 	ctx.fillStyle="#FF0000";
     //ctx.fillText(scope.problema.dmax,520,80);
 	ctx.fill();
