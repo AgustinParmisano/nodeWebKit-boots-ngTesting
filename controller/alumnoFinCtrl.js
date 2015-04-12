@@ -41,19 +41,43 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', function($scope, $rootS
 }]);
 
 function graficarEsferas(scope){
+	var ejeY=false;
+	var y;
+	var zo = parseInt(scope.zo);
+	var ro = parseInt(scope.ro);
+	var zm= parseInt(scope.zm);
+	if(zm > 210){ 
+		y=zm;
+		zm=210;
+		ejeY=true;
+	}else{
+		if( zo > 210){
+			y=zo;
+			zo=210;
+			ejeY=true;
+		}
+	}
+	if(ejeY){
+		ctx.moveTo(50,50);
+		ctx.lineTo(50,260);
+		ctx.moveTo(40,260);
+		ctx.lineTo(60,260);
+		ctx.font = "20px Arial";
+		ctx.fillText(y,10,260);
+		ctx.stroke();
+	}
+	
 	//Graficar Esfera Final
 	var ejeX = Math.round(490 / scope.problema.dmax * scope.xm + 60);
     ctx.beginPath();
-    ctx.moveTo(ejeX,scope.zm+50);
-	ctx.arc(ejeX,scope.zm + 50,scope.rm,30,(Math.PI/180)*360,true);
+    ctx.moveTo(ejeX,zm+50);
+	ctx.arc(ejeX,zm + 50,scope.rm,30,(Math.PI/180)*360,true);
 	ctx.fillStyle="#FF0000";
 	ctx.fill();
 	ctx.closePath();
 
 	//Graficar Esfera Real
 	ejeX = Math.round(490 / parseInt(scope.problema.dmax) * parseInt(scope.xo) + 60);
-	var zo = parseInt(scope.zo);
-	var ro = parseInt(scope.ro);
 	ctx.beginPath();
     ctx.moveTo(ejeX,zo+50);
 	ctx.arc(ejeX,zo + 50,ro,30,(Math.PI/180)*360,true);

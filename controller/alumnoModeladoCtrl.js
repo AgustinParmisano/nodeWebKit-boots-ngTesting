@@ -399,13 +399,31 @@ function graficarPorcionModel(ini, fin, scope){
 
 function graficarModelo(scope){
 	var ejeX = Math.round(490 / scope.problema.dmax * scope.x1 + 60);
-	console.log(ejeX);
-    ctx.moveTo(ejeX,scope.z1+52);
+	var ejeZ= parseInt(scope.z1)+52;
+	var grafZ=false;
+	if (ejeZ > 290) {
+        ejeZ = 290;
+		grafZ=true;
+     };
+	 if(grafZ){
+		//ctx.fillStyle="#FF0000";
+		ctx.moveTo(50,50);
+		ctx.lineTo(50,290);
+		ctx.moveTo(40,290);
+		ctx.lineTo(60,290);
+		ctx.font = "20px Arial";
+		ctx.fillText(scope.z1,10,290);
+		ctx.stroke();
+		//ctx.fill();
+	}
+	console.log(ejeX +"z:"+ ejeZ);
+    ctx.moveTo(ejeX,ejeZ);
 	//ctx.arc(ejeX,scope.z1 + 50,scope.r1,30,(Math.PI/180)*360,true);
-	ctx.arc(ejeX,scope.z1 + 52,scope.r1,30,(Math.PI/180)*360,true);
+	ctx.arc(ejeX,ejeZ,scope.r1,30,(Math.PI/180)*360,true);
 	ctx.fillStyle="#FF0000";
-    //ctx.fillText(scope.problema.dmax,520,80);
+	//ctx.fillText(scope.problema.dmax,520,80)
 	ctx.fill();
+    
 }
 
 function graficarCurvaModelado(scope){

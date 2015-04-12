@@ -370,8 +370,8 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
             };*/
             
             ejeZ = parseInt(this.z) + 70;
-            if (ejeZ > 300) {
-                ejeZ = 300;
+            if (ejeZ > 290) {
+                ejeZ = 290;
             };
             //$scope.x = ejeX;
 
@@ -383,8 +383,19 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 			ctx.arc(ejeX,ejeZ,this.r,30,(Math.PI/180)*360,true);
 			ctx.fillStyle="#000000";
             if(labelZ){
-                ctx.font = "20px Arial";
-                ctx.fillText("Eje Z: " + (this.z),10,150);
+				    ctx.moveTo(50,50);
+					ctx.lineTo(50,290);
+					ctx.moveTo(40,290);
+					ctx.lineTo(60,290);
+					ctx.font = "20px Arial";
+					ctx.fillText(this.z,10,290);
+					//ctx.moveTo(550,40);
+					//ctx.lineTo(550,60);
+					ctx.stroke();
+					ctx.fill();
+				//	ctx.fillText("",520,80);
+                //ctx.font = "20px Arial";
+                //ctx.fillText("Eje Z: " + (this.z),10,150);
             }
 			ctx.fill();
             drawChartDocente($scope);
