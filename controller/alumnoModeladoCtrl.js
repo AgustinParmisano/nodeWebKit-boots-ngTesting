@@ -260,6 +260,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 		$scope.z1 = modeloSeleccionado.z;
 		$scope.dem1 = modeloSeleccionado.dem;
 		$scope.dim1 = modeloSeleccionado.dim;
+		$scope.ddm1 = parseFloat(modeloSeleccionado.ddm);
 		//graficarPorcionModel(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
 		//graficarModelo($scope);
 		//graficarCurvaModelado($scope);
