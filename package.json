@@ -1,12 +1,12 @@
 {
   "main": "index.html",
   "name": "Geofisica",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "keywords": [ "demo", "node-webkit" ],
   "window": {
     "icon": "images/imagen.png",
-	"width": 800,
-    "height": 600,
+	"width": 1000,
+    "height": 800,
     "toolbar": false,
     "position": "center",
     "resizable": true,
