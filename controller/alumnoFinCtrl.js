@@ -31,6 +31,27 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', function($scope, $rootS
   	$scope.dem = $rootScope.modeloFinal.dem;
   	$scope.dim = $rootScope.modeloFinal.dim;
   	$scope.ddm = (parseFloat($rootScope.modeloFinal.dim - $rootScope.modeloFinal.dem)).toPrecision(4);
+  	//errores/diferencias
+	$scope.errorxo = (parseFloat((Math.abs((Math.floor((parseInt($scope.xo) - parseInt($scope.xm))))) / (parseInt($scope.xo))) * 100)).toPrecision(4) + "%";
+  	$scope.errorzo = (parseFloat((Math.abs((Math.floor((parseInt($scope.zo) - parseInt($scope.zm))))) / (parseInt($scope.zo))) * 100)).toPrecision(4) + "%";
+  	$scope.errorro = (parseFloat((Math.abs((Math.floor((parseInt($scope.ro) - parseInt($scope.rm))))) / (parseInt($scope.ro))) * 100)).toPrecision(4) + "%";
+  	//$scope.errordeo = (parseFloat((Math.abs((Math.floor((parseInt($scope.deo) - parseInt($scope.dem))))) / (parseInt($scope.deo))) * 100)).toPrecision(4) + "%";
+  	//$scope.errordio = (parseFloat((Math.abs((Math.floor((parseInt($scope.dio) - parseInt($scope.dim))))) / (parseInt($scope.dio))) * 100)).toPrecision(4) + "%";
+  	//$scope.errorddo = (parseFloat((Math.abs((Math.floor((parseInt($scope.ddo) - parseInt($scope.ddm))))) / (parseInt($scope.ddo))) * 100)).toPrecision(4) + "%";
+  	$scope.errordio = ((parseFloat($scope.dio) - parseFloat($scope.dim))).toPrecision(4);;
+  	$scope.errordeo = ((parseFloat($scope.deo) - parseFloat($scope.dem))).toPrecision(4);;
+  	$scope.errorddo = ((parseFloat($scope.ddo) - parseFloat($scope.ddm))).toPrecision(4);;
+
+  	if ($scope.dio == 0) {
+  		$scope.errordio = $scope.dim;
+  	};
+  	if ($scope.deo == 0) {
+  		$scope.errordeo = $scope.dem;
+  	};
+  	if ($scope.ddo == 0) {
+  		$scope.errorddo = $scope.ddm;
+  	};
+
   	//Guardo el modelo final para graficar (pudo haber sido antes)
   	$scope.modeloFinal = $rootScope.modeloFina;
   	//Grafico esfera Real(Docente) Negra y Final(Alumno) Roja (graficarla Roja en la pantalla anterior tb)

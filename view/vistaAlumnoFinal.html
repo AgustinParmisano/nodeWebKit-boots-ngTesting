@@ -1,4 +1,15 @@
-<div class="container-fluid">		
+<div class="container-fluid">
+
+	<div class="col-sm-1 col-md-1 col-lg-1"></div>
+
+	<div class="col-sm-10 col-md-10 col-lg-10">
+		<div class="panel panel-default">
+			<textarea class="form-control" id="enunciado" ng-model="enunciado" readonly>
+				{{enunciado}}
+			</textarea>
+		</div>
+	</div>		
+
 	<div class="row">
 		<div class="col-sm-4 col-md-4 col-lg-4">
 			<!--Tabla Responsive-->
@@ -10,36 +21,48 @@
 						<td>{{xm}}</td>
 						<td><b>X<sub>0</sub></b></td>
 						<td>{{xo}}</td>
+						<td><b>Error</b></td>
+						<td>{{errorxo}}</td>
 					</tr>
 					<tr class="active">
 						<td><b>Z<sub>m</sub></b></td>
 						<td>{{zm}}</td>
 						<td><b>Z<sub>0</sub></b></td>
 						<td>{{zo}}</td>
+						<td><b>Error</b></td>
+						<td>{{errorzo}}</td>
 					</tr>
 					<tr class="active">
 						<td><b>r<sub>m</sub></b></td>
 						<td>{{rm}}</td>
 						<td><b>r<sub>0</sub></b></td>
 						<td>{{ro}}</td>
+						<td><b>Error</b></td>
+						<td>{{errorro}}</td>
 					</tr>
 					<tr class="active">
 						<td><b>de<sub>m</sub></b></td>
 						<td>{{dem}}</td>
 						<td><b>de<sub>0</sub></b></td>
 						<td>{{deo}}</td>
+						<td><b>Error</b></td>
+						<td>{{errordeo}}</td>
 					</tr>
 					<tr class="active">
 						<td><b>di<sub>m</sub></b></td>
 						<td>{{dim}}</td>
 						<td><b>di<sub>0</sub></b></td>
 						<td>{{dio}}</td>
+						<td><b>Error</b></td>
+						<td>{{errordio}}</td>
 					</tr>
 					<tr class="active">
 						<td><b>Dd<sub>m</sub></b></td>
 						<td>{{ddm}}</td>
 						<td><b>Dd<sub>0</sub></b></td>
 						<td>{{ddo}}</td>
+						<td><b>Error</b></td>
+						<td>{{errorddo}}</td>
 					</tr>
 				</table>
 			</div>

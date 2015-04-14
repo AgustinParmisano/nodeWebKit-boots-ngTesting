@@ -256,6 +256,14 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
             noGraficar = true;
 		}
 
+        if (parseInt(this.z) < parseInt(this.r)) {
+            this.z0ErrorMsg = "";
+            this.z0ErrorMsg = "R no debe ser mayor a Z.";
+            this.r0ErrorMsg = "";
+            this.r0ErrorMsg = "R no debe ser mayor a Z.";
+            noGraficar = true;
+        };
+
         if (parseInt(this.r) + parseInt(this.z) > 230) {
             /*this.z0ErrorMsg = "";
             this.z0ErrorMsg = "El R y el Z son muy grandes.";
@@ -369,7 +377,7 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
                 ejeZ = parseInt(this.z) + 70;
             };*/
             
-            ejeZ = parseInt(this.z) + 70;
+            ejeZ = parseInt(this.z) + 51;
             if (ejeZ > 290) {
                 ejeZ = 290;
             };
