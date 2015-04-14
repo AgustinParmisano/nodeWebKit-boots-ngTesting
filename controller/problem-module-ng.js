@@ -179,7 +179,7 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 		}
 
 		if(this.de != null && this.di != null){
-			$scope.dd = this.di - this.de;
+			$scope.dd = (this.di - this.de).toFixed(4);
 		}
 	}
 	
@@ -429,7 +429,7 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
         }
         this.de = Math.floor(Math.random() * ((15 - 1) - 2 + 1)) + 2;
         this.di = Math.floor(Math.random() * ((15 - 1) - 2 + 1)) + 2;
-        $scope.dd = this.di - this.de;
+        $scope.dd = (this.di - this.de).toFixed(4);
     };
 
     $scope.borrar= function(){
