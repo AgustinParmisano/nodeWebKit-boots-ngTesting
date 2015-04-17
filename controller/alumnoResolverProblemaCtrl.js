@@ -82,7 +82,9 @@ function initChart(scope){
                 width: '600'
             }
         },
-
+		credits: {
+			  enabled: false
+		},
         title: {
             text: ''
         },
@@ -103,7 +105,9 @@ function drawChartResolver(scope,xini,xfin,dmax){
 	                type: 'scatter',
 	                width: '600'
 	            },
-
+				credits: {
+					  enabled: false
+				},
 	            yAxis: {
 					title:{text:'dg[mGal]'}
 	            },

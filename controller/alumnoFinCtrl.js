@@ -132,7 +132,9 @@ function graficarCurvaFinal(scope){
 	                type: 'line',
 	                width: '600'
 	            },
-
+				credits: {
+					  enabled: false
+				},
 	            yAxis: {
 					title:{text:'Anomalia de Gravedad'}
 	            },

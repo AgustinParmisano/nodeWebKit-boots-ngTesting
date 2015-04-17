@@ -31,9 +31,11 @@ function initChartDocente(scope){
                 width: '600'
             }
         },
-
+		credits: {
+			  enabled: false
+		},
         title: {
-            text: 'Anomalia'
+            text: ''
         },
         loading: false
     }
@@ -179,7 +181,7 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 		}
 
 		if(this.de != null && this.di != null){
-			$scope.dd = (this.di - this.de).toFixed(4);
+			$scope.dd = (this.di - this.de).toFixed(2);
 		}
 	}
 	
@@ -437,7 +439,7 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
         }
         this.de = Math.floor(Math.random() * ((15 - 1) - 2 + 1)) + 2;
         this.di = Math.floor(Math.random() * ((15 - 1) - 2 + 1)) + 2;
-        $scope.dd = (this.di - this.de).toFixed(4);
+        $scope.dd = (this.di - this.de).toFixed(2);
     };
 
     $scope.borrar= function(){
@@ -570,6 +572,9 @@ function drawChartDocente(scope){
 				title:{text:'dg[mGal]'}
             }
         },
+		credits: {
+			  enabled: false
+		},
           series: [{
             color: '#000000',
 			name: 'Curva Modelada',

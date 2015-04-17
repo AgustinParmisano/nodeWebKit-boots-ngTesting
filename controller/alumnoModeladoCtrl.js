@@ -19,7 +19,9 @@ function initChartModel(scope){
                 width: '600'
             }
         },
-
+		credits: {
+			  enabled: false
+		},
         title: {
             text: 'Anomalía'
         },
@@ -281,6 +283,9 @@ function graficarCurva(scope){
 	                type: 'scatter',
 	                width: '600'
 	            },
+				credits: {
+					  enabled: false
+				},
 				xAxis: {
 	            	floor: 0,
             		ceiling: parseInt(scope.problema.dmax),
@@ -438,7 +443,9 @@ function graficarCurvaModelado(scope){
 	                type: 'line',
 	                width: '600'
 	            },
-
+				credits: {
+					  enabled: false
+				},
 	            
 	            xAxis: {
 	            	floor: 0,
