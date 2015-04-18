@@ -451,6 +451,9 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
         this.x = null;
         this.di = null;
         this.de = null;
+		this.costoMed = null;
+		this.costoMax = null;
+		this.enun = null;
         $scope.dd = null;
         var seriesArray = $scope.highchartsNG.series;
         var rndIdx = Math.floor(Math.random() * seriesArray.length);
@@ -563,14 +566,14 @@ function drawChartDocente(scope){
                 width: '600'
             },
 			xAxis: {
-					title:{text:'Anomalia de Gravedad'}
+					title:{text:'Coordenada'}
 	            },
             
             yAxis: { 
                 plotLines: [{value: 0}],
                 height: '100%',
                 startOnTick: false,
-				title:{text:'dg[mGal]'}
+				title:{text: '\u0394g[mGal]'}
             }
         },
 		credits: {

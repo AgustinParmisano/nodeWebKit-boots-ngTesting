@@ -91,10 +91,12 @@
 #graficoAlumno{
 	border: 3px solid #58B957;
 	margin-left: 4%;
+	width: 100%;
 }
 #graficoAlumnoModel{
 	border: 3px solid #58B957;
 	margin-left: 2%;
+	width: 100%;
 }
 
 #errorMsg{
