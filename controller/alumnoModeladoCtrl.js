@@ -33,6 +33,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 	var modeloSeleccionado = null;
 	var idCounter = 0;
 	$scope.idSelectedX = 0;
+	$scope.titulo='Modelado';	
 
 	$scope.problema=JSON.parse(localStorage.getItem('problema'));//$routeParams.problema.substring(9,$routeParams.problema.length);
 	//alert($scope.problema);

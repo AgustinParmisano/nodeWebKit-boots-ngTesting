@@ -92,6 +92,7 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 	$scope.showButton = true;
 	setupCanvasDocente();
     initChartDocente($scope);
+	$scope.titulo='Crear Problema';	
 	
 
     $scope.inicioAceptar = function(){

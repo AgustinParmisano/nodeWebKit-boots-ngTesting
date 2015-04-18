@@ -1,5 +1,5 @@
 app.controller('alumnoFinCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
-	
+	$scope.titulo='Comparación';	
 	$scope.problema=JSON.parse(localStorage.getItem('problema'));//$routeParams.problema.substring(9,$routeParams.problema.length);
 	//alert($scope.problema);
 	var parsed=($scope.problema);

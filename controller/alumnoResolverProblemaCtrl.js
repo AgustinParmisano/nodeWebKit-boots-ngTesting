@@ -169,7 +169,7 @@ function drawChartResolver(scope,xini,xfin,dmax){
 }
 
 app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routeParams', '$rootScope', function($scope, $location, $routeParams, $rootScope) {
-
+	$scope.titulo='Medición de Campo';	
 	$scope.problema=localStorage.getItem('problema');//$routeParams.problema.substring(9,$routeParams.problema.length);
 
 	var parsed=JSON.parse($scope.problema);
@@ -256,7 +256,7 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
 	$scope.actualizarResolver = function(){
 		if( ($scope.xini != null) && ($scope.xfin != null) && ($scope.nPasos != null)){
 			$scope.lx =$scope.xfin-$scope.xini;
-			$scope.dx=parseFloat(($scope.lx/($scope.nPasos-1)).toFixed(4));
+			$scope.dx=parseFloat(($scope.lx/($scope.nPasos-1)).toFixed(2));
 			$scope.costoTotal = $scope.nPasos * $scope.problema.costoMedicion;
 		}else{
 			$scope.lx ="";

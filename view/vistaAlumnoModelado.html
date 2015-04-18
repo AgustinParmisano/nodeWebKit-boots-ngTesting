@@ -1,4 +1,12 @@
-
+<div class="row">
+			<div class="col-sm-4 col-md-4 col-lg-4"></div>
+			<div class="col-sm-4 col-md-4 col-lg-4">
+			  <div id="title">
+				<h2><b>{{titulo}}</b></h2>
+			  </div>
+			</div>
+			<div class="col-sm-4 col-md-4 col-lg-4"></div>
+		   </div>
 	<div class="container-fluid">
 		
 			<div class="col-sm-1 col-md-1 col-lg-1"></div>
@@ -18,10 +26,10 @@
 						
 						<form class="form-horizontal" role="form">
 							  <div class="form-group">
-									<label for="ejemplo_email_3" class="col-lg-2 control-label">x</label>
+									<label for="ejemplo_email_3" class="col-lg-2 control-label">X<sub>m</sub></label>
 									<div class="col-lg-8">
 								  		<input type="number" class="form-control" id="x1" ng-model="x1" ng-change="changeX1()"
-										 placeholder="X1" ngRequired onKeyPress="return onlyNumber(event);">
+										 placeholder="Xm" ngRequired onKeyPress="return onlyNumber(event);">
 								 		<p id="errorMsg" ng-model="x1errorMsg">{{x1errorMsg}}</p>
 									</div>
 									<label class="control-label">m</label>
@@ -29,20 +37,20 @@
 
 
 							  <div class="form-group">
-									<label for="ejemplo_email_3" class="col-lg-2 control-label">z<sub>m</sub></label>
+									<label for="ejemplo_email_3" class="col-lg-2 control-label">Z<sub>m</sub></label>
 									<div class="col-lg-8">
 								  		<input type="number" class="form-control" id="z1" ng-model="z1"
-										 placeholder="Z1" onKeyPress="return onlyNumber(event);">
+										 placeholder="Zm" onKeyPress="return onlyNumber(event);">
 									 	<p id="errorMsg" ng-model="z1errorMsg">{{z1errorMsg}}</p>
 									</div>
 									<label class="control-label">m</label>
 							  </div>
 							  
 							  <div class="form-group">
-								<label for="ejemplo_email_3" class="col-lg-2 control-label">r<sub>m</sub></label>
+								<label for="ejemplo_email_3" class="col-lg-2 control-label">R<sub>m</sub></label>
 								<div class="col-lg-8">
 								  <input type="number" class="form-control" id="r1" ng-model="r1" ng-change="changeR1()"
-										 placeholder="R1" onKeyPress="return onlyNumber(event);">
+										 placeholder="Rm" onKeyPress="return onlyNumber(event);">
 							 	  <p id="errorMsg" ng-model="r1errorMsg">{{r1errorMsg}}</p>
 								</div>
 								<label class="control-label">m</label>
@@ -51,7 +59,7 @@
 							  <div class="form-group">
 								<label for="ejemplo_email_3" class="col-lg-2 control-label">&delta;e<sub>m</sub></label>
 								<div class="col-lg-8">
-								  <input type="number" class="form-control" id="dem" ng-model="dem1" placeholder="dem1" ng-change="changeDdm()" onKeyPress="return onlyNumber(event);">
+								  <input type="number" class="form-control" id="dem" ng-model="dem1" placeholder="dem" ng-change="changeDdm()" onKeyPress="return onlyNumber(event);">
 								  <p id="errorMsg" ng-model="dem1errorMsg">{{dem1errorMsg}}</p>
 								</div>
 								<label class="control-label">g/cm3</label>
@@ -60,7 +68,7 @@
 							  <div class="form-group">
 								<label for="ejemplo_email_3" class="col-lg-2 control-label">&delta;i<sub>m</sub></label>
 								<div class="col-lg-8">
-								  <input type="number" class="form-control" id="dim1" ng-model="dim1" placeholder="dim1" ng-change="changeDdm()" onKeyPress="return onlyNumber(event);">
+								  <input type="number" class="form-control" id="dim1" ng-model="dim1" placeholder="dim" ng-change="changeDdm()" onKeyPress="return onlyNumber(event);">
 								   <p id="errorMsg" ng-model="dim1errorMsg">{{dim1errorMsg}}</p>
 								</div>
 								<label class="control-label">g/cm3</label>
@@ -69,7 +77,7 @@
 							  <div class="form-group">
 								<label for="ejemplo_email_3" class="col-lg-2 control-label">&Delta;&delta;<sub>m</sub></label>
 								<div class="col-lg-8">
-								  <input type="number" class="form-control" id="ddm1" ng-model="ddm1" placeholder="ddm1" disabled>
+								  <input type="number" class="form-control" id="ddm1" ng-model="ddm1" placeholder="ddm" disabled>
 								</div>
 								<label class="control-label">m</label>
 							  </div>

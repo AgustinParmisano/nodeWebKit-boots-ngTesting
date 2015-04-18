@@ -9,6 +9,7 @@ var loadProblem = angular.module("loadProblemModule", []);
 loadProblem.controller('loadProblemCtrl', ['$scope', function($scope) {
 	/*En esta variable seteo el contenido del json*/
 	$archivo= null;	
+	$scope.titulo='Elegir Problema';
 	
 	//Cargar el problema por default
 	$scope.cargarDefault = function() {

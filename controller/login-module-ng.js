@@ -1,5 +1,5 @@
  app.controller('inicioCtrl', ['$scope', '$location', '$routeParams', '$window', '$rootScope', function($scope, $location, $routeParams, $window, $rootScope) {
-
+	$scope.titulo='Bienvenido';
 	
 	$scope.comenzar = function() {
 		$scope={};

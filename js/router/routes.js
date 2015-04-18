@@ -44,6 +44,7 @@ app.controller('loadProblemCtrl', ['$scope', '$location', '$rootScope', function
 	/*En esta variable seteo el contenido del json*/
 	$archivo= null;	
 	$scope.loaded = ($rootScope.loaded);
+	$scope.titulo='Elegir Problema';
 	
 	//Cargar el problema por default
 	$scope.cargarDefault = function() {
