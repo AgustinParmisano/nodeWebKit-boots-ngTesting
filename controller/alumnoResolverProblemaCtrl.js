@@ -135,7 +135,7 @@ function drawChartResolver(scope,xini,xfin,dmax){
 	                        y: 0
 	                    });
 					scope.ruido[paso]= getRandomInt(-1,1);
-					var errorj=0.0013969*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
+					var errorj=(0.0013969/5)*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
 	                for (i = xini; i <= (parseInt(xfin)); i = i + meds) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - parseFloat(scope.problema.xo),2)) +(Math.pow(parseFloat(scope.problema.zo),2))), 3/2);
 	                    var valorFormula2 = parseFloat(scope.problema.zo) / valorFormula1;

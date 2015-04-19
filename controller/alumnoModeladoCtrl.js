@@ -162,7 +162,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 	$scope.calculoError= function(){
 		var medpuntos=Math.round(($scope.experimento.xFinal - $scope.experimento.xInicial) / ($scope.experimento.nPasos -1) );
 		var errori=0;
-		var errorj=0.0013969*Math.pow(parseFloat($scope.problema.ro),3)*(parseFloat($scope.problema.dd)/(Math.pow(parseFloat($scope.problema.zo),2)));
+		var errorj=(0.0013969/5)*Math.pow(parseFloat($scope.problema.ro),3)*(parseFloat($scope.problema.dd)/(Math.pow(parseFloat($scope.problema.zo),2)));
 		var n= parseInt($scope.experimento.nPasos);
 		var dgm=0;
 		var dgo=0;
@@ -318,7 +318,7 @@ function graficarCurva(scope){
 	                        x: -1,
 	                        y: 0
 	                    });
-					var errorj=0.0013969*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
+					var errorj=(0.0013969/5)*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
 	                for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal); i = i + meds) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 	                    var valorFormula2 = scope.problema.zo / valorFormula1;
@@ -506,7 +506,7 @@ function graficarCurvaModelado(scope){
 								x: -1,
 								y: 0
 							});
-						var errorj=0.0013969*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
+						var errorj=(0.0013969/5)*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
 						for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal)+meds; i = i + meds) {
 							var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 							var valorFormula2 = scope.problema.zo / valorFormula1;
