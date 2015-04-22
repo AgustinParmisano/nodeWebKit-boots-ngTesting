@@ -1,4 +1,4 @@
-app.controller('alumnoFinCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+app.controller('alumnoFinCtrl', ['$scope', '$rootScope', '$location', function($scope, $rootScope, $location) {
 	$scope.titulo='Comparación';	
 	$scope.problema=JSON.parse(localStorage.getItem('problema'));//$routeParams.problema.substring(9,$routeParams.problema.length);
 	//alert($scope.problema);
@@ -58,6 +58,10 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', function($scope, $rootS
 	graficarCurvaFinal($scope);
 	//graficarEsferaReal($scope);
 	graficarEsferas($scope);
+	
+	$scope.finalizar=function(){
+		$location.url('/');
+	}
 
 }]);
 
