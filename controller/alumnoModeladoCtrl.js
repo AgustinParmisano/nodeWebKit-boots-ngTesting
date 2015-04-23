@@ -140,15 +140,15 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 		};
 
 		if (graficar) {
-			$scope.error=$scope.calculoError().toPrecision(4);
+			$scope.error=$scope.calculoError().toFixed(2);
 			//var errorAct=$scope.calculoError();
 		   ultimaPrueba = {
   				x: this.x1,
 				r: this.r1,
 				z: this.z1,
-				dem: this.dem1,
-				dim: this.dim1,
-				ddm: (parseFloat(this.dim1) - parseFloat(this.dem1)).toPrecision(4),
+				dem: (this.dem1).toFixed(2),
+				dim: (this.dim1).toFixed(2),
+				ddm: (parseFloat(this.dim1) - parseFloat(this.dem1)).toFixed(2),
 				error:$scope.error + "%",
 				id: idCounter++
 		  	};
@@ -391,6 +391,11 @@ function crearLineaModel(dmax){
 function graficarPorcionModel(ini, fin, scope){
 	var finPos = Math.round(490 / scope.problema.dmax * fin + 60)
 	var iniPos = Math.round(490 / scope.problema.dmax * ini + 60)
+
+	if(ini == 0){
+		iniPos = 50;
+		ini = "";
+	}
 
 	setupCanvas(scope.problema.dmax);
     ctx.moveTo(50,50);

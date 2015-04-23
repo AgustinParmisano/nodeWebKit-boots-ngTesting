@@ -23,25 +23,34 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', '$location', function($
   	$scope.ro = $scope.problema.ro;
   	$scope.deo = $scope.problema.de;
   	$scope.dio = $scope.problema.di;
-  	$scope.ddo = (parseFloat($scope.problema.dd)).toPrecision(4);
+  	$scope.ddo = (parseFloat($scope.problema.dd)).toPrecision(2);
   	//variables alumno modelo final para la tabla
   	$scope.xm = $rootScope.modeloFinal.x;
   	$scope.zm = $rootScope.modeloFinal.z;
   	$scope.rm = $rootScope.modeloFinal.r;
   	$scope.dem = $rootScope.modeloFinal.dem;
   	$scope.dim = $rootScope.modeloFinal.dim;
-  	$scope.ddm = (parseFloat($rootScope.modeloFinal.dim - $rootScope.modeloFinal.dem)).toPrecision(4);
+  	$scope.ddm = (parseFloat($rootScope.modeloFinal.dim - $rootScope.modeloFinal.dem)).toPrecision(2);
 	$scope.errorModelo=$rootScope.modeloFinal.error;
-  	//errores/diferencias
-	$scope.errorxo = (parseFloat((Math.abs((Math.floor((parseInt($scope.xo) - parseInt($scope.xm))))) / (parseInt($scope.xo))) * 100)).toPrecision(4) + "%";
-  	$scope.errorzo = (parseFloat((Math.abs((Math.floor((parseInt($scope.zo) - parseInt($scope.zm))))) / (parseInt($scope.zo))) * 100)).toPrecision(4) + "%";
-  	$scope.errorro = (parseFloat((Math.abs((Math.floor((parseInt($scope.ro) - parseInt($scope.rm))))) / (parseInt($scope.ro))) * 100)).toPrecision(4) + "%";
+  	
+  	//errores/diferencias en %
+	//$scope.errorxo = (parseFloat((Math.abs((Math.floor((parseInt($scope.xo) - parseInt($scope.xm))))) / (parseInt($scope.xo))) * 100)).toPrecision(4) + "%";
+  	//$scope.errorzo = (parseFloat((Math.abs((Math.floor((parseInt($scope.zo) - parseInt($scope.zm))))) / (parseInt($scope.zo))) * 100)).toPrecision(4) + "%";
+  	//$scope.errorro = (parseFloat((Math.abs((Math.floor((parseInt($scope.ro) - parseInt($scope.rm))))) / (parseInt($scope.ro))) * 100)).toPrecision(4) + "%";
   	//$scope.errordeo = (parseFloat((Math.abs((Math.floor((parseInt($scope.deo) - parseInt($scope.dem))))) / (parseInt($scope.deo))) * 100)).toPrecision(4) + "%";
   	//$scope.errordio = (parseFloat((Math.abs((Math.floor((parseInt($scope.dio) - parseInt($scope.dim))))) / (parseInt($scope.dio))) * 100)).toPrecision(4) + "%";
   	//$scope.errorddo = (parseFloat((Math.abs((Math.floor((parseInt($scope.ddo) - parseInt($scope.ddm))))) / (parseInt($scope.ddo))) * 100)).toPrecision(4) + "%";
-  	$scope.errordio = ((parseFloat($scope.dio) - parseFloat($scope.dim))).toPrecision(4);;
-  	$scope.errordeo = ((parseFloat($scope.deo) - parseFloat($scope.dem))).toPrecision(4);;
-  	$scope.errorddo = ((parseFloat($scope.ddo) - parseFloat($scope.ddm))).toPrecision(4);;
+  	//$scope.errordio = ((parseFloat($scope.dio) - parseFloat($scope.dim))).toPrecision(4);;
+  	//$scope.errordeo = ((parseFloat($scope.deo) - parseFloat($scope.dem))).toPrecision(4);;
+  	//$scope.errorddo = ((parseFloat($scope.ddo) - parseFloat($scope.ddm))).toPrecision(4);;
+
+  	//ERRORES SOLO RESTADOS
+  	$scope.errorxo = ((parseFloat($scope.xo) - parseFloat($scope.xm))).toPrecision(2);;
+  	$scope.errorzo = ((parseFloat($scope.zo) - parseFloat($scope.zm))).toPrecision(2);;
+  	$scope.errorro = ((parseFloat($scope.ro) - parseFloat($scope.rm))).toPrecision(2);;
+  	$scope.errordeo = ((parseFloat($scope.deo) - parseFloat($scope.dem))).toPrecision(2);;
+  	$scope.errordio = ((parseFloat($scope.dio) - parseFloat($scope.dim))).toPrecision(2);;
+  	$scope.errorddo = ((parseFloat($scope.ddo) - parseFloat($scope.ddm))).toPrecision(2);;
 
   	if ($scope.dio == 0) {
   		$scope.errordio = $scope.dim;

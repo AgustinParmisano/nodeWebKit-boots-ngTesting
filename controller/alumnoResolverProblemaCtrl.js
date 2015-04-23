@@ -58,6 +58,11 @@ function crearLineaResolver(dmax){
 function graficarPorcion(ini, fin, scope){
 	var finPos = Math.round(490 / scope.dmax * fin + 60);
 	var iniPos = Math.round(490 / scope.dmax * ini + 60);
+	
+	if(ini == 0){
+		iniPos = 50;
+		ini = "";
+	}
 
     ctx.moveTo(50,50);
     ctx.lineTo(550,50);

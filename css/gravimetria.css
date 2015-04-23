@@ -146,3 +146,21 @@
 	width: 80%;
 }
 
+.highcharts-container {
+	margin-right: 3%;
+}
+
+/**#grupoBotonesModelado {
+	margin-left: -3%;
+	padding-left: 135px;
+}**/
+
+#chart1 {
+	padding-left: 0px;
+	margin-left: -2%;
+}
+
+#chart2 {
+	padding-left: 0px;
+	margin-left: 0%;
+}
