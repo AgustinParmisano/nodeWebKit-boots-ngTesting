@@ -211,6 +211,8 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 	*  Change esfera
 	*/
 	$scope.graficarEsfera= function(){
+		diagramado=false;
+		$scope.stopErrorMsg="";
         var noGraficar = false;
         var labelZ = false;
         var zLimit = 0;
