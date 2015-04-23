@@ -93,7 +93,7 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 	setupCanvasDocente();
     initChartDocente($scope);
 	$scope.titulo='Crear Problema';	
-	
+	var diagramado=false;
 
     $scope.inicioAceptar = function(){
         alert("No anda");
@@ -367,7 +367,6 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
             var valorFormula1 = 0;
             var valorFormula2 = 0;
             var valorFormula3 = 0;
-            
             if (dmaxLimit != 0) {
                 ejeX = Math.round(490 / dmaxLimit * this.x + 60);
             }else{
@@ -410,7 +409,8 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
             }
 			ctx.fill();
             drawChartDocente($scope);
-
+			diagramado=true;
+			$scope.stopErrorMsg=""
 		}
 	};
 
@@ -461,17 +461,19 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
     };
 
 	$scope.guardar= function(){
-        this.enunErrorMsg = "";
-        this.dmaxErrorMsg = "";
-        this.z0ErrorMsg = "";
-        this.r0ErrorMsg = "";
-        this.x0ErrorMsg = "";
-        this.deErrorMsg = "";
-        this.diErrorMsg = "";
-        this.costoMaxErrorMsg = "";
-        this.costoMedErrorMsg = "";
+		if(diagramado){
+			$scope.stopErrorMsg="";
+			this.enunErrorMsg = "";
+			this.dmaxErrorMsg = "";
+			this.z0ErrorMsg = "";
+			this.r0ErrorMsg = "";
+			this.x0ErrorMsg = "";
+			this.deErrorMsg = "";
+			this.diErrorMsg = "";
+			this.costoMaxErrorMsg = "";
+			this.costoMedErrorMsg = "";
 
-		var texto= "Falta Completar";
+			var texto= "Falta Completar";
 		if (this.enun == null) {
 			texto+=" Enunciado";
             this.enunErrorMsg = texto;
@@ -523,6 +525,9 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 			
 		}
 		//alert(texto);
+		}else{
+			$scope.stopErrorMsg="Primero debe diagramar";
+		}
 	};
 
     $scope.$watch(function(scope){

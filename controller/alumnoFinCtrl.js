@@ -31,6 +31,7 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', '$location', function($
   	$scope.dem = $rootScope.modeloFinal.dem;
   	$scope.dim = $rootScope.modeloFinal.dim;
   	$scope.ddm = (parseFloat($rootScope.modeloFinal.dim - $rootScope.modeloFinal.dem)).toPrecision(4);
+	$scope.errorModelo=$rootScope.modeloFinal.error;
   	//errores/diferencias
 	$scope.errorxo = (parseFloat((Math.abs((Math.floor((parseInt($scope.xo) - parseInt($scope.xm))))) / (parseInt($scope.xo))) * 100)).toPrecision(4) + "%";
   	$scope.errorzo = (parseFloat((Math.abs((Math.floor((parseInt($scope.zo) - parseInt($scope.zm))))) / (parseInt($scope.zo))) * 100)).toPrecision(4) + "%";
