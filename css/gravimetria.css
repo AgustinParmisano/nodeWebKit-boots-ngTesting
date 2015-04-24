@@ -85,18 +85,18 @@
 
 #graficoDocente{
 	border: 3px solid #58B957;
-    width: 100%;
+   /* width: 100%;*/
     margin-left: 2em;
 }
 #graficoAlumno{
 	border: 3px solid #58B957;
 	margin-left: 4%;
-	width: 100%;
+	/*width: 100%;*/
 }
 #graficoAlumnoModel{
 	border: 3px solid #58B957;
 	margin-left: 2%;
-	width: 100%;
+	/*width: 100%;*/
 }
 
 #errorMsg{
@@ -123,6 +123,7 @@
 #botonesCrearProblema{
 	/*margin-left: 12%;
 	margin-top: 6%;*/
+	width:15%;
 }
 
 #vars{
