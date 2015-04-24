@@ -123,7 +123,12 @@
 #botonesCrearProblema{
 	/*margin-left: 12%;
 	margin-top: 6%;*/
-	width:15%;
+	width:12%;
+}
+
+#btn-small-2{
+	width: 120%;
+	margin-left: 20%;
 }
 
 #vars{
