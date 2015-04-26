@@ -79,16 +79,21 @@
 				</table>
 				<table class="table table-bordered">
 					<tr class="alert alert-danger" role="alert">
-						<td>Error de Modelado:</td>
+						<td><b>Error de Modelado:</b></td>
 						<td>{{errorModelo}}</td>
 					</tr>
+					<tr class="alert alert-danger" role="alert">				<td><b>Costo Acumulado:</b></td>
+						<td>${{costoAcumulado}}</td>
+					</tr>
 				</table>
+
 				
 			</div>
 			<div class="row">
-				<div class="col-sm-4 col-md-4 col-lg-4">
+				<div class="col-sm-8 col-md-8 col-lg-8">
 				<button type="button" ng-click="finalizar()" class="btn btn-success" id="btn-continuar" ><h3>Finalizar</h3></button> 
-			</div>
+				<button type="button" ng-click="guardarResultado()" class="btn btn-success" id="btn-continuar" ><h3>Guardar</h3></button> 
+				</div>
 			</div>
 			
 		</div>

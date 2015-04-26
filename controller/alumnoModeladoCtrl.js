@@ -146,8 +146,8 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
   				x: this.x1,
 				r: this.r1,
 				z: this.z1,
-				dem: (this.dem1).toFixed(2),
-				dim: (this.dim1).toFixed(2),
+				dem: (parseFloat(this.dem1)).toFixed(2),
+				dim: (parseFloat(this.dim1)).toFixed(2),
 				ddm: (parseFloat(this.dim1) - parseFloat(this.dem1)).toFixed(2),
 				error:$scope.error + "%",
 				id: idCounter++
@@ -168,13 +168,18 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 		var dgo=0;
 		var paso=0;
 		for (i = $scope.experimento.xInicial; i <= parseInt($scope.experimento.xFinal); i = i + medpuntos) {
-				dgm=0.027939 * (parseInt($scope.problema.dd)) * Math.pow($scope.problema.ro,3) *($scope.problema.zo / (Math.pow(((Math.pow(i - $scope.problema.xo,2)) +(Math.pow($scope.problema.zo,2))), 3/2)));
+				dgm=0.027939 * (parseFloat($scope.problema.dd)) * Math.pow(parseInt($scope.problema.ro),3) *(parseInt($scope.problema.zo) / (Math.pow(((Math.pow(i - parseInt($scope.problema.xo),2)) +(Math.pow(parseInt($scope.problema.zo),2))), 3/2)));
 				dgo=0.027939 * (parseFloat(this.dim1) - parseFloat(this.dem1)) * Math.pow(this.r1,3) *(this.z1 / (Math.pow(((Math.pow(i - this.x1,2)) +(Math.pow(this.z1,2))), 3/2)));;
 				dgo= dgo+(errorj*(parseFloat($scope.ruido[paso])));
+				console.log("dd: " + $scope.problema.dd + " ro: " + $scope.problema.ro + " zo: " + $scope.problema.zo + " xo: " + $scope.problema.xo);
+				console.log("dim1: " + this.dim1 + " dem1: " + this.dem1 + " r1: " + this.r1 + " z1: " + this.z1 + " x1" + this.x1);
 				paso++;
+				console.log("dgo: " + dgo + " dgm: " + dgm);
 				errori+=(Math.pow((dgm-dgo),2))/(Math.pow(dgo,2));
+				console.log("errori: "  + errori);
 	          };
 		var errorFin= (100/n)*(Math.sqrt(errori))
+		console.log("errorFin: " + errorFin);
 		return errorFin;
 	}
 	
