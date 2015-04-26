@@ -229,7 +229,56 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
         this.deErrorMsg = "";
         this.diErrorMsg = "";
 
-        if (isNaN(this.dmax) || this.dmax == null) {
+        /*if(isNaN(this.dmax) || this.dmax == null){
+            if(isNaN(this.z) || this.z == null){
+                if(isNaN(this.r) || this.r == null){
+                    if(isNaN(this.x) || this.x == null){
+                        if(isNaN(this.di) || this.di == null){
+                            if(isNaN(this.de) || this.de == null){
+                                this.dmaxErrorMsg = "Debe ingresar datos";
+                                this.z0ErrorMsg = "Debe ingresar datos";
+                                this.r0ErrorMsg = "Debe ingresar datos";
+                                this.x0ErrorMsg = "Debe ingresar datos";
+                                this.deErrorMsg = "Debe ingresar datos";
+                                this.diErrorMsg = "Debe ingresar datos";
+                            };
+                            this.dmaxErrorMsg = "Debe ingresar datos";
+                            this.z0ErrorMsg = "Debe ingresar datos";
+                            this.r0ErrorMsg = "Debe ingresar datos";
+                            this.x0ErrorMsg = "Debe ingresar datos";
+                            this.diErrorMsg = "Debe ingresar datos";
+                            this.deErrorMsg = "";
+                        };
+                        this.dmaxErrorMsg = "Debe ingresar datos";
+                        this.z0ErrorMsg = "Debe ingresar datos";
+                        this.r0ErrorMsg = "Debe ingresar datos";
+                        this.x0ErrorMsg = "Debe ingresar datos";
+                        this.diErrorMsg = "";
+                        this.deErrorMsg = "";
+                    };
+                    this.dmaxErrorMsg = "Debe ingresar datos";
+                    this.z0ErrorMsg = "Debe ingresar datos";
+                    this.r0ErrorMsg = "Debe ingresar datos";
+                    this.x0ErrorMsg = "";
+                    this.diErrorMsg = "";
+                    this.deErrorMsg = "";
+                };
+                this.dmaxErrorMsg = "Debe ingresar datos";
+                this.z0ErrorMsg = "Debe ingresar datos";
+                this.r0ErrorMsg = "";
+                this.x0ErrorMsg = "";
+                this.diErrorMsg = "";
+                this.deErrorMsg = "";
+            };
+            this.dmaxErrorMsg = "Debe ingresar datos";
+            this.z0ErrorMsg = "";
+            this.r0ErrorMsg = "";
+            this.x0ErrorMsg = "";
+            this.diErrorMsg = "";
+            this.deErrorMsg = "";
+        };*/
+
+        if (isNaN(this.dmax) || this.dmax == null || this.dmax == "") {
             //alert("if (isNaN(this.dmax) || this.dmax == null) {");
             this.dmaxErrorMsg = "";
             this.dmaxErrorMsg = "Ingrese Numeros";
@@ -243,7 +292,7 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
         }else if (this.dmax === 1000) {
             dmaxLimit = 999;
         };
-		if (isNaN(this.z)) {
+		if (isNaN(this.z) || this.z == null || this.z == "") {
             //alert("if (isNaN(this.z)) {");
             this.z0ErrorMsg = "";
 			this.z0ErrorMsg = "Ingrese Numeros";
@@ -254,7 +303,7 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
             this.z0ErrorMsg = "Debe ser mayor a 0";
             noGraficar = true;
         };
-		if (isNaN(this.r)) {
+		if (isNaN(this.r) || this.r == null || this.r == "") {
             //alert("if (isNaN(this.r)) {");
             this.r0ErrorMsg = "";
 			this.r0ErrorMsg = "Ingrese Numeros";
@@ -279,14 +328,14 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
             labelZ = true;
         };
 
-		if (isNaN(this.x)) {
+		if (isNaN(this.x) || this.x == null || this.x == "") {
             //alert("if (isNaN(this.x)) {");
             this.x0ErrorMsg = "";
 			this.x0ErrorMsg = "Ingrese Numeros";
             noGraficar = true;
 		}
 
-        if (isNaN(this.di)) {
+        if (isNaN(this.di) || this.di == null || this.di == "") {
             //alert("if (isNaN(this.di)) {");
             this.diErrorMsg = "";
             this.diErrorMsg = "Ingrese Numeros";
@@ -297,7 +346,7 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
             this.diErrorMsg = "Debe ser menor a 15";
             noGraficar = true;
         };
-        if (isNaN(this.de)) {
+        if (isNaN(this.de) || this.de == null || this.de == "") {
             //alert("if (isNaN(this.de)) {");
             this.deErrorMsg = "";
             this.deErrorMsg = "Ingrese Numeros";
@@ -323,7 +372,7 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
         if (parseInt(this.x) > parseInt(this.dmax)) {
             //alert("if (this.x > this.dmax) {");
             this.x0ErrorMsg = "";
-            this.x0ErrorMsg = "X mas grande que dmax";
+            this.x0ErrorMsg = "X no debe ser mas grande que L";
             noGraficar = true;
         }
 
@@ -446,6 +495,12 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
     };
 
     $scope.borrar= function(){
+        this.dmaxErrorMsg = "";
+        this.z0ErrorMsg = "";
+        this.r0ErrorMsg = "";
+        this.x0ErrorMsg = "";
+        this.deErrorMsg = "";
+        this.diErrorMsg = "";
         setupCanvasDocente();
         this.dmax = null;
         this.r = null;
@@ -476,32 +531,35 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 			this.costoMedErrorMsg = "";
 
 			var texto= "Falta Completar";
-		if (this.enun == null) {
+		if (this.enun == null || this.enun == "") {
 			texto+=" Enunciado";
+            $scope.stopErrorMsg="Falta Enunciado";
             this.enunErrorMsg = texto;
-		}else if(this.r == null){
+		}else if(this.r == null || this.enun == ""){
 			texto+=" R0";
             this.r0ErrorMsg = texto;
-		}else if(this.x == null){
+		}else if(this.x == null || this.enun == ""){
 			texto+=" X0";
             this.x0ErrorMsg = texto;
-		}else if( this.z == null){
+		}else if( this.z == null || this.enun == ""){
 			texto+=" Z0";
             this.z0ErrorMsg = texto;
-		}else if ( this.di == null){
+		}else if ( this.di == null || this.enun == ""){
 			texto+=" Di0";
             this.diErrorMsg = texto;
-		}else if(this.de == null){
+		}else if(this.de == null || this.enun == ""){
 			texto+=" De0";
             this.deErrorMsg = texto;
-		}else if(this.dmax == ""){
+		}else if(this.dmax == "" || this.dmax == null){
 			texto+=" L";//no entra
             this.dmaxErrorMsg = texto;
 		}else if(this.costoMax == "" || this.costoMax == null){
 			texto+=" Costo Maximo";
+            $scope.stopErrorMsg="Falta Costo";
             this.costoMaxErrorMsg = texto;
 		}else if(this.costoMed == "" || this.costoMed == null){
 			texto+=" Costo Medicion";
+            $scope.stopErrorMsg="Falta Costo";
             this.costoMedErrorMsg = texto;
         }else if(parseInt(this.costoMax) < parseInt(this.costoMed)){
             texto = "Costo máximo no debe ser menor a costo de medición."
@@ -528,7 +586,7 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
 		}
 		//alert(texto);
 		}else{
-			$scope.stopErrorMsg="Primero debe diagramar";
+			$scope.stopErrorMsg="Debe diagramar";
 		}
 	};
 

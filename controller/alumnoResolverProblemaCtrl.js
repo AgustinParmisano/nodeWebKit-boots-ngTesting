@@ -287,7 +287,19 @@ app.controller('inputsCtrl', ['$scope', '$rootScope', function($scope, $rootScop
         this.graficErrorMsg = "";
         this.contErrorMsg = "";
 
+        if(this.xini == null || this.xini == ""){
+        	this.graficErrorMsg = "Falta Xini";
+        	noGraficar = true;
+        	if(this.xini == "0"){
+        		noGraficar = false;
+        		this.graficErrorMsg = "";
+        	}        	
+        }
 
+ 		if(this.xfin == null || this.xfin == ""){
+        	this.graficErrorMsg = "Falta Xfin";
+        	noGraficar = true;
+        }
         //alert(this.costoTotal);
         //alert(this.costoAcumulado);
         //alert(this.costoMaximo);
