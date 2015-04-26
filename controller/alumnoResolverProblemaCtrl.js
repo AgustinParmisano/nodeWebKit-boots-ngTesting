@@ -99,7 +99,7 @@ function initChart(scope){
 
 
 function drawChartResolver(scope,xini,xfin,dmax){
-		var meds = Math.round((xfin-xini) / (scope.nPasos-1));
+		var meds = (xfin-xini) / (scope.nPasos-1);
 		//alert(scope.nPasos);
 		var cant=scope.nPasos;
 		var paso=0;
@@ -141,7 +141,7 @@ function drawChartResolver(scope,xini,xfin,dmax){
 	                    });
 					scope.ruido[paso]= getRandomInt(-1,1);
 					var errorj=(0.0013969/5)*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
-	                for (i = xini; i <= (parseInt(xfin)); i = i + meds) {
+	                for (i = xini; i <= (parseInt(xfin)+1); i = i + meds) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - parseFloat(scope.problema.xo),2)) +(Math.pow(parseFloat(scope.problema.zo),2))), 3/2);
 	                    var valorFormula2 = parseFloat(scope.problema.zo) / valorFormula1;
 						var valorFormula3 = parseFloat(0.027939) * parseFloat(scope.problema.dd) * Math.pow(parseFloat(scope.problema.ro),3) * valorFormula2;
