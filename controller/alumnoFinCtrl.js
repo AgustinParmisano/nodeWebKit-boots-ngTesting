@@ -74,6 +74,48 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', '$location', function($
 		$location.url('/');
 	}
 
+	$scope.guardarResultado=function(){
+		/*var resultado = {
+				enunciado: $scope.enunciado,
+				xm: $scope.xm,
+				rm: $scope.rm,
+				zm: $scope.zm,
+				dem: $scope.dem,
+				dim: $scope.dim,
+				ddm: $scope.ddm,
+				xo: $scope.xo,
+				ro: $scope.ro,
+				zo: $scope.zo,
+				deo: $scope.deo,
+				dio: $scope.dio,
+				ddo: $scope.ddo,
+				error: $scope.errorModelo,
+				costoAcumulado: $scope.costoAcumulado
+				
+			};*/
+			var doc = new jsPDF();
+
+			// We'll make our own renderer to skip this editor
+			var specialElementHandlers = {
+					'#editor': function(element, renderer){
+					return true;
+				}
+			};
+
+			// All units are in the set measurement for the document
+			// This can be changed to "pt" (points), "mm" (Default), "cm", "in"
+			doc.fromHTML($('#tablaFinalPDF').html(), 15, 15, {
+				'width': 170, 
+				'elementHandlers': specialElementHandlers
+			});
+
+			//downloadFile("resultado", JSON.stringify(resultado, null, 2));
+			//downloadFile("resultado", doc);
+			doc.save('resultado.pdf');
+			//texto="El Archivo se Genero Correctamente"
+			
+	};
+
 }]);
 
 function graficarEsferas(scope){
@@ -220,3 +262,5 @@ function graficarCurvaFinal(scope){
 	        loading: false
 	    }
 }
+
+

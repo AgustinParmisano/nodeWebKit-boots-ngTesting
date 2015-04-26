@@ -89,6 +89,69 @@
 
 				
 			</div>
+			<div class="table-responsive" id="tablaFinalPDF">
+				<h1><b>Resultados y Comparaciones</b></h1>
+				<table class="table table-bordered">
+					<tr class="active">
+						<td><b>X medida</b></td>
+						<td>{{xm}}</td>
+						<td><b>X real</b></td>
+						<td>{{xo}}</td>
+						<td><b>Diferencia</b></td>
+						<td>{{errorxo}}</td>
+					</tr>
+					<tr class="active">
+						<td><b>Z medida</td>
+						<td>{{zm}}</td>
+						<td><b>Z real</b></td>
+						<td>{{zo}}</td>
+						<td><b>Diferencia</b></td>
+						<td>{{errorzo}}</td>
+					</tr>
+					<tr class="active">
+						<td><b>R medida</b></td>
+						<td>{{rm}}</td>
+						<td><b>R real</b></td>
+						<td>{{ro}}</td>
+						<td><b>Diferencia</b></td>
+						<td>{{errorro}}</td>
+					</tr>
+					<tr class="active">
+						<td><b>Delta Externa medida</b></td>
+						<td>{{dem}}</td>
+						<td><b>Delta Externa real</b></td>
+						<td>{{deo}}</td>
+						<td><b>Diferencia</b></td>
+						<td>{{errordeo}}</td>
+					</tr>
+					<tr class="active">
+						<td><b>Delta Interna medida</b></td>
+						<td>{{dim}}</td>
+						<td><b>Delta Interna real</b></td>
+						<td>{{dio}}</td>
+						<td><b>Diferencia</b></td>
+						<td>{{errordio}}</td>
+					</tr>
+					<tr class="active">
+						<td><b>Diferencia de Densidades medida</b></td>
+						<td>{{ddm}}</td>
+						<td><b>Diferencia de Densidades real</b></td>
+						<td>{{ddo}}</td>
+						<td><b>Diferencia</b></td>
+						<td>{{errorddo}}</td>
+					</tr>
+				</table>
+
+				<table>
+					<tr class= "active">
+						<td><b>Error de Modelado:</b></td>
+						<td>{{errorModelo}}</td>				
+						<td><b>Costo Acumulado:</b></td>
+						<td>${{costoAcumulado}}</td>
+					</tr>
+				</table>
+				
+			</div>
 			<div class="row">
 				<div class="col-sm-8 col-md-8 col-lg-8">
 				<button type="button" ng-click="finalizar()" class="btn btn-success" id="btn-continuar" ><h3>Finalizar</h3></button> 
