@@ -628,7 +628,12 @@ function drawChartDocente(scope){
         options: {
             chart: {
                 type: 'line',
-                width: '600'
+                width: '600',
+				panning:false
+				//spacingBottom: 15,
+				//spacingTop: 100,
+				//spacingLeft: 30,
+				//spacingRight: 100,
             },
 			xAxis: {
 					title:{text:'Coordenada'}
