@@ -283,7 +283,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 }]);
 
 function graficarCurva(scope){
-		var meds = Math.round((scope.experimento.xFinal - scope.experimento.xInicial) / (scope.experimento.nPasos -1) );
+		var meds = (scope.experimento.xFinal - scope.experimento.xInicial) / (scope.experimento.nPasos -1) ;
 		//alert(meds);
 		var paso= 0;
 		//console.log(scope.problema.dmax);
@@ -324,7 +324,7 @@ function graficarCurva(scope){
 	                        y: 0
 	                    });
 					var errorj=(0.0013969/5)*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
-	                for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal); i = i + meds) {
+	                for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal)+1; i = i + meds) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 	                    var valorFormula2 = scope.problema.zo / valorFormula1;
 	                    var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
@@ -448,7 +448,7 @@ function graficarModelo(scope){
 }
 
 function graficarCurvaModelado(scope){
-		var meds = Math.round((scope.experimento.xFinal - scope.experimento.xInicial+1) / (scope.experimento.nPasos -1) );
+		var meds = (scope.experimento.xFinal - scope.experimento.xInicial) / (scope.experimento.nPasos -1);
 		//alert(meds);
 		var paso=0;
 		//console.log(scope.problema.dmax);
@@ -517,7 +517,7 @@ function graficarCurvaModelado(scope){
 								y: 0
 							});
 						var errorj=(0.0013969/5)*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
-						for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal)+meds; i = i + meds) {
+						for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal)+1; i = i + meds) {
 							var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 							var valorFormula2 = scope.problema.zo / valorFormula1;
 							var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
