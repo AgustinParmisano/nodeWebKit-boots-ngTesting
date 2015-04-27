@@ -161,25 +161,30 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 	}
 	$scope.calculoError= function(){
 		var medpuntos=Math.round(($scope.experimento.xFinal - $scope.experimento.xInicial) / ($scope.experimento.nPasos -1) );
-		var errori=0;
+		var errori=0; 
+		//OBTENER EL RUIDO DE LA PANTALLA ANTERIOR, NO VOLVER A CALCULARLO
 		var errorj=(0.0013969/5)*Math.pow(parseFloat($scope.problema.ro),3)*(parseFloat($scope.problema.dd)/(Math.pow(parseFloat($scope.problema.zo),2)));
 		var n= parseInt($scope.experimento.nPasos);
 		var dgm=0;
 		var dgo=0;
 		var paso=0;
+		var errora=0;
+		var errorb=0;
 		for (i = $scope.experimento.xInicial; i <= parseInt($scope.experimento.xFinal); i = i + medpuntos) {
-				dgm=0.027939 * (parseFloat($scope.problema.dd)) * Math.pow(parseInt($scope.problema.ro),3) *(parseInt($scope.problema.zo) / (Math.pow(((Math.pow(i - parseInt($scope.problema.xo),2)) +(Math.pow(parseInt($scope.problema.zo),2))), 3/2)));
-				dgo=0.027939 * (parseFloat(this.dim1) - parseFloat(this.dem1)) * Math.pow(this.r1,3) *(this.z1 / (Math.pow(((Math.pow(i - this.x1,2)) +(Math.pow(this.z1,2))), 3/2)));;
-				dgo= dgo+(errorj*(parseFloat($scope.ruido[paso])));
-				console.log("dd: " + $scope.problema.dd + " ro: " + $scope.problema.ro + " zo: " + $scope.problema.zo + " xo: " + $scope.problema.xo);
-				console.log("dim1: " + this.dim1 + " dem1: " + this.dem1 + " r1: " + this.r1 + " z1: " + this.z1 + " x1" + this.x1);
+				/*bien*/dgm=0.027939 * (parseFloat($scope.problema.dd)) * Math.pow(parseInt($scope.problema.ro),3) *(parseInt($scope.problema.zo) / (Math.pow(((Math.pow(i - parseInt($scope.problema.xo),2)) +(Math.pow(parseInt($scope.problema.zo),2))), 3/2)));
+				/*bien*/dgo=0.027939 * (parseFloat(this.dim1) - parseFloat(this.dem1)) * Math.pow(this.r1,3) *(this.z1 / (Math.pow(((Math.pow(i - this.x1,2)) +(Math.pow(this.z1,2))), 3/2)));
+				/*bien*/dgm= dgm+(errorj*(parseFloat($scope.ruido[paso])));
+				//console.log("dd: " + $scope.problema.dd + " ro: " + $scope.problema.ro + " zo: " + $scope.problema.zo + " xo: " + $scope.problema.xo);
+				//console.log("dim1: " + this.dim1 + " dem1: " + this.dem1 + " r1: " + this.r1 + " z1: " + this.z1 + " x1" + this.x1);
 				paso++;
-				console.log("dgo: " + dgo + " dgm: " + dgm);
-				errori+=(Math.pow((dgm-dgo),2))/(Math.pow(dgo,2));
-				console.log("errori: "  + errori);
+				//console.log("dgo: " + dgo + " dgm: " + dgm);
+				/*mal*///errori+=(Math.pow((parseFloat(dgm)-parseFloat(dgo)),2))/(Math.pow(parseFloat(dgo),2));
+				errora+=Math.pow((parseFloat(dgm)-parseFloat(dgo)),2);
+				errorb+=(Math.pow(parseFloat(dgo),2));
+				//console.log("errori: "  + errori);
 	          };
-		var errorFin= (100/n)*(Math.sqrt(errori))
-		console.log("errorFin: " + errorFin);
+		var errorFin= (100/*/n*/)*(Math.sqrt(/*errori*/errora/errorb));
+		//console.log("errorFin: " + errorFin);
 		return errorFin;
 	}
 	
@@ -271,8 +276,9 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 		$scope.x1 = modeloSeleccionado.x;
 		$scope.r1 = modeloSeleccionado.r;
 		$scope.z1 = modeloSeleccionado.z;
-		$scope.dem1 = modeloSeleccionado.dem;
-		$scope.dim1 = modeloSeleccionado.dim;
+		//alert("dem: " + modeloSeleccionado.dem + " dim: " +  modeloSeleccionado.dim);
+		$scope.dem1 = parseFloat(modeloSeleccionado.dem);
+		$scope.dim1 = parseFloat(modeloSeleccionado.dim);
 		$scope.ddm1 = parseFloat(modeloSeleccionado.ddm);
 		//graficarPorcionModel(parseInt($scope.experimento.xInicial), parseInt($scope.experimento.xFinal), $scope);
 		//graficarModelo($scope);
@@ -437,7 +443,7 @@ function graficarModelo(scope){
 		ctx.stroke();
 		//ctx.fill();
 	}
-	console.log(ejeX +"z:"+ ejeZ);
+	//console.log(ejeX +"z:"+ ejeZ);
     ctx.moveTo(ejeX,ejeZ);
 	//ctx.arc(ejeX,scope.z1 + 50,scope.r1,30,(Math.PI/180)*360,true);
 	ctx.arc(ejeX,ejeZ,scope.r1,30,(Math.PI/180)*360,true);

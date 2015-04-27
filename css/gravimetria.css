@@ -174,3 +174,7 @@
 #tablaFinalPDF {
     display: none;
 }
+
+#div-botones-final {
+	width: 70%;
+}

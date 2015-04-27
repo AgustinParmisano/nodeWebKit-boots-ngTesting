@@ -90,8 +90,8 @@ app.controller('loadProblemCtrl', ['$scope', '$location', '$rootScope', function
 				de: "1.7",
 				di: "1.0",
 				dd: "-0.7",
-				costoMedicion: "300",
-				costoMax: "50000"
+				costoMedicion: "50",
+				costoMax: "10000"
 				
 			};
 
@@ -114,8 +114,54 @@ app.controller('loadProblemCtrl', ['$scope', '$location', '$rootScope', function
 				de: "1.8",
 				di: "0",
 				dd: "-1.8",
-				costoMedicion: "500",
+				costoMedicion: "50",
 				costoMax: "100000"
+				
+			};
+			$scope.problema= JSON.stringify(problema, null, 2);
+			$scope.enunciado=problema.enunciado;
+			$scope.loaded = true;
+			localStorage.setItem('problema',$scope.problema);
+		//alert(problema);
+		//$location.url('/alumnoProblemaAngular/problema:'+ problema);
+		
+    };
+
+    	$scope.problemaC = function(){
+		var problema = {
+				enunciado: "Según datos geológicos, en la zona de Loma La Lata (Neuquén) existe un campo debajo del cual debería existir un domo salino con gran capacidad de retener hidrocarburos. Los domos salinos suelen modelarse asumiendo que tienen forma esférica en la parte más superficial. Con el propósito de determinar su ubicación y características geométricas y físicas, se propone realizar mediciones de gravedad y un modelado gravimétrico. Para la zona de estudio se considera que la densidad del domo salino se encuentra entre los 1,6 y 1,8 g/cm3, mientras que el entorno tiene una densidad media de 2,4 g/cm3. Se considera que su radio está entre 70 y 90 m, y que la profundidad no es menor a 250 m. Luego de realizar las mediciones necesarias, determinar el tamaño, ubicación y densidad del domo salino.",
+				dmax: "1000",
+				xo: "630",
+				ro: "80",
+				zo: "300",
+				de: "2.4",
+				di: "1.75",
+				dd: "-0.65",
+				costoMedicion: "50",
+				costoMax: "10000"
+				
+			};
+			$scope.problema= JSON.stringify(problema, null, 2);
+			$scope.enunciado=problema.enunciado;
+			$scope.loaded = true;
+			localStorage.setItem('problema',$scope.problema);
+		//alert(problema);
+		//$location.url('/alumnoProblemaAngular/problema:'+ problema);
+		
+    };
+
+    	$scope.problemaD = function(){
+		var problema = {
+				enunciado: "En una zona de canteras en el sur de Mendoza se han hallado en las excavaciones cuerpos de rocas graníticas y basaltos (cuyas densidades son, respectivamente, 2,67 g/cm3 y 2,97 g/cm3). En una de las canteras, de 400 m de extensión, se supone por datos geológicos que debería existir enterrado un cuerpo esférico enterrado en un entorno de areniscas de densidad 2,4 g/cm3. Se desea realizar una perforación para conocer su composición, la cual puede ser granito o basalto. Si se sabe que toma 3 horas perforar un metro de profundidad, ¿cuál será el tiempo que se demorará para alcanzar la parte más superficial del cuerpo?",
+				dmax: "400",
+				xo: "240",
+				ro: "20",
+				zo: "60",
+				de: "2.4",
+				di: "2.97",
+				dd: "0.57",
+				costoMedicion: "50",
+				costoMax: "10000"
 				
 			};
 			$scope.problema= JSON.stringify(problema, null, 2);

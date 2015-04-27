@@ -24,13 +24,13 @@
         <div class="row">
           <div class="col-sm-10 col-md-10 col-lg-10" id="containerBotonesCargar">
             <div class="col-sm-4 col-md-4 col-lg-4">
-              <input type="file" on-read-file="saveContent($fileContent)" class="btn btn-success" value="Cargar Problema" id="btn-small-3"/>
-            </div>
-            <div class="col-sm-4 col-md-4 col-lg-4">
               <button ng-click="problemaA()" type="button" class="btn btn-success" id="btn-small-3"><h3><b>Problema A</b></h3></button>
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
               <button ng-click="problemaB()" type="button" class="btn btn-success" id="btn-small-3"><h3><b>Problema B</b></h3></button>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <input type="file" on-read-file="saveContent($fileContent)" class="btn btn-success" value="Cargar Problema" id="btn-small-3"/>
             </div>
          </div> 
        </div>
@@ -38,7 +38,12 @@
 
      <div class="row" >
         <div class="col-sm-10 col-md-10 col-lg-10" id="containerBotonesCargar">
-          <div class="col-sm-4 col-md-4 col-lg-4"></div>
+          <div class="col-sm-4 col-md-4 col-lg-4">
+              <button ng-click="problemaC()" type="button" class="btn btn-success" id="btn-small-3"><h3><b>Problema C</b></h3></button>
+          </div>
+          <div class="col-sm-4 col-md-4 col-lg-4">
+              <button ng-click="problemaD()" type="button" class="btn btn-success" id="btn-small-3"><h3><b>Problema D</b></h3></button>
+          </div>
           <div class="col-sm-4 col-md-4 col-lg-4">
             <button ng-click="continuar()" type="button" class="btn btn-success" id="btn-small-3" ng-disabled="!loaded"><h3><b>Continuar<b></h3></button>
           </div>

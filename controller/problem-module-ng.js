@@ -495,13 +495,18 @@ app.controller('docenteCrearProblemaCtrl', ['$scope', '$location', '$routeParams
     };
 
     $scope.borrar= function(){
+        this.stopErrorMsg="";
+        this.enunErrorMsg = "";
         this.dmaxErrorMsg = "";
         this.z0ErrorMsg = "";
         this.r0ErrorMsg = "";
         this.x0ErrorMsg = "";
         this.deErrorMsg = "";
         this.diErrorMsg = "";
+        this.costoMaxErrorMsg = "";
+        this.costoMedicion = "";
         setupCanvasDocente();
+        initChartDocente(this);
         this.dmax = null;
         this.r = null;
         this.z = null;
