@@ -196,7 +196,7 @@ app.controller('alumnoResolverProblemaCtrl', ['$scope', '$location', '$routePara
 
 	 $scope.continuar = function(){
 		if(($rootScope.xini >= 0) && $rootScope.xfin && $rootScope.nPasos && $rootScope.costoAcumulado){
-			if ($rootScope.costoAcumulado < $scope.costoMaximo) {;		
+			if ($rootScope.costoAcumulado <= $scope.costoMaximo) {;		
 				var experimento = {
 						xInicial: $scope.xini,
 						xFinal: $scope.xfin,

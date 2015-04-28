@@ -128,12 +128,13 @@ function graficarEsferas(scope){
 		y=zm;
 		zm=210;
 		ejeY=true;
-	}else{
-		if( zo > 210){
-			y=zo;
-			zo=210;
-			ejeY=true;
-		}
+		alert("zm: " + zm);
+	}
+	if( zo > 210){
+		y=zo;
+		zo=210;
+		ejeY=true;
+		alert("zo: " + zo);
 	}
 	if(ejeY){
 		ctx.moveTo(50,50);
@@ -182,7 +183,9 @@ function graficarCurvaFinal(scope){
 		var meds = Math.round((scope.experimento.xFinal - scope.experimento.xInicial+1) / (scope.experimento.nPasos -1) );
 		//alert(meds);
 		//console.log(scope.problema.dmax);
-		scope.dmax=Math.min(scope.problema.dmax, 999)
+		var dmauxFinal1 = scope.problema.dmax;
+		dmauxFinal1=Math.min(dmauxFinal1, 999)
+		alert("dmaux: " + dmauxFinal1);
 	    scope.highchartsNG = {
 	        options: {
 	            chart: {
@@ -197,7 +200,7 @@ function graficarCurvaFinal(scope){
 	            },
 	            xAxis: {
 	            	floor: 0,
-            		ceiling: parseInt(scope.problema.dmax),
+            		ceiling: parseInt(dmauxFinal1),
 					title:{text:'dg[mGal]'}
 
 	            },
@@ -209,7 +212,7 @@ function graficarCurvaFinal(scope){
                 //Fomula
                 var data = [],
                             i;
-					for (i = 0; i <= scope.problema.dmax; i++) {
+					for (i = 0; i <= dmauxFinal1; i++) {
 						var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 						var valorFormula2 = scope.problema.zo / valorFormula1;
 						var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
@@ -238,7 +241,7 @@ function graficarCurvaFinal(scope){
 						//Fomula
 						var data = [],
 									i;
-						for (i = 0; i <= scope.problema.dmax; i++) {
+						for (i = 0; i <= dmauxFinal1; i++) {
 							var valorFormula1 = Math.pow(((Math.pow(i - scope.xm,2)) +(Math.pow(scope.zm,2))), 3/2);
 							var valorFormula2 = scope.zm / valorFormula1;
 							var valorFormula3 = 0.027939 * scope.ddm * Math.pow(scope.rm,3) * valorFormula2;

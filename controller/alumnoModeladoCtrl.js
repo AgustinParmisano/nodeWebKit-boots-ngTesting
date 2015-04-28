@@ -458,7 +458,10 @@ function graficarCurvaModelado(scope){
 		//alert(meds);
 		var paso=0;
 		//console.log(scope.problema.dmax);
-		scope.dmax=Math.min(scope.problema.dmax, 999)
+		var dmauxmodel=scope.problema.dmax;
+		var xauxFinal=scope.experimento.xFinal;
+		xauxFinal=Math.min(xauxFinal, 999);
+		dmauxmodel=Math.min(dmauxmodel, 999)
 	    scope.highchartsNG = {
 	        options: {
 	            chart: {
@@ -471,7 +474,7 @@ function graficarCurvaModelado(scope){
 	            
 	            xAxis: {
 	            	floor: 0,
-            		ceiling: parseInt(scope.problema.dmax)
+            		ceiling: parseInt(dmauxmodel)
 
 	            },
 	        },
@@ -487,7 +490,7 @@ function graficarCurvaModelado(scope){
 	                //Fomula
 	                var data = [],
 	                            i;
-	                for (i = 0; i <= parseInt(scope.problema.dmax); i ++) {
+	                for (i = 0; i <= parseInt(dmauxmodel); i ++) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - scope.x1,2)) +(Math.pow(scope.z1,2))), 3/2);
 	                    var valorFormula2 = scope.z1 / valorFormula1;
 	                    var valorFormula3 = 0.027939 * scope.dd1 * Math.pow(scope.r1,3) * valorFormula2;
@@ -523,7 +526,7 @@ function graficarCurvaModelado(scope){
 								y: 0
 							});
 						var errorj=(0.0013969/5)*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
-						for (i = scope.experimento.xInicial; i <= parseInt(scope.experimento.xFinal)+1; i = i + meds) {
+						for (i = scope.experimento.xInicial; i <= parseInt(xauxFinal)+1; i = i + meds) {
 							var valorFormula1 = Math.pow(((Math.pow(i - scope.problema.xo,2)) +(Math.pow(scope.problema.zo,2))), 3/2);
 							var valorFormula2 = scope.problema.zo / valorFormula1;
 							var valorFormula3 = 0.027939 * scope.problema.dd * Math.pow(scope.problema.ro,3) * valorFormula2;
