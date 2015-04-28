@@ -103,7 +103,8 @@ function drawChartResolver(scope,xini,xfin,dmax){
 		//alert(scope.nPasos);
 		var cant=scope.nPasos;
 		var paso=0;
-		scope.dmax=Math.min(dmax, 999)
+		var dmaux = scope.dmax;
+		dmaux=Math.min(dmaux, 999);
 	    scope.highchartsNG = {
 	        options: {
 	            chart: {
@@ -118,7 +119,7 @@ function drawChartResolver(scope,xini,xfin,dmax){
 	            },
 	            xAxis: {
 	            	floor: 0,
-            		ceiling: parseInt(scope.problema.dmax),
+            		ceiling: parseInt(dmaux),
 					title:{text:'Anomalia de Gravedad'}
 	            },
 	        },
