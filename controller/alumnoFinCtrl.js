@@ -120,29 +120,52 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', '$location', function($
 
 function graficarEsferas(scope){
 	var ejeY=false;
-	var y;
+	var ym;
+	var yo;
 	var zo = parseInt(scope.zo);
 	var ro = parseInt(scope.ro);
 	var zm= parseInt(scope.zm);
 	if(zm > 210){ 
-		y=zm;
+		ym=zm;
 		zm=210;
-		ejeY=true;
-		alert("zm: " + zm);
+		ejeYm=true;
+		//alert("zm: " + zm);
 	}
 	if( zo > 210){
-		y=zo;
+		yo=zo;
 		zo=210;
-		ejeY=true;
-		alert("zo: " + zo);
+		ejeYo=true;
+		//alert("zo: " + zo);
 	}
-	if(ejeY){
+	if(ejeYm){
 		ctx.moveTo(50,50);
 		ctx.lineTo(50,260);
 		ctx.moveTo(40,260);
 		ctx.lineTo(60,260);
 		ctx.font = "20px Arial";
-		ctx.fillText(y,10,260);
+		ctx.fillStyle="#FF0000";
+		if(ym > yo){
+			ctx.fillText(ym,10,260);
+		}else{
+			ctx.fillText(ym,10,230);
+		};
+		//ctx.fillText(ym,10,260);
+		ctx.stroke();
+	}
+
+	if(ejeYo){
+		ctx.moveTo(50,50);
+		ctx.lineTo(50,260);
+		ctx.moveTo(40,260);
+		ctx.lineTo(60,260);
+		ctx.font = "20px Arial";
+		ctx.fillStyle="#000000";
+		if(ym < yo){
+			ctx.fillText(yo,10,260);
+		}else{
+			ctx.fillText(yo,10,230);
+		};
+		//ctx.fillText(yo,10,260);
 		ctx.stroke();
 	}
 	
@@ -185,7 +208,7 @@ function graficarCurvaFinal(scope){
 		//console.log(scope.problema.dmax);
 		var dmauxFinal1 = scope.problema.dmax;
 		dmauxFinal1=Math.min(dmauxFinal1, 999)
-		alert("dmaux: " + dmauxFinal1);
+		//alert("dmaux: " + dmauxFinal1);
 	    scope.highchartsNG = {
 	        options: {
 	            chart: {
