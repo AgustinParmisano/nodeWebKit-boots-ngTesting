@@ -115,12 +115,12 @@ function drawChartResolver(scope,xini,xfin,dmax){
 					  enabled: false
 				},
 	            yAxis: {
-					title:{text:'dg[mGal]'}
+					title:{text:'\u0394g[mGal]'}
 	            },
 	            xAxis: {
 	            	floor: 0,
             		ceiling: parseInt(dmaux),
-					title:{text:'Anomalia de Gravedad'}
+					title:{text:'Coordenada'}
 	            },
 	        },
 	          series: [{

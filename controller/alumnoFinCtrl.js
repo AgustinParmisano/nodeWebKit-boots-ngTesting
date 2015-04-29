@@ -119,7 +119,8 @@ app.controller('alumnoFinCtrl', ['$scope', '$rootScope', '$location', function($
 }]);
 
 function graficarEsferas(scope){
-	var ejeY=false;
+	var ejeYm=false;
+	var ejeYo=false;
 	var ym;
 	var yo;
 	var zo = parseInt(scope.zo);
@@ -219,12 +220,12 @@ function graficarCurvaFinal(scope){
 					  enabled: false
 				},
 	            yAxis: {
-					title:{text:'Anomalia de Gravedad'}
+					title:{text:'\u0394g[mGal]'}
 	            },
 	            xAxis: {
 	            	floor: 0,
             		ceiling: parseInt(dmauxFinal1),
-					title:{text:'dg[mGal]'}
+					title:{text:'Coordenada'}
 
 	            },
 	        },

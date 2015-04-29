@@ -23,7 +23,7 @@ function initChartModel(scope){
 			  enabled: false
 		},
         title: {
-            text: 'Anomalía'
+            text: ''
         },
         loading: false
     }
@@ -216,6 +216,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 		$scope.ddm1 = parseFloat((this.ddm1).toFixed(2));
 	}
 	$scope.changeX1 = function(){
+		this.r1errorMsg= "";
 		if((this.x1 >= this.r1 && this.x1 <= ($scope.problema.dmax - this.r1)) && this.x1 >= 0 && this.x1 <= $scope.problema.dmax || this.x1 == null){
 			this.x1errorMsg= "";
 		}else{
@@ -243,6 +244,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 		}	
 	}
 	$scope.changeR1 = function(){
+		this.x1errorMsg= "";
 		if((this.x1 >= this.r1 && this.x1 <= ($scope.problema.dmax - this.r1)) ||  this.r1 == null){
 			this.r1errorMsg= "";
 			
@@ -257,10 +259,10 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 			if(this.x1 != null){
 				this.x1errorMsg= "";
 				if(this.x1 < this.r1){
-					this.r1errorMsg= "X debe ser mayor a "+ this.r1;
+					this.r1errorMsg= "X debe ser menor a "+ this.x1;
 					}else{
 						if(this.x1 > ($scope.problema.dmax - this.r1)){
-							this.r1errorMsg= "X debe ser menor a "+ ($scope.problema.dmax - this.r1);
+							this.r1errorMsg= "X debe ser menor a "+ ($scope.problema.dmax - this.x1);
 						}
 					}
 			}else{
@@ -306,10 +308,10 @@ function graficarCurva(scope){
 				xAxis: {
 	            	floor: 0,
             		ceiling: parseInt(scope.problema.dmax),
-					title:{text:'Anomalia de Gravedad'}
+					title:{text:'Coordenada'}
 	            },
 				yAxis: { 
-					title:{text:'dg[mGal]'}
+					title:{text:'\u0394g[mGal]'}
 				}
 	        },
 	          series: [{
@@ -471,12 +473,15 @@ function graficarCurvaModelado(scope){
 				credits: {
 					  enabled: false
 				},
-	            
+	            yAxis: {
+					title:{text:'\u0394g[mGal]'}
+	            },
 	            xAxis: {
 	            	floor: 0,
-            		ceiling: parseInt(dmauxmodel)
-
+            		ceiling: parseInt(dmauxmodel),
+					title:{text:'Coordenada'}
 	            },
+	            
 	        },
 	          series: [{
 				marker: {
