@@ -135,14 +135,14 @@ function drawChartResolver(scope,xini,xfin,dmax){
 	                //Fomula
 	                var data = [],
 	                            i,
-								punto= 0 + xini;
+								punto= 0 + parseInt(xini);
 					data.push({
 	                        x: -1,
 	                        y: 0
 	                    });
 					scope.ruido[paso]= Math.random(-1,1);
 					var errorj=(0.0013969/5)*Math.pow(parseFloat(scope.problema.ro),3)*(parseFloat(scope.problema.dd)/(Math.pow(parseFloat(scope.problema.zo),2)));
-	                for (i = xini; i <= (parseInt(xfin)+1); i = i + meds) {
+	                for (i = parseInt(xini); i <= (parseInt(xfin)+1); i = i + parseInt(meds)) {
 	                    var valorFormula1 = Math.pow(((Math.pow(i - parseFloat(scope.problema.xo),2)) +(Math.pow(parseFloat(scope.problema.zo),2))), 3/2);
 	                    var valorFormula2 = parseFloat(scope.problema.zo) / valorFormula1;
 						var valorFormula3 = parseFloat(0.027939) * parseFloat(scope.problema.dd) * Math.pow(parseFloat(scope.problema.ro),3) * valorFormula2;
