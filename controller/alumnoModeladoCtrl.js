@@ -170,7 +170,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 		var paso=0;
 		var errora=0;
 		var errorb=0;
-		for (i = $scope.experimento.xInicial; i <= parseInt($scope.experimento.xFinal); i = i + medpuntos) {
+		for (i = $scope.experimento.xInicial; i <= parseInt($scope.experimento.xFinal)-1; i = i + medpuntos) {
 				/*bien*/dgm=0.027939 * (parseFloat($scope.problema.dd)) * Math.pow(parseInt($scope.problema.ro),3) *(parseInt($scope.problema.zo) / (Math.pow(((Math.pow(i - parseInt($scope.problema.xo),2)) +(Math.pow(parseInt($scope.problema.zo),2))), 3/2)));
 				/*bien*/dgo=0.027939 * (parseFloat(this.dim1) - parseFloat(this.dem1)) * Math.pow(this.r1,3) *(this.z1 / (Math.pow(((Math.pow(i - this.x1,2)) +(Math.pow(this.z1,2))), 3/2)));
 				/*bien*/dgm= dgm+(errorj*(parseFloat($scope.ruido[paso])));
