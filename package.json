@@ -2,17 +2,22 @@
   "main": "index.html",
   "name": "Geofisica",
   "version": "0.0.4",
-  "keywords": [ "demo", "node-webkit" ],
+  "keywords": [
+    "demo",
+    "node-webkit"
+  ],
   "window": {
     "icon": "images/imagen.png",
-	"width": 1200,
+    "width": 1200,
     "height": 800,
     "toolbar": false,
     "position": "center",
     "resizable": true,
-	"min_width": 800,
+    "min_width": 800,
     "min_height": 600
-   }
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-node-webkit-builder": "~1.0.2"
+  }
 }
-
-

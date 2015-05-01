@@ -160,7 +160,7 @@ app.controller('alumnoModeladoCtrl', ['$scope', '$location', '$routeParams', '$r
 		};
 	}
 	$scope.calculoError= function(){
-		var medpuntos=Math.round(($scope.experimento.xFinal - $scope.experimento.xInicial) / ($scope.experimento.nPasos -1) );
+		var medpuntos=(($scope.experimento.xFinal - $scope.experimento.xInicial) / ($scope.experimento.nPasos) );
 		var errori=0; 
 		//OBTENER EL RUIDO DE LA PANTALLA ANTERIOR, NO VOLVER A CALCULARLO
 		var errorj=(0.0013969/5)*Math.pow(parseFloat($scope.problema.ro),3)*(parseFloat($scope.problema.dd)/(Math.pow(parseFloat($scope.problema.zo),2)));
